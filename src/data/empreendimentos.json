@@ -1,0 +1,1443 @@
+[
+ {
+  "id": "landscape-paddan",
+  "nome": "Landscape",
+  "incorporadora": "Paddan",
+  "bairro": null,
+  "cidade": "Santo André",
+  "quartos": "2 ou 3",
+  "suites": "0 a 1",
+  "vagas": "1 a 2",
+  "segmento": "medio",
+  "metragens": [
+   59.88,
+   60.15,
+   60.22,
+   60.36,
+   61.07,
+   67.19,
+   68,
+   74.23,
+   74.82
+  ],
+  "areaMin": 59.88,
+  "areaMax": 74.82,
+  "precoAPartir": 613000,
+  "precoAPartirArea": 60.15,
+  "precoM2Min": 10054,
+  "tabelaData": "2026-07-01",
+  "entrega": "2029-09-30",
+  "torres": 2,
+  "pavimentos": 20,
+  "totalUnidades": 560,
+  "terreno": "8.800 m²",
+  "estrutura": null,
+  "tipologias": [],
+  "lazer": [
+   "Beach arena",
+   "Quadra poliesportiva",
+   "Playground",
+   "Pet place",
+   "Sala gamer",
+   "Salão de jogos",
+   "Cinema",
+   "Brinquedoteca",
+   "Churrasqueiras",
+   "Salão de festas adulto 1",
+   "Salão de festas adulto 2",
+   "Salão de festas infantil",
+   "Espaço gourmet",
+   "Pub",
+   "Piscina adulto",
+   "Piscina infantil",
+   "Piscina coberta",
+   "Hidromassagem",
+   "Bar piscina",
+   "Sauna",
+   "Academia",
+   "Pilates",
+   "Crossfit",
+   "Massagem / Spa",
+   "Espaço mulher",
+   "Espaço homem",
+   "Espaço melhor idade",
+   "Casa de Verão (piscina privativa)",
+   "Casa de Inverno (piscina privativa)",
+   "Redário",
+   "Praza Zen",
+   "Praça do fogo",
+   "Praça adolescente",
+   "Coworking",
+   "Lavanderia",
+   "Espaço 1 (sem nome na legenda)",
+   "Espaço 2 (sem nome na legenda)",
+   "Vaga de visitantes",
+   "Zeladoria",
+   "Administração"
+  ],
+  "infraestrutura": [
+   "Entre o Shopping ABC e o Shopping Metrópole",
+   "Acesso à Via Anchieta",
+   "Av. Pereira Barreto, corredor de serviços",
+   "Futura Linha 20-Rosa (Metrô) e Linha 14-Ônix (CPTM)",
+   "Revisão do Plano Diretor de Santo André (2026)"
+  ],
+  "acabamentos": [
+   "Salas, dormitórios e cozinha: laje com contrapiso (acabamento final a cargo do cliente)",
+   "Banheiros: piso cerâmico, pia em granito com cuba cerâmica, bacia com caixa acoplada",
+   "Cozinha: pia em granito com cuba inox; área de serviço com tanque de louça",
+   "Sacada/terraço: piso cerâmico e gradil em ferro pintado",
+   "Halls: porcelanato; paredes e tetos em pintura látex acrílica branca"
+  ],
+  "fluxoPct": 30
+ },
+ {
+  "id": "meritt-paddan",
+  "nome": "Meritt",
+  "incorporadora": "Paddan",
+  "bairro": "Jd. Stella",
+  "cidade": "Santo André",
+  "quartos": "2 ou 3",
+  "suites": "1",
+  "vagas": "1 ou 2",
+  "segmento": "medio",
+  "metragens": [
+   57.81,
+   67.37
+  ],
+  "areaMin": 57.81,
+  "areaMax": 67.37,
+  "precoAPartir": 563500,
+  "precoAPartirArea": 57.81,
+  "precoM2Min": 9747,
+  "tabelaData": "2026-07-01",
+  "entrega": "2029-09-30",
+  "torres": 1,
+  "pavimentos": 25,
+  "totalUnidades": 160,
+  "terreno": null,
+  "estrutura": "1 torre (Torre A), do 2º ao 25º andar",
+  "tipologias": [],
+  "lazer": [
+   "Quadra poliesportiva",
+   "Beach tennis",
+   "Playground",
+   "Brinquedoteca",
+   "Cinema",
+   "Pet place",
+   "Churrasqueira",
+   "Salão de festas",
+   "Piscina adulto",
+   "Piscina infantil",
+   "Bar piscina",
+   "Academia",
+   "Espaço melhor idade",
+   "Casa de campo",
+   "Coworking",
+   "Fire pit",
+   "Vagas de visitante"
+  ],
+  "infraestrutura": [
+   "Shopping ABC, Golden Square e Metrópole",
+   "Sonda, Assaí Atacadista e Coop Pereira Barreto",
+   "Estação Trólebus e BRT-ABC",
+   "Parque Central, Ginásio, Prefeitura e Poupatempo",
+   "Vias Anchieta, Kennedy, Portugal e Atlântica",
+   "Próximo à Av. Pereira Barreto"
+  ],
+  "acabamentos": [
+   "Salas e dormitórios: laje com contrapiso (acabamento final a cargo do cliente); paredes e tetos em pintura látex acrílica branca",
+   "Banheiros: lavatório em granito com cuba cerâmica, bacia com caixa acoplada; box em cerâmica",
+   "Cozinha: pia em granito com cuba inox; área de serviço com tanque de louça",
+   "Sem chuveiro elétrico: previsão para aquecimento a gás (aquecedor não fornecido) e para medição individual de água e gás"
+  ],
+  "fluxoPct": 30
+ },
+ {
+  "id": "ita-jardim",
+  "nome": "Ita Jardim",
+  "incorporadora": "Martinez & Fernandes e Jacy Construtora (Grupo Motiró)",
+  "bairro": "Jardim",
+  "cidade": "Santo André",
+  "quartos": "3",
+  "suites": "3",
+  "vagas": "3",
+  "segmento": "alto-padrao",
+  "metragens": [
+   177.15
+  ],
+  "areaMin": 177.15,
+  "areaMax": 177.15,
+  "precoAPartir": null,
+  "precoAPartirArea": null,
+  "precoM2Min": null,
+  "tabelaData": null,
+  "entrega": null,
+  "torres": 1,
+  "pavimentos": 26,
+  "totalUnidades": 52,
+  "terreno": "2.200 m²",
+  "estrutura": "1 torre × 26 pavimentos tipo (2 unidades por andar)",
+  "tipologias": [
+   {
+    "area": "177,15 m² (+ 3,13 m² de depósito)",
+    "desc": "3 suítes, terraço, passagem íntima, elevador privativo, ar-condicionado VRF e pé-direito de 3 m (há opção de living e suíte 2 ampliados)"
+   }
+  ],
+  "lazer": [
+   "Apoio ao salão de festas",
+   "Churrasqueira gourmet",
+   "Playground",
+   "Piscina adulto e infantil com deck molhado",
+   "Bar da piscina",
+   "Quadra recreativa",
+   "Salão de festas",
+   "Brinquedoteca",
+   "Piscina coberta com raia de 20 m (climatizada e aquecida)",
+   "Sauna",
+   "Fitness",
+   "Bicicletário (com tool sharing)",
+   "Pet place",
+   "Pet care",
+   "Coworking",
+   "Sala delivery",
+   "Portaria blindada",
+   "Vestiário e copa de funcionários",
+   "Gerador",
+   "Lixeira seca e de orgânicos",
+   "Vagas de visitantes"
+  ],
+  "infraestrutura": [
+   "Grand Plaza Shopping",
+   "Parque Celso Daniel",
+   "Av. Padre Anchieta e Av. D. Pedro II",
+   "Bairro Jardim, Santo André",
+   "Garagem com piso em epóxi e infraestrutura para carros elétricos",
+   "Energia fotovoltaica on-grid (previsão de instalação)",
+   "Coleta seletiva"
+  ],
+  "acabamentos": [
+   "Pé-direito de 3 m (piso a piso) e laje de 16 cm entre pavimentos",
+   "Caixilhos linha Lock-SL automatizados por controle remoto ou Alexa, com persiana blackout; sistema europeu de caixilho de correr com isolamento acústico",
+   "Ar-condicionado VRF: infraestrutura completa (rede frigorígena e dreno) em 5 pontos — sala (2) e suítes (3)",
+   "Ponto de água quente nos chuveiros, pias dos banheiros e da cozinha (aquecedor de passagem por conta do comprador); previsão de medidor de gás",
+   "Paredes e pisos das áreas molhadas em porcelanato retificado; bancadas em granito; tomadas USB nos dormitórios",
+   "Guarda-corpo do terraço em aço carbono; bacia Ecoflush; ralo linear nos boxes"
+  ],
+  "fluxoPct": 30
+ },
+ {
+  "id": "ilha-de-murano",
+  "nome": "Ilha de Murano",
+  "incorporadora": "Ecco Braz Construção e Incorporação de Imóveis",
+  "bairro": "Jardim",
+  "cidade": "Santo André",
+  "quartos": "2 ou 3",
+  "suites": "1",
+  "vagas": "1 ou 2",
+  "segmento": "medio",
+  "metragens": [
+   72.09,
+   86.62
+  ],
+  "areaMin": 72.09,
+  "areaMax": 86.62,
+  "precoAPartir": null,
+  "precoAPartirArea": null,
+  "precoM2Min": null,
+  "tabelaData": null,
+  "entrega": null,
+  "torres": 1,
+  "pavimentos": 19,
+  "totalUnidades": 48,
+  "terreno": "980 m²",
+  "estrutura": "1 torre × 19 andares (3 apartamentos por andar tipo: finais 1, 2 e 3)",
+  "tipologias": [
+   {
+    "area": "86,62 m²",
+    "desc": "3 dormitórios (1 suíte), sala de estar e jantar, cozinha com janela na pia, sacada gourmet, lavanderia com despensa separada; opção de 2 dormitórios com living ampliado"
+   },
+   {
+    "area": "72,09 m²",
+    "desc": "2 dormitórios (1 suíte), sala de estar e jantar, cozinha e sacada gourmet"
+   }
+  ],
+  "lazer": [
+   "Vaga moto delivery",
+   "Vaga de visitante",
+   "Área de espera",
+   "Depósito de entregas",
+   "Espaço gourmet",
+   "Salão de festas",
+   "Pergolado",
+   "Área de convivência",
+   "Academia",
+   "Playground",
+   "Espaço pet",
+   "Pet wash",
+   "Espaço oficina",
+   "Coworking",
+   "Piscina",
+   "Deck molhado",
+   "Deck seco"
+  ],
+  "infraestrutura": [
+   "Parque Celso Daniel — 300 m (1 min)",
+   "Grand Plaza Shopping — 900 m (3 min)",
+   "SESI Santo André — 1,6 km (6 min)",
+   "Terminal Rodoviário de Santo André — 1,6 km (6 min)",
+   "Bairro Jardim, Santo André"
+  ],
+  "acabamentos": [
+   "Sacada gourmet com sistema de exaustão para futura churrasqueira a carvão e porta de acesso direto pela cozinha; estrutura para fechamento em vidro",
+   "Cozinha com janela acima da pia; lavanderia e despensa em ambiente separado, com ventilação natural; tomadas de 20 A na cozinha e na lavanderia",
+   "Ponto de água quente nas torneiras da cozinha e banheiros; chuveiros a gás e infraestrutura para aquecedor de passagem a gás; bacias Ecoflush",
+   "Infraestrutura para ar-condicionado (dreno e ponto elétrico) na sala, no dormitório 1 e na suíte",
+   "Persiana integrada 100% blackout; portas com borracha antirruído; contrapiso autodensável com desempenho acústico; ventilação cruzada",
+   "Áreas comuns: gerador (portões, iluminação comum e um elevador), LED, portões automatizados e medição individualizada de água, energia e gás"
+  ],
+  "fluxoPct": 30
+ },
+ {
+  "id": "start-joy-sbc",
+  "nome": "Start Joy",
+  "incorporadora": "Plano&Plano (AK19 Empreendimentos e Participações)",
+  "bairro": "Jd. Olavo Bilac",
+  "cidade": "São Bernardo do Campo",
+  "quartos": "1 ou 2",
+  "suites": "0 a 1",
+  "vagas": "1",
+  "segmento": "economico",
+  "metragens": [
+   42.15,
+   51.52,
+   54.07
+  ],
+  "areaMin": 42.15,
+  "areaMax": 54.07,
+  "precoAPartir": null,
+  "precoAPartirArea": null,
+  "precoM2Min": null,
+  "tabelaData": null,
+  "entrega": null,
+  "torres": 3,
+  "pavimentos": null,
+  "totalUnidades": 680,
+  "terreno": "10.303,96 m² (fase 2); fases 1 + 2: 20.418,58 m²",
+  "estrutura": "3 torres residenciais (D, E e F) + mall comercial; fase 2 do condomínio Start Jardim Clube São Bernardo",
+  "tipologias": [
+   {
+    "area": "≈ 42 m² (42,15 m² no final 08)",
+    "desc": "1 dormitório com suíte e terraço"
+   },
+   {
+    "area": "≈ 51 m² (51,52 m² no final 05)",
+    "desc": "2 dormitórios sem suíte, terraço e vaga"
+   },
+   {
+    "area": "≈ 54 m² (54,07 m² no final 03)",
+    "desc": "2 dormitórios com suíte e terraço (as unidades de 2 dorms. têm opções de planta com ou sem suíte)"
+   }
+  ],
+  "lazer": [
+   "Churrasqueiras",
+   "Piscina adulto",
+   "Piscina infantil",
+   "Piscina biribol",
+   "Pergolados",
+   "Quadra recreativa",
+   "Playground",
+   "Mirante",
+   "Salão de festas",
+   "Salão de festas gourmet",
+   "Salão de festas infantil",
+   "Salão de festas juvenil",
+   "Salão de jogos",
+   "Fitness",
+   "Sauna seca",
+   "Espaço descanso / beleza",
+   "Brinquedoteca",
+   "Coworking",
+   "Minimercado",
+   "Delivery",
+   "Pet care",
+   "Home cinema",
+   "Games e espaço influencer"
+  ],
+  "infraestrutura": [
+   "Praça em frente ao empreendimento — 1 min",
+   "Shopping Metrópole — 5 min",
+   "Padaria Brasileira — 7 min",
+   "Supermercado Coop — 8 min",
+   "Smart Fit — 8 min",
+   "Oba Hortifruti — 10 min",
+   "Golden Square Shopping — 10 min",
+   "Universidade Metodista (Campus Planalto) e Uninove — 13 min"
+  ],
+  "acabamentos": [
+   "A apresentação não traz especificações de acabamento: os acabamentos seguem o Memorial Descritivo do contrato de compra e venda (não recebido).",
+   "Plantas com terraço e vaga; medidas internas, de face a face das paredes (plantas ilustrativas)."
+  ],
+  "fluxoPct": 30
+ },
+ {
+  "id": "sophistic-casa-branca",
+  "nome": "Sophistic",
+  "incorporadora": null,
+  "bairro": "Casa Branca",
+  "cidade": "Santo André",
+  "quartos": "2 ou 3",
+  "suites": "1",
+  "vagas": "1 ou 2",
+  "segmento": "medio",
+  "metragens": [
+   68,
+   70,
+   83
+  ],
+  "areaMin": 68,
+  "areaMax": 83,
+  "precoAPartir": null,
+  "precoAPartirArea": null,
+  "precoM2Min": null,
+  "tabelaData": null,
+  "entrega": null,
+  "torres": 1,
+  "pavimentos": 20,
+  "totalUnidades": 200,
+  "terreno": "4.200 m²",
+  "estrutura": "1 torre × 20 pavimentos (200 unidades); status: breve lançamento",
+  "tipologias": [
+   {
+    "area": "68 m²",
+    "desc": "2 dormitórios (1 suíte)"
+   },
+   {
+    "area": "70 m²",
+    "desc": "2 dormitórios (1 suíte)"
+   },
+   {
+    "area": "83 m²",
+    "desc": "3 dormitórios (1 suíte), com opção de sala ampliada; plantas mostram estar, jantar e cozinha"
+   }
+  ],
+  "lazer": [
+   "Piscinas",
+   "Churrasqueira",
+   "Playground",
+   "Salão de festas",
+   "Espaço gourmet",
+   "Brinquedoteca",
+   "Fitness"
+  ],
+  "infraestrutura": [
+   "Bairro Casa Branca, Santo André",
+   "Mapa de localização na apresentação (sem lista de distâncias)"
+  ],
+  "acabamentos": [
+   "A apresentação não traz especificações de acabamento nem memorial descritivo."
+  ],
+  "fluxoPct": 30
+ },
+ {
+  "id": "botanic-santo-andre",
+  "nome": "Residencial Botanic",
+  "incorporadora": "Construtora Paulo Makoto",
+  "bairro": "Vila Bastos",
+  "cidade": "Santo André",
+  "quartos": "3",
+  "suites": "1",
+  "vagas": "2",
+  "segmento": "medio",
+  "metragens": [
+   90.7
+  ],
+  "areaMin": 90.7,
+  "areaMax": 90.7,
+  "precoAPartir": 1017803.98,
+  "precoAPartirArea": 90.7,
+  "precoM2Min": 11222,
+  "tabelaData": "2026-06-15",
+  "entrega": "2028-09-30",
+  "torres": 1,
+  "pavimentos": 22,
+  "totalUnidades": 72,
+  "terreno": "1.511 m²",
+  "estrutura": "1 torre, 22 andares: 18 tipo + térreo + 3 andares de garagem (4 apartamentos por andar tipo)",
+  "tipologias": [],
+  "lazer": [
+   "Salão de festas",
+   "Apoio festas",
+   "Espaço grill com churrasqueira",
+   "Apoio espaço grill",
+   "Espaço bar",
+   "Praça de convivência",
+   "Estar externo",
+   "Piquenique",
+   "Redário",
+   "Mini pomar",
+   "Piscina adulto",
+   "Solário",
+   "Piscina infantil",
+   "Pool garden",
+   "Fitness",
+   "Fitness externo",
+   "Quadra street",
+   "Espaço mulher",
+   "Playground",
+   "Brinquedoteca",
+   "Salão de jogos",
+   "Pet square",
+   "Dog wash",
+   "Coworking",
+   "Web space",
+   "Vaga delivery moto",
+   "Vagas de visitantes",
+   "Praça de chegada",
+   "Hall social",
+   "Guarita com clausura",
+   "Administração",
+   "Área de funcionários"
+  ],
+  "infraestrutura": [
+   "Shopping ABC",
+   "Parque Central",
+   "Coco Bambu e Swift (Av. Portugal)",
+   "Centro Educacional ETIP Lino Jardim",
+   "Bardalino e Super Banca",
+   "Vila Bastos, Santo André"
+  ],
+  "acabamentos": [
+   "Áreas frias entregues com porcelanato 60 × 60 cm; soleiras em granito; bancadas em granito; tanque de louça",
+   "Previsão para torneiras e chuveiros com aquecimento a gás",
+   "Caixilhos com venezianas motorizadas e 100% blackout nos 3 dormitórios",
+   "Churrasqueira a carvão; infraestrutura de ar-condicionado conforme memorial descritivo",
+   "Infraestrutura para medição individual de água, gás e luz"
+  ],
+  "fluxoPct": 30
+ },
+ {
+  "id": "barcelona-scs",
+  "nome": "Barcelona",
+  "incorporadora": "Grupo Motiró (futura realização, incorporação e construção)",
+  "bairro": "Barcelona",
+  "cidade": "São Caetano do Sul",
+  "quartos": "3",
+  "suites": "3",
+  "vagas": "2 ou 3",
+  "segmento": "alto-padrao",
+  "metragens": [
+   94.67,
+   96.15,
+   190.82
+  ],
+  "areaMin": 94.67,
+  "areaMax": 190.82,
+  "precoAPartir": null,
+  "precoAPartirArea": null,
+  "precoM2Min": null,
+  "tabelaData": null,
+  "entrega": null,
+  "torres": 1,
+  "pavimentos": 12,
+  "totalUnidades": 46,
+  "terreno": "1.339,30 m² (ficha técnica)",
+  "estrutura": "1 torre: 11 pavimentos tipo (4 apartamentos por andar) + cobertura (12º) com 2 penthouses",
+  "tipologias": [
+   {
+    "area": "94,67 m² (finais 1 e 4) + depósito",
+    "desc": "3 suítes; opções de living e cozinha integrada e de 2 suítes com living ampliado"
+   },
+   {
+    "area": "96,15 m² (finais 2 e 3) + depósito",
+    "desc": "3 suítes (tipo)"
+   },
+   {
+    "area": "190,82 m² (penthouse, 2 unidades)",
+    "desc": "3 suítes, apartamento tipo com jardim/quintal"
+   }
+  ],
+  "lazer": [
+   "Piscina com raia de 20 m",
+   "Deck molhado",
+   "Solarium",
+   "Bar da piscina",
+   "Sauna",
+   "Salão de festas",
+   "Apoio externo do salão de festas",
+   "Churrasqueira gourmet",
+   "Espaço vinho",
+   "Lounge externo com lareira",
+   "Jardins",
+   "Fitness",
+   "Fitness externo",
+   "Quadra recreativa",
+   "Playground",
+   "Brinquedoteca",
+   "Pet place",
+   "Coworking",
+   "Espaço / sala delivery",
+   "Bicicletário (1º subsolo)",
+   "Vagas de visitantes",
+   "Portaria",
+   "Hall social"
+  ],
+  "infraestrutura": [
+   "Av. Dom Pedro II — 1 min (450 m)",
+   "Dr. Hato — 1 min (450 m)",
+   "Av. Goiás — 2 min (700 m)",
+   "Drogasil — 2 min (400 m)",
+   "USCS — 2 min (350 m)",
+   "Supermercado Coop — 3 min (450 m)",
+   "Sonda Supermercados — 3 min (1,1 km)",
+   "Av. Pres. Kennedy — 4 min (1,2 km)"
+  ],
+  "acabamentos": [
+   "Porcelanato no piso da cozinha, área de serviço, terraço técnico, varanda gourmet, lavabo e banheiros",
+   "Terraço entregue com bancada em granito e churrasqueira a gás; guarda-corpo em vidro e alumínio",
+   "Misturador de água quente nas pias dos banheiros e da cozinha; infraestrutura para aquecedor de passagem nos chuveiros e para medidor de gás; medidor individual de água entregue",
+   "Infraestrutura frigorígena para ar-condicionado nas suítes e na sala; tomadas USB nos dormitórios; ponto para máquina de lavar louças",
+   "Infraestrutura para automação residencial (luminárias, ar-condicionado e persianas) e para antena coletiva e TV por assinatura; bacias Ecoflush"
+  ],
+  "fluxoPct": 30
+ },
+ {
+  "id": "domus-demarchi",
+  "nome": "Domus Demarchi",
+  "incorporadora": "Mirante do Demarchi Empreendimento Imobiliário SPE Ltda",
+  "bairro": "Jd. Lauro Gomes",
+  "cidade": "São Bernardo do Campo",
+  "quartos": "2",
+  "suites": "0",
+  "vagas": "1",
+  "segmento": "economico",
+  "metragens": [
+   48.08,
+   49.21
+  ],
+  "areaMin": 48.08,
+  "areaMax": 49.21,
+  "precoAPartir": null,
+  "precoAPartirArea": null,
+  "precoM2Min": null,
+  "tabelaData": null,
+  "entrega": null,
+  "torres": 2,
+  "pavimentos": 20,
+  "totalUnidades": 320,
+  "terreno": "5.145,47 m²",
+  "estrutura": "2 blocos (torres 1 e 2): 2 subsolos + térreo + 20 pavimentos, 8 unidades por pavimento",
+  "tipologias": [
+   {
+    "area": "49,21 m² (planta A)",
+    "desc": "2 dormitórios com varanda estendida"
+   },
+   {
+    "area": "48,08 m² (planta B)",
+    "desc": "2 dormitórios com varanda estendida"
+   }
+  ],
+  "lazer": [
+   "Piscina adulto e infantil",
+   "Redário",
+   "Churrasqueira",
+   "Pub",
+   "Salão de festas",
+   "Área gourmet",
+   "Academia",
+   "Cross training",
+   "Quadra de beach tennis",
+   "Cornhole",
+   "Playground",
+   "Brinquedoteca",
+   "Espaço teen",
+   "Pet Place + Wash",
+   "Horta",
+   "Cinema externo",
+   "SPA",
+   "Espaço beauty",
+   "Market place",
+   "Studio influencer",
+   "Oficina de reparo",
+   "Coworking",
+   "Lobby de entrada torre 1",
+   "Lobby de entrada torre 2",
+   "Portaria",
+   "Vagas de visitantes",
+   "Estacionamento descoberto"
+  ],
+  "infraestrutura": [
+   "Bluefit Demarchi — 2 min",
+   "Centro de SBC — 2 min",
+   "Av. Maria Servidei Demarchi — 3 min",
+   "McDonald's — 3 min",
+   "Carrefour Demarchi — 4 min",
+   "Rodovia Anchieta (saída 23) — 4 min",
+   "São Bernardo Plaza Shopping — 7 min",
+   "Hospital Assunção — 7 min"
+  ],
+  "acabamentos": [
+   "O book não traz especificações de acabamento: elas seguem o memorial descritivo (não recebido)."
+  ],
+  "fluxoPct": 30
+ },
+ {
+  "id": "zanetti-hoppe",
+  "nome": "Edifício Zanetti",
+  "incorporadora": "Hoppe Ribeiro Incorporação e Gerenciamento de Obras Ltda.",
+  "bairro": "Vila Assunção",
+  "cidade": "Santo André",
+  "quartos": "2",
+  "suites": "0",
+  "vagas": "1",
+  "segmento": "economico",
+  "metragens": [
+   44.2
+  ],
+  "areaMin": 44.2,
+  "areaMax": 44.2,
+  "precoAPartir": null,
+  "precoAPartirArea": null,
+  "precoM2Min": null,
+  "tabelaData": null,
+  "entrega": null,
+  "torres": 1,
+  "pavimentos": 16,
+  "totalUnidades": 64,
+  "terreno": "681,07 m²",
+  "estrutura": "1 torre, 22 pavimentos: 2 subsolos, térreo com acesso e vagas, 1º pav. de lazer, 2º ao 17º pav. tipo (16 andares × 4 apartamentos) e 18º pav. de lazer com barrilete e painéis fotovoltaicos",
+  "tipologias": [
+   {
+    "area": "44,20 m² + 1 vaga (todas as unidades)",
+    "desc": "2 dormitórios, banheiro, sala, cozinha e varanda gourmet; 3 opções de planta sem custo: varanda integrada, convencional e 1 dormitório"
+   }
+  ],
+  "lazer": [
+   "Piscina adulto",
+   "Piscina infantil",
+   "Solarium",
+   "Espaço gourmet externo",
+   "Espaço funcional",
+   "Espaço fitness",
+   "Brinquedoteca",
+   "Espaço office / coworking",
+   "Pet place",
+   "Dog wash",
+   "Área de convivência",
+   "Pracinha",
+   "Salão de festas",
+   "Espaço gourmet interno",
+   "Belvedere",
+   "Estar externo",
+   "Fazenda de energia solar",
+   "Orquidário",
+   "Horta comunitária",
+   "Redário",
+   "Lavanderia compartilhada",
+   "Espaço zen",
+   "Locker compartilhado",
+   "Geladeira de uso comum para entregas perecíveis",
+   "Irrigação inteligente com captação de água da chuva",
+   "Coleta seletiva",
+   "LED nas áreas comuns"
+  ],
+  "infraestrutura": [
+   "Vila Assunção, Santo André (walkability é um dos diferenciais citados no book)"
+  ],
+  "acabamentos": [
+   "Infraestrutura pronta para ar-condicionado na sala e carga elétrica para expansão aos 2 dormitórios; área para condensadora",
+   "Tomadas USB em todos os ambientes; infraestrutura para automação; fechadura eletrônica",
+   "Piso em porcelanato nas áreas frias; vasos com sistema dual flush; ventilação natural nos WCs; janelas maiores que o padrão de mercado; portas com borracha amortecedora",
+   "Ponto para instalação de churrasqueira ecológica (planta com varanda integrada e planta de 1 dormitório)"
+  ],
+  "fluxoPct": 30
+ },
+ {
+  "id": "icony-campestre",
+  "nome": "Icony Campestre",
+  "incorporadora": "Fernandes e Fernandes Incorporadora e Empreendimentos Ltda.",
+  "bairro": "Campestre",
+  "cidade": "Santo André",
+  "quartos": "2 ou 3",
+  "suites": "1",
+  "vagas": "1 ou 2",
+  "segmento": "medio",
+  "metragens": [
+   62.45,
+   62.5,
+   62.63,
+   74.93,
+   75.3
+  ],
+  "areaMin": 62.45,
+  "areaMax": 75.3,
+  "precoAPartir": null,
+  "precoAPartirArea": null,
+  "precoM2Min": null,
+  "tabelaData": null,
+  "entrega": null,
+  "torres": 1,
+  "pavimentos": 25,
+  "totalUnidades": 150,
+  "terreno": "2.500,00 m²",
+  "estrutura": "1 torre, 25 pavimentos, 6 unidades por andar (150 unidades); estilo contemporâneo; arquitetura Ianseé Arquitetura",
+  "tipologias": [
+   {
+    "area": "74,93 e 75,30 m²",
+    "desc": "3 dormitórios, 1 suíte, 1 ou 2 vagas, varanda gourmet com churrasqueira"
+   },
+   {
+    "area": "62,45 e 62,63 m²",
+    "desc": "2 dormitórios, 1 suíte, 1 ou 2 vagas, varanda gourmet com churrasqueira"
+   }
+  ],
+  "lazer": [
+   "Piscinas",
+   "Horta",
+   "Espaço gourmet com pergolado",
+   "Espaço fitness / funcional externo",
+   "Playground",
+   "Quadra poliesportiva",
+   "Academia",
+   "Brinquedoteca / game",
+   "Coworking",
+   "Tools (oficina)",
+   "Fire pit",
+   "Espaço pet",
+   "Bicicletário",
+   "Cinema",
+   "Beauty",
+   "Food trucks",
+   "Área baby",
+   "Área de delivery"
+  ],
+  "infraestrutura": [
+   "Campestre, Santo André — travessa da Av. Dom Pedro II"
+  ],
+  "acabamentos": [],
+  "fluxoPct": 30
+ },
+ {
+  "id": "infinite-scs",
+  "nome": "Infinite MBigucci",
+  "incorporadora": "Forza Incorporadora Ltda. (MBigucci)",
+  "bairro": "Barcelona",
+  "cidade": "São Caetano do Sul",
+  "quartos": "2 ou 3",
+  "suites": "1",
+  "vagas": "2 ou 3",
+  "segmento": "medio",
+  "metragens": [
+   81
+  ],
+  "areaMin": 81,
+  "areaMax": 81,
+  "precoAPartir": null,
+  "precoAPartirArea": null,
+  "precoM2Min": null,
+  "tabelaData": null,
+  "entrega": null,
+  "torres": 1,
+  "pavimentos": 17,
+  "totalUnidades": 60,
+  "terreno": "2.054 m²",
+  "estrutura": "1 torre: 2 subsolos, térreo + 15 andares tipo + barrilete e reservatório; 4 apartamentos por andar (60 unidades). Arquitetura Mauro Martins; paisagismo Verdi Salerno; decorado Studio Ecoara; fachada moderna",
+  "tipologias": [
+   {
+    "area": "81 m² privativos (3 dorms.)",
+    "desc": "3 dormitórios (1 suíte), terraço gourmet com ponto de gás para churrasqueira, 2 ou 3 vagas determinadas + depósito privativo"
+   },
+   {
+    "area": "81 m² privativos (2 dorms.)",
+    "desc": "2 dormitórios (suíte) com sala ampliada, terraço nivelado ao piso da sala, 2 ou 3 vagas determinadas + depósito privativo"
+   }
+  ],
+  "lazer": [
+   "Quadra recreativa",
+   "Apoio da quadra",
+   "Pet place e dog wash",
+   "Horta",
+   "Fitness externo",
+   "Fitness interno",
+   "Gourmet grill & pizza lounge",
+   "Lounge gourmet",
+   "Espaço kids externo 1",
+   "Espaço kids externo 2",
+   "Delivery hub",
+   "Fire lounge",
+   "Deck molhado",
+   "Piscina adulto",
+   "Solário",
+   "Beauty care",
+   "Brinquedoteca",
+   "Mini market",
+   "Piscina infantil",
+   "Lounge games",
+   "Coworking",
+   "Arena beach",
+   "Bike station",
+   "Vagas de visitantes",
+   "Guarita/portaria"
+  ],
+  "infraestrutura": [
+   "São Caetano do Sul (maior IDH do país, segundo o folder)",
+   "Conveniências, parques, restaurantes e mobilidade a até 14 min de carro (Estação São Caetano CPTM, 11 min; ParkShopping São Caetano, 13 min)"
+  ],
+  "acabamentos": [
+   "Áreas comuns do térreo interno entregues decoradas e equipadas, com ar-condicionado, Wi-Fi e USB; gerador para áreas comuns",
+   "Previsão de ar-condicionado split na sala e dormitórios; tomadas USB na sala e dormitórios; janela com persiana integrada e previsão de automatização",
+   "Bancadas de cozinha em granito com cuba de inox; banheiros com bancada em granito e misturador de água quente",
+   "Laudo de desempenho acústico conforme NBR 15575; vidros blindados na guarita; programas My Home (personalização) e Espião do Lar"
+  ],
+  "fluxoPct": 30
+ },
+ {
+  "id": "jump-assuncao",
+  "nome": "Jump Assunção by Motiró",
+  "incorporadora": "Grupo Motiró (Motiró Empreendimentos Imobiliários) — Jacy",
+  "bairro": "Vila Assunção",
+  "cidade": "Santo André",
+  "quartos": "2",
+  "suites": "1 a 2",
+  "vagas": "1 ou 2",
+  "segmento": "economico",
+  "metragens": [
+   57.76,
+   58.08,
+   58.37,
+   59.79
+  ],
+  "areaMin": 57.76,
+  "areaMax": 59.79,
+  "precoAPartir": 612986.85,
+  "precoAPartirArea": 57.76,
+  "precoM2Min": 10613,
+  "tabelaData": "2026-10-01",
+  "entrega": null,
+  "torres": 2,
+  "pavimentos": 16,
+  "totalUnidades": 144,
+  "terreno": "3.718,99 m²",
+  "estrutura": "2 torres; 2 subsolos, térreo (lazer) + 16 pavimentos tipo; Torre A com 5 aptos/andar e Torre B com 4 aptos/andar (144 apartamentos). Arquitetura Ianseé Arquitetura; decoração Carolina Vilas Boas; paisagismo Takeda Design",
+  "tipologias": [
+   {
+    "area": "57,76 m² (Torre A, 32 unidades)",
+    "desc": "2 suítes + lavabo, terraço gourmet com churrasqueira a carvão (planta de 57,76 m² no book)"
+   },
+   {
+    "area": "58,08 m² (Torre A, 16 unidades)",
+    "desc": "2 suítes + lavabo, terraço gourmet"
+   },
+   {
+    "area": "56,01 m² (Torre A, 16 unidades)",
+    "desc": "2 dormitórios (1 suíte), terraço gourmet"
+   },
+   {
+    "area": "59,79 m² (Torre A, 16 unidades)",
+    "desc": "2 suítes + lavabo, terraço gourmet"
+   },
+   {
+    "area": "58,37 m² (Torre B, 64 unidades)",
+    "desc": "Torre B: 2 suítes + lavabo, terraço gourmet"
+   }
+  ],
+  "lazer": [
+   "Uber point",
+   "Praça de boas-vindas",
+   "Horta",
+   "Praça de leitura (pergolado com balanço e bancos)",
+   "Jardim",
+   "Praça dos pais",
+   "Play baby",
+   "Play kids",
+   "Play adventure",
+   "Brincadeira de rua",
+   "Funcional",
+   "Piscina adulto, deck molhado e solarium",
+   "Piscina infantil",
+   "Quadra recreativa",
+   "Apoio ao salão de festas",
+   "Lounge externo",
+   "Fire place",
+   "Pomar",
+   "Piquenique",
+   "Pet place",
+   "Beach tennis",
+   "Footvolley",
+   "Beach volley",
+   "Churrasqueira",
+   "Bicicletário e tool sharing",
+   "Salão de festas",
+   "Espaço gourmet",
+   "Coworking",
+   "Espaço teen",
+   "Salão de jogos",
+   "Brinquedoteca",
+   "Academia",
+   "Smart delivery / delivery room",
+   "Hall social",
+   "Portaria 24h com vidros blindados",
+   "3 vagas de visitantes",
+   "2 vagas moto delivery"
+  ],
+  "infraestrutura": [
+   "Vila Assunção, Santo André — Rua do Salto, 50",
+   "Book cita mobilidade, ensino de qualidade, natureza (Parque Central) e comércio"
+  ],
+  "acabamentos": [
+   "Previsão de ar-condicionado split na sala e dormitórios; persiana integrada nos dormitórios, 100% blackout",
+   "Gás natural canalizado: ponto para fogão e ponto para futuro aquecedor de passagem (por conta do proprietário)",
+   "Bacia sanitária Ecoflush; tomadas USB nos dormitórios; infraestrutura para automação residencial",
+   "Churrasqueira a carvão no terraço; áreas comuns entregues equipadas e decoradas, piscinas climatizadas, gerador, CFTV com 8 câmeras, energia solar fotovoltaica nas áreas comuns"
+  ],
+  "fluxoPct": 30
+ },
+ {
+  "id": "muva-santo-andre",
+  "nome": "Müva",
+  "incorporadora": "F. Bonano Engenharia (incorporação e construção)",
+  "bairro": "Jardim",
+  "cidade": "Santo André",
+  "quartos": "3",
+  "suites": "3",
+  "vagas": "3",
+  "segmento": "alto-padrao",
+  "metragens": [
+   134.87,
+   137.34
+  ],
+  "areaMin": 134.87,
+  "areaMax": 137.34,
+  "precoAPartir": null,
+  "precoAPartirArea": null,
+  "precoM2Min": null,
+  "tabelaData": null,
+  "entrega": null,
+  "torres": 1,
+  "pavimentos": 21,
+  "totalUnidades": 40,
+  "terreno": "1.200 m²",
+  "estrutura": "1 torre: 3 subsolos, térreo + 20 pavimentos, 2 apartamentos por andar (40 unidades). Arquitetura Renzo Trombini; paisagismo Mera; interiores Hosier",
+  "tipologias": [
+   {
+    "area": "137,34 m² (final 1)",
+    "desc": "3 suítes (1 master com closet), 3 vagas, hall social privativo, lavabo, terraço gourmet com churrasqueira a carvão, terraço íntimo na suíte master, área de serviço e entrada de serviço"
+   },
+   {
+    "area": "134,87 m² (final 2)",
+    "desc": "3 suítes (1 master), 3 vagas, mesmo programa do final 1"
+   }
+  ],
+  "lazer": [
+   "Guarita blindada com eclusa",
+   "Elevador PNE",
+   "Piscina infantil climatizada",
+   "Wellness Müva (piscina adulto climatizada, deck seco, deck molhado e sauna seca)",
+   "Salão de festas com sky garden",
+   "Sky lounge (churrasqueira e spa climatizado)",
+   "Fitness in&out",
+   "Square Müva (paredão de squash e chute a gol)",
+   "Brinquedoteca",
+   "Playground",
+   "Pet play",
+   "Boulevard garden",
+   "Hall social",
+   "Art spot"
+  ],
+  "infraestrutura": [
+   "Bairro Jardim, Santo André (Rua das Caneleiras), com vistas para o Jardim e o Campestre",
+   "Parque Celso Daniel, Shopping ABC, Pão de Açúcar e colégios citados no book"
+  ],
+  "acabamentos": [
+   "Pé-direito de 2,70 m na laje; hall social com 3,30 m",
+   "Aquecimento de água nos lavatórios, varanda gourmet e torneira da cozinha; exaustão na churrasqueira; infra para coifa",
+   "Um ponto de ar-condicionado em cada quarto e na sala; terraço técnico para condensadoras",
+   "Persianas 100% blackout; bancadas em granito polido; guarda-corpo em alvenaria e vidro"
+  ],
+  "fluxoPct": 30
+ },
+ {
+  "id": "marco-zero-one",
+  "nome": "Marco Zero One",
+  "incorporadora": "Big Top 2 Incorporadora Ltda. (MBigucci)",
+  "bairro": "Jardim do Mar",
+  "cidade": "São Bernardo do Campo",
+  "quartos": "3 ou 4",
+  "suites": "3 ou 4",
+  "vagas": "3 a 5",
+  "segmento": "alto-padrao",
+  "metragens": [
+   152,
+   202,
+   224,
+   283,
+   357
+  ],
+  "areaMin": 152,
+  "areaMax": 357,
+  "precoAPartir": null,
+  "precoAPartirArea": null,
+  "precoM2Min": null,
+  "tabelaData": null,
+  "entrega": null,
+  "torres": 1,
+  "pavimentos": 31,
+  "totalUnidades": 104,
+  "terreno": "5.000 m²",
+  "estrutura": "1 torre: 2 subsolos, térreo com lazer, mezanino com lazer, 25 pavimentos tipo, 2 pavimentos duplex (31 andares do subsolo ao duplex) e ático. Arquitetura MBigucci e MCAA; paisagismo Verdi Salerno. Complexo Marco Zero com distância superior a 34 m entre torres",
+  "tipologias": [
+   {
+    "area": "152 m² (50 unidades)",
+    "desc": "3 vagas determinadas, com 2 m² de depósito"
+   },
+   {
+    "area": "202 m² (44 unidades)",
+    "desc": "4 suítes (ou 3 suítes com living ampliado e home office, ou 3 suítes com suíte master ampliada), 4 vagas determinadas, com 2 m² de depósito; terraço gourmet com churrasqueira"
+   },
+   {
+    "area": "224 m² (6 unidades)",
+    "desc": "4 vagas determinadas (3 + 1 box de 22 m²), com 2 m² de depósito"
+   },
+   {
+    "area": "283 m² (2 coberturas duplex)",
+    "desc": "4 vagas determinadas (3 + 1 box), com 2 m² de depósito"
+   },
+   {
+    "area": "357 m² (2 coberturas duplex)",
+    "desc": "5 vagas determinadas (4 + 1 box), com 2 m² de depósito"
+   }
+  ],
+  "lazer": [
+   "Delivery hub",
+   "Pet garden",
+   "Horta compartilhada",
+   "Beach arena",
+   "Deck molhado",
+   "Solário",
+   "Piscina adulto",
+   "Piscina infantil",
+   "Piscina aquecida coberta",
+   "Fitness center",
+   "Hall social com pé-direito duplo",
+   "Coworking lounge",
+   "Beauty lounge",
+   "Zen lounge",
+   "Market place",
+   "Studio yoga & dance",
+   "Spa & wellness",
+   "Sauna",
+   "Squash court",
+   "Tennis court",
+   "Pool house",
+   "Streetball",
+   "Campo de futebol gramado",
+   "Playground infantil",
+   "Churrasqueira gourmet com forno de pizza",
+   "Salão de festas",
+   "Gourmet lounge",
+   "Kids room",
+   "Game lounge teen",
+   "Game lounge adulto",
+   "Wine bar",
+   "Redário relax",
+   "Guest suite",
+   "Portaria",
+   "Vagas para visitantes",
+   "Vagas para motos de delivery",
+   "Vaga de carga e descarga"
+  ],
+  "infraestrutura": [
+   "Avenida Kennedy, São Bernardo do Campo; Sam's Club a 2 min, UFABC a 3 min, Golden Square Shopping a 5 min"
+  ],
+  "acabamentos": [
+   "Hall social com acesso a apenas dois apartamentos por andar; porta pivotante com fechadura eletrônica",
+   "Terraço gourmet nivelado com a sala, ralo linear, churrasqueira a carvão e guarda-corpo preparado para fechamento em vidro",
+   "Misturador de água quente na cozinha e nos banheiros (exceto lavabo); ponto para aquecedor de passagem a gás",
+   "Medição individualizada de água, gás e energia; shafts visitáveis; previsão de automatização das janelas; ar-condicionado split previsto"
+  ],
+  "fluxoPct": 30
+ },
+ {
+  "id": "urban-life-sbc",
+  "nome": "Urban Life SBC",
+  "incorporadora": "Paddan",
+  "bairro": null,
+  "cidade": "São Bernardo do Campo",
+  "quartos": "2",
+  "suites": null,
+  "vagas": "1",
+  "segmento": "economico",
+  "metragens": [
+   49.7,
+   55.5,
+   57
+  ],
+  "areaMin": 49.7,
+  "areaMax": 57,
+  "precoAPartir": null,
+  "precoAPartirArea": null,
+  "precoM2Min": null,
+  "tabelaData": null,
+  "entrega": null,
+  "torres": 1,
+  "pavimentos": null,
+  "totalUnidades": null,
+  "terreno": null,
+  "estrutura": "Torre residencial; unidades de 2 dormitórios com 49 a 57 m² de área privativa e 1 vaga",
+  "tipologias": [
+   {
+    "area": "49,7 m² (planta A)",
+    "desc": "2 dormitórios, 1 vaga"
+   },
+   {
+    "area": "55,5 m² (planta B)",
+    "desc": "2 dormitórios, 1 vaga"
+   },
+   {
+    "area": "57 m² (planta C)",
+    "desc": "2 dormitórios, 1 vaga"
+   }
+  ],
+  "lazer": [
+   "Piscina adulto",
+   "Piscina infantil",
+   "3 churrasqueiras",
+   "Espaço gourmet",
+   "Praças",
+   "Lava-rápido (car wash)",
+   "Lavanderia",
+   "Salão de festas adulto",
+   "Salão de festas infantil",
+   "Playground",
+   "Brinquedoteca",
+   "Área pet",
+   "Cinema",
+   "Sala de reuniões",
+   "Academia",
+   "Quadra"
+  ],
+  "infraestrutura": [
+   "Via Anchieta, Rodovia dos Imigrantes e Av. dos Estados; Mercedes-Benz, Mercado Municipal, Golden Square Shopping, UFABC e hospitais citados"
+  ],
+  "acabamentos": [],
+  "fluxoPct": 30
+ },
+ {
+  "id": "vega-jardim",
+  "nome": "Residencial Vega Jardim",
+  "incorporadora": "MBrasil e Hoppe Ribeiro (incorporação e construção)",
+  "bairro": "Jardim",
+  "cidade": "Santo André",
+  "quartos": "2 ou 3",
+  "suites": "1",
+  "vagas": "1 a 3",
+  "segmento": "medio",
+  "metragens": [
+   67.52
+  ],
+  "areaMin": 67.52,
+  "areaMax": 67.52,
+  "precoAPartir": null,
+  "precoAPartirArea": null,
+  "precoM2Min": null,
+  "tabelaData": null,
+  "entrega": null,
+  "torres": 1,
+  "pavimentos": 15,
+  "totalUnidades": 50,
+  "terreno": "864 m²",
+  "estrutura": "1 torre, 15 pavimentos: 3 subsolos, térreo de lazer, 1º pavimento com 3 garden e 2 tipo, 2º ao 9º tipo e 10º com 5 coberturas duplex; 5 unidades por andar. Arquitetura PR Arquitetura; decoração Sabrina Tironi e Danielle Rampasso",
+  "tipologias": [
+   {
+    "area": "Garden (1º pav., unidades 12, 13 e 14)",
+    "desc": "Sala, cozinha, WC social, 2 ou 3 dorms (1 suíte), varanda, depósito na garagem, 2 ou 3 vagas"
+   },
+   {
+    "area": "Tipo (1º pav., unidades 11 e 15) e 2º ao 9º",
+    "desc": "Sala, cozinha, WC social, 2 ou 3 dorms (1 suíte), varanda gourmet integrada, depósito na garagem, 2 ou 3 vagas"
+   },
+   {
+    "area": "Cobertura duplex (10º pav., 5 unidades)",
+    "desc": "Escada interna, laje de cobertura, 2 ou 3 vagas"
+   }
+  ],
+  "lazer": [
+   "Horta",
+   "Coworking",
+   "Minimarket",
+   "Orquidário",
+   "Salão de festas",
+   "Open bar",
+   "Estar",
+   "Churrasqueira com forno de pizza",
+   "Playground",
+   "Brinquedoteca",
+   "Praça do fogo",
+   "Espaço teen",
+   "Praça da árvore",
+   "Lavanderia compartilhada",
+   "Funcional",
+   "Pet place",
+   "Dog wash",
+   "Fitness",
+   "Pool house",
+   "Pool lounge",
+   "Piscina",
+   "Lounge externo",
+   "Solário descoberto",
+   "Hall social",
+   "Vaga para carro elétrico"
+  ],
+  "infraestrutura": [
+   "Bairro Jardim, Santo André: Grand Plaza Shopping (1,9 km), Parque Celso Daniel (1,5 km), Colégio Dom Bosco a pé (77 m), estação CPTM e terminal"
+  ],
+  "acabamentos": [
+   "3 opções de planta sem custo até o momento que a obra permita; paredes internas não estruturais",
+   "Cinco pontos de água quente a gás; infraestrutura de ar-condicionado na suíte e sala; ponto grill com opção de churrasqueira a carvão, gás ou elétrica",
+   "Granito verde Ubatuba (pia, lavatórios, soleiras); paredes acústicas entre unidades; portas com borracha anti-ruído",
+   "Fechadura digital, USB e infraestrutura para automação; energia fotovoltaica e reuso de água"
+  ],
+  "fluxoPct": 30
+ },
+ {
+  "id": "now-campestre",
+  "nome": "NOW Campestre",
+  "incorporadora": "Grupo JCR",
+  "bairro": "Campestre",
+  "cidade": "Santo André",
+  "quartos": "2",
+  "suites": null,
+  "vagas": "1",
+  "segmento": "economico",
+  "metragens": [
+   38
+  ],
+  "areaMin": 38,
+  "areaMax": 38,
+  "precoAPartir": null,
+  "precoAPartirArea": null,
+  "precoM2Min": null,
+  "tabelaData": null,
+  "entrega": null,
+  "torres": 1,
+  "pavimentos": 18,
+  "totalUnidades": null,
+  "terreno": null,
+  "estrutura": "Torre única: 2 subsolos, térreo, 17 pavimentos tipo e cobertura; 4 unidades por andar",
+  "tipologias": [
+   {
+    "area": "38 m² (metragens e plantas oficiais no plantão de vendas)",
+    "desc": "2 dormitórios com varanda grill integrada à sala, cozinha conectada, depósito e vaga"
+   }
+  ],
+  "lazer": [
+   "Piscina",
+   "Prainha",
+   "Solário",
+   "Quiosque",
+   "Churrasqueira",
+   "Salão de festas",
+   "Área gourmet no rooftop",
+   "Academia",
+   "Brinquedoteca",
+   "Espaço Gaia",
+   "Pet place",
+   "Dog wash",
+   "Coworking",
+   "Sala de reunião",
+   "Lavanderia",
+   "Mini mercado"
+  ],
+  "infraestrutura": [
+   "Campestre, Santo André: Bairro Jardim a 150 m, Coop a 2 min a pé, CPTM Prefeito Saladino a 6 min a pé, Parque Celso Daniel a 10 min a pé, Grand Plaza e UFABC de carro"
+  ],
+  "acabamentos": [],
+  "fluxoPct": 30
+ },
+ {
+  "id": "portugal-740",
+  "nome": "Portugal 740",
+  "incorporadora": "TR9 Construtora (incorporação e construção)",
+  "bairro": null,
+  "cidade": "Santo André",
+  "quartos": "3",
+  "suites": "3",
+  "vagas": "3 a 6",
+  "segmento": "alto-padrao",
+  "metragens": [
+   150.38,
+   171.79,
+   300.92,
+   343.92
+  ],
+  "areaMin": 150.38,
+  "areaMax": 343.92,
+  "precoAPartir": null,
+  "precoAPartirArea": null,
+  "precoM2Min": null,
+  "tabelaData": null,
+  "entrega": null,
+  "torres": 1,
+  "pavimentos": 20,
+  "totalUnidades": 76,
+  "terreno": "3.054,19 m²",
+  "estrutura": "1 torre, 20 pavimentos: 18 tipo (1º ao 18º, 4 por andar) + duplex nos 19º (piso inferior) e 20º (piso superior); 4 subsolos e térreo. Arquitetura Ianseé Arquitetura; paisagismo Martha Gavião",
+  "tipologias": [
+   {
+    "area": "150,38 m² (147,89 m² de apartamento + 2,49 m² de depósito; 36 unidades)",
+    "desc": "3 suítes, 3 vagas, terraço gourmet com churrasqueira a carvão"
+   },
+   {
+    "area": "171,79 m² (169,30 m² de apartamento + 2,49 m² de depósito; 36 unidades)",
+    "desc": "3 suítes, 4 vagas, infra para banheira na suíte master, hall privativo"
+   },
+   {
+    "area": "300,92 m² (cobertura duplex: 238,62 m² cobertos + 57,32 m² descobertos + 4,98 m² de depósito; 19º piso inferior + 20º piso superior)",
+    "desc": "Piscina privativa (2,00 × 3,30 m); 5 vagas"
+   },
+   {
+    "area": "343,92 m² (cobertura duplex: 275,27 m² cobertos + 63,67 m² descobertos + 4,98 m² de depósito; 19º piso inferior + 20º piso superior)",
+    "desc": "Piscina privativa (2,00 × 4,30 m); 6 vagas"
+   }
+  ],
+  "lazer": [
+   "Portaria social e de serviço",
+   "Espaço delivery",
+   "Praça de boas-vindas",
+   "Espelho d'água",
+   "Quadra recreativa",
+   "Sauna",
+   "Piscina coberta aquecida",
+   "Piscina adulto",
+   "Deck molhado",
+   "Piscina infantil",
+   "Bar da piscina",
+   "Pilates",
+   "Fitness",
+   "Espaço família com spa",
+   "Beauty care",
+   "Playground",
+   "Brinquedoteca",
+   "Salão de festas",
+   "Apoio do salão de festas",
+   "Espaço gourmet",
+   "Apoio do espaço gourmet",
+   "Churrasqueira",
+   "Salão de jogos",
+   "Coworking",
+   "Lounge externo com lareira",
+   "Pet place / pet care (4º subsolo)",
+   "Bicicletários (1º, 2º e 4º subsolos)"
+  ],
+  "infraestrutura": [
+   "Avenida Portugal, Santo André; Terminal Metropolitano a 1,2 km, centro a 1,6 km, Banco do Brasil a 650 m"
+  ],
+  "acabamentos": [
+   "Pé-direito de cerca de 2,67 m; churrasqueira a carvão com exaustão central; terraço gourmet nivelado, ralo linear",
+   "Infra para ar-condicionado (sala, suítes e terraço gourmet), coifa, triturador e lava-louças; água quente por aquecedor de passagem a ser adquirido pelo proprietário",
+   "Entrega com acabamento padrão ou, como opção, 'cinza' sem os acabamentos finais das áreas frias",
+   "Alvenaria de 19 cm em blocos de concreto; norma de desempenho NBR 15575 (acústica) atendida; ventilação natural nos 4 subsolos"
+  ],
+  "fluxoPct": 30
+ }
+]

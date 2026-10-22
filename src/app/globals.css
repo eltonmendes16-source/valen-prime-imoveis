@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light; }
+html { scroll-behavior: smooth; }
+body { background: #FCFBF8; color: #1F1C19; font-family: 'IBM Plex Sans', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+::selection { background: #C19A5B; color: #171513; }
+
+@layer components {
+  .container-page { @apply mx-auto w-full max-w-page px-5 sm:px-8; }
+  .eyebrow { @apply font-mono text-[11px] uppercase tracking-[0.2em] text-golddark; }
+  .h-display { @apply font-serif font-semibold leading-[1.04] tracking-tight text-balance; }
+  .h-display em { @apply font-medium italic text-gold; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded px-5 py-3 text-sm font-semibold transition duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-goldsoft; }
+  .btn-gold { @apply bg-gold text-ink shadow-sm hover:bg-[#d3ab6b] hover:-translate-y-0.5; }
+  .btn-line { @apply border border-gold/70 text-ink bg-transparent hover:bg-gold/10 hover:border-gold; }
+  .btn-ink { @apply bg-ink text-paper hover:bg-coal2; }
+  .field { @apply w-full rounded border border-ink/15 bg-white px-3.5 py-3 text-sm text-ink placeholder:text-muted outline-none focus:border-gold; }
+  .field-light { @apply w-full rounded border border-ink/20 bg-white px-3.5 py-3 text-sm text-ink placeholder:text-mutedink outline-none focus:border-gold; }
+  .label { @apply mb-1.5 block text-xs font-medium tracking-wide text-muted; }
+  .label-light { @apply mb-1.5 block text-xs font-medium tracking-wide text-mutedink; }
+  .chip { @apply inline-flex rounded-full border border-ink/15 bg-paper2 px-3 py-1 text-xs text-ink; }
+  .chip-dark { @apply inline-flex rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs text-paper; }
+  .grid-fino {
+    background-image: repeating-linear-gradient(0deg, rgba(23,21,19,.035) 0 1px, transparent 1px 40px), repeating-linear-gradient(90deg, rgba(23,21,19,.035) 0 1px, transparent 1px 40px);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .sobe { animation: sobe .7s cubic-bezier(.2,.7,.2,1) both; }
+  .sobe-2 { animation-delay: .1s; } .sobe-3 { animation-delay: .2s; } .sobe-4 { animation-delay: .3s; }
+  @keyframes sobe { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+}
