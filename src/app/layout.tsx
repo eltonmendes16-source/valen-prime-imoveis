@@ -1,8 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-import { WhatsAppFloat } from "@/components/WhatsAppFloat";
+import { SiteChrome } from "@/components/SiteChrome";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -41,10 +39,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
         <a href="#conteudo" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-gold focus:px-4 focus:py-2 focus:text-ink">Ir para o conteúdo</a>
-        <Header />
-        <main id="conteudo">{children}</main>
-        <Footer />
-        <WhatsAppFloat />
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   );
