@@ -2,6 +2,14 @@
 // Nada é enviado a servidor até o visitante enviar um formulário e concordar com o uso dos dados.
 const CHAVE = "vp_interesse";
 type Dados = { emps: string[]; unidades: string[]; dias: string[]; tabela?: boolean; renda?: boolean; pdf?: boolean; simulador?: boolean };
+const PREF = "vp_privacidade";
+export type Escolha = "ok" | "recusado" | null;
+export function lerEscolha(): Escolha {
+  try { const v = localStorage.getItem(PREF); return v === "ok" || v === "recusado" ? v : null; } catch { return null; }
+}
+export function gravarEscolha(v: "ok" | "recusado") {
+  try { localStorage.setItem(PREF, v); if (v === "recusado") localStorage.removeItem(CHAVE); } catch { /* ignora */ }
+}
 const vazio = (): Dados => ({ emps: [], unidades: [], dias: [] });
 const hoje = () => new Date().toLocaleDateString("en-CA", { timeZone: "America/Sao_Paulo" });
 
@@ -14,7 +22,7 @@ function gravar(d: Dados) { try { localStorage.setItem(CHAVE, JSON.stringify(d))
 export type Evento = { tipo: "pagina"; caminho: string } | { tipo: "unidade"; id: string } | { tipo: "tabela" | "renda" | "pdf" | "simulador" };
 
 export function registrar(e: Evento) {
-  if (typeof window === "undefined") return;
+  if (typeof window === "undefined" || lerEscolha() === "recusado") return;
   const d = ler();
   const h = hoje();
   if (!d.dias.includes(h)) d.dias = [...d.dias, h].slice(-10);
@@ -31,7 +39,7 @@ export function registrar(e: Evento) {
 
 /** Resumo para anexar ao pedido do visitante (só é enviado com o consentimento dele). */
 export function resumoInteresse(): Dados | null {
-  if (typeof window === "undefined") return null;
+  if (typeof window === "undefined" || lerEscolha() === "recusado") return null;
   const d = ler();
   return d.emps.length || d.unidades.length || d.tabela || d.renda || d.pdf || d.simulador || d.dias.length ? d : null;
 }
