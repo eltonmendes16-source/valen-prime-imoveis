@@ -5,6 +5,7 @@ import { getSupabase } from "@/lib/supabase";
 import { ETAPAS, baseNome } from "@/lib/crm";
 import { FAIXAS, chaveDia, contar, ligacoesValidas, melhorFaixa, taxaPorFaixa, ultimosDias } from "@/lib/analytics";
 import { Aviso } from "./ui";
+import { VisitasSite } from "./VisitasSite";
 
 type C = { id: string; criado_em: string; origem: string; base: string; etapa: string; temperatura: string; empreendimento_interesse: string | null; motivo_perda: string | null; pontuacao_site: number };
 type I = { cliente_id: string; tipo: string; resultado: string | null; criado_em: string };
@@ -173,6 +174,8 @@ export function Painel({ versao }: { versao: number }) {
             Faixas: {FAIXAS.slice(0, 4).join(", ")}.
           </p>
         </Cartao>
+
+        <VisitasSite />
 
         <Cartao titulo="Por que perdemos clientes?" pergunta="Motivos informados em “Não tenho interesse”." vazio={d.perdas.length === 0 ? "Nenhum motivo registrado ainda." : undefined}>
           <Barras dados={d.perdas} horizontal cor="#8A672A" />
