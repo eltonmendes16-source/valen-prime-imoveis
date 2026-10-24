@@ -1,16 +1,17 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { Calculator, Eye } from "lucide-react";
+import { Calculator, Eye, Video } from "lucide-react";
 import { Capa } from "@/components/Capa";
 import { LeadForm } from "@/components/LeadForm";
 import { AvisoValores } from "@/components/AvisoValores";
 import { AgendarVisita } from "@/components/AgendarVisita";
 import { BotaoFavorito } from "@/components/BotaoFavorito";
 import { BotaoCompartilhar } from "@/components/BotaoCompartilhar";
-import { COM_TABELA, EMPS, getEmp, brl, faixaArea, localizacao, entregaTexto, SEGMENTO_LABEL } from "@/lib/emp";
+import { COM_TABELA, COM_TOUR, COM_VIDEO, EMPS, getEmp, brl, faixaArea, localizacao, entregaTexto, SEGMENTO_LABEL } from "@/lib/emp";
 import { SITE } from "@/lib/site";
-import { TABELAS } from "@/lib/tabelas";
+import { carregarTabela } from "@/lib/tabelas";
+import { MidiaEmpreendimento } from "@/components/MidiaEmpreendimento";
 import books from "@/data/books.json";
 
 export function generateStaticParams() { return EMPS.map((e) => ({ id: e.id })); }
@@ -30,6 +31,7 @@ function Lista({ titulo, itens }: { titulo: string; itens: string[] }) {
 export default async function Page({ params }: { params: Promise<{ id: string }> }) {
   const e = getEmp((await params).id);
   if (!e) notFound();
+  const midia = (COM_TOUR.includes(e.id) || COM_VIDEO.includes(e.id)) ? await carregarTabela(e.id) : null;
   const ent = entregaTexto(e.entrega);
   const fatos: [string, string][] = [
     ["Localização", localizacao(e)], ["Segmento", SEGMENTO_LABEL[e.segmento]], ["Metragem", faixaArea(e)],
@@ -49,9 +51,16 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
             <h1 className="h-display mt-3 text-4xl sm:text-5xl">{e.nome}</h1>
             <p className="mt-2 text-charcoal/70">{localizacao(e)}</p>
             <p className="mt-8 text-xs uppercase tracking-wider text-muted">{e.precoAPartir ? "A partir de" : "Valores"}</p>
-            {!e.precoAPartir && COM_TABELA.includes(e.id)
-              ? <div className="mt-2 flex flex-wrap gap-3"><Link href={`/escolha-sua-unidade/${e.id}`} className="btn btn-gold">Ver tabela de preços</Link>{(TABELAS[e.id]?.tour360 || TABELAS[e.id]?.videoDecorado) && <Link href={`/escolha-sua-unidade/${e.id}#tour`} className="btn btn-line"><Eye size={16} /> Tour 360° e vídeo do decorado</Link>}</div>
-              : <p className="font-serif text-4xl font-semibold text-golddark">{e.precoAPartir ? brl(e.precoAPartir) : "Sob consulta"}</p>}
+            {(e.precoAPartir || !COM_TABELA.includes(e.id)) && <p className="font-serif text-4xl font-semibold text-golddark">{e.precoAPartir ? brl(e.precoAPartir) : "Sob consulta"}</p>}
+            <div className="mt-3 flex flex-wrap gap-3">
+              {COM_TABELA.includes(e.id) && <Link href={`/escolha-sua-unidade/${e.id}`} className="btn btn-gold">Ver tabela de preços</Link>}
+              {COM_TOUR.includes(e.id)
+                ? <a href="#tour" className="btn btn-line"><Eye size={16} /> Tour 360°</a>
+                : <span aria-disabled="true" className="btn btn-line cursor-not-allowed opacity-50"><Eye size={16} /> Tour 360° · em breve</span>}
+              {COM_VIDEO.includes(e.id)
+                ? <a href="#video" className="btn btn-line"><Video size={16} /> Vídeo do decorado</a>
+                : <span aria-disabled="true" className="btn btn-line cursor-not-allowed opacity-50"><Video size={16} /> Vídeo do decorado · em breve</span>}
+            </div>
             {e.tabelaData && <p className="mt-1 text-xs text-muted">Tabela de {new Date(e.tabelaData + "T12:00:00").toLocaleDateString("pt-BR")} · sujeita a alteração sem aviso prévio.</p>}
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href={`/simulador?emp=${e.id}`} className="btn btn-line"><Calculator size={16} /> Simular fluxo</Link>
@@ -64,6 +73,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
           </div>
         </div>
       </section>
+      <MidiaEmpreendimento nome={e.nome} tour360={midia?.tour360} videoDecorado={midia?.videoDecorado} videoPoster={midia?.videoPoster} />
       <section className="bg-snow py-16">
         <div className="container-page space-y-14">
           <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-md border border-ink/10 bg-ink/5 sm:grid-cols-3 lg:grid-cols-4">

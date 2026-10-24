@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
-import { Calculator, Download, Eye, MessageCircle, Sparkles, Video } from "lucide-react";
-import type { TabelaEmp } from "@/lib/tabelas";
+import { Calculator, Download, Eye, MessageCircle, Video } from "lucide-react";
+import type { TabelaPreenchida } from "@/lib/tabelas";
 import { LeadForm } from "./LeadForm";
 import { AgendarVisita } from "./AgendarVisita";
 import { AvisoValores } from "./AvisoValores";
@@ -9,7 +9,7 @@ import { whatsappLink } from "@/lib/site";
 import { fichaUnidadePdf } from "@/lib/pdf";
 import { registrar } from "@/lib/comportamento";
 
-type Unidade = TabelaEmp["unidades"][number];
+type Unidade = TabelaPreenchida["unidades"][number];
 const brl = (v: number) => new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 }).format(v);
 const brl2 = (v: number) => new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(v);
 const dia = (iso: string) => iso.split("-").reverse().join("/");
@@ -20,7 +20,7 @@ function price(valor: number, taxaAnual: number, meses: number) {
   return i === 0 ? valor / meses : (valor * i) / (1 - Math.pow(1 + i, -meses));
 }
 
-export function EscolhaUnidade({ nomeEmp, empId, dados }: { nomeEmp: string; empId: string; dados: TabelaEmp }) {
+export function EscolhaUnidade({ nomeEmp, empId, dados }: { nomeEmp: string; empId: string; dados: TabelaPreenchida }) {
   const { tabela, unidades, andares, finais } = dados;
   const [sel, setSel] = useState<Unidade | null>(null);
   const [taxa, setTaxa] = useState(11.5);
@@ -173,28 +173,12 @@ export function EscolhaUnidade({ nomeEmp, empId, dados }: { nomeEmp: string; emp
         </section>
       )}
 
-      <section id="tour" aria-label="Vista e decorado" className="grid scroll-mt-24 gap-6 md:grid-cols-2">
-        {dados.tour360 ? <div className="rounded-md border border-ink/10 bg-white p-6">
-          <h2 className="flex items-center gap-2 font-serif text-2xl font-semibold"><Eye size={20} /> Passeio virtual 360°</h2>
-          <p className="mt-1 text-sm text-mutedink">Veja a vista e circule pelo ambiente.</p>
-          <div className="mt-4 aspect-video overflow-hidden rounded bg-sand">
-            <iframe src={dados.tour360} title={`Passeio virtual 360° do ${nomeEmp}`} className="h-full w-full" allow="fullscreen; gyroscope; accelerometer" loading="lazy" />
-          </div>
-          <a href={dados.tour360} target="_blank" rel="noopener noreferrer" className="mt-3 inline-block text-sm text-golddark underline">Abrir em tela cheia</a>
-        </div> : <div className="rounded-md border border-ink/10 bg-white p-6"><h2 className="flex items-center gap-2 font-serif text-2xl font-semibold"><Eye size={20} /> Passeio virtual 360°</h2><p className="mt-3 rounded bg-sand p-6 text-sm text-mutedink">Passeio virtual em breve.</p></div>}
-        <div className="rounded-md border border-ink/10 bg-white p-6">
-          <h2 className="flex items-center gap-2 font-serif text-2xl font-semibold"><Video size={20} /> Apartamento decorado</h2>
-          {dados.videoDecorado ? (
-            <div className="mt-4 aspect-video overflow-hidden rounded bg-black">
-              {dados.videoDecorado.endsWith(".mp4")
-                ? <video src={dados.videoDecorado} poster={dados.videoPoster} controls preload="metadata" playsInline className="h-full w-full" />
-                : <iframe src={dados.videoDecorado} title={`Decorado do ${nomeEmp}`} className="h-full w-full" allow="fullscreen" loading="lazy" />}
-            </div>
-          ) : <p className="mt-3 rounded bg-sand p-6 text-sm text-mutedink">Vídeo do decorado em breve.</p>}
-          <h2 className="mt-6 flex items-center gap-2 font-serif text-2xl font-semibold"><Sparkles size={20} /> Decore com IA</h2>
-          <p className="mt-2 rounded bg-sand p-6 text-sm text-mutedink">Em breve: escolha um estilo e veja o ambiente decorado. As imagens serão ilustrativas.</p>
+      {(dados.tour360 || dados.videoDecorado) && (
+        <div className="flex flex-wrap gap-3">
+          {dados.tour360 && <a href={`/empreendimentos/${empId}#tour`} className="btn btn-line"><Eye size={16} /> Tour 360°</a>}
+          {dados.videoDecorado && <a href={`/empreendimentos/${empId}#video`} className="btn btn-line"><Video size={16} /> Vídeo do decorado</a>}
         </div>
-      </section>
+      )}
 
       <section id="visita"><AgendarVisita empreendimento={nomeEmp} detalhe={sel ? `unidade ${sel.id.replace("U-", "")}` : undefined} /></section>
 

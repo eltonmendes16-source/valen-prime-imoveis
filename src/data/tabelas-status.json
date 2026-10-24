@@ -1,0 +1,97 @@
+{
+ "barcelona-scs": {
+  "tabela": false,
+  "tour": false,
+  "video": false
+ },
+ "botanic-santo-andre": {
+  "tabela": false,
+  "tour": false,
+  "video": false
+ },
+ "domus-demarchi": {
+  "tabela": false,
+  "tour": false,
+  "video": false
+ },
+ "icony-campestre": {
+  "tabela": false,
+  "tour": false,
+  "video": false
+ },
+ "ilha-de-murano": {
+  "tabela": true,
+  "tour": true,
+  "video": true
+ },
+ "infinite-scs": {
+  "tabela": false,
+  "tour": false,
+  "video": false
+ },
+ "ita-jardim": {
+  "tabela": false,
+  "tour": false,
+  "video": false
+ },
+ "jump-assuncao": {
+  "tabela": false,
+  "tour": false,
+  "video": false
+ },
+ "landscape-paddan": {
+  "tabela": false,
+  "tour": false,
+  "video": false
+ },
+ "marco-zero-one": {
+  "tabela": false,
+  "tour": false,
+  "video": false
+ },
+ "meritt-paddan": {
+  "tabela": false,
+  "tour": false,
+  "video": false
+ },
+ "muva-santo-andre": {
+  "tabela": false,
+  "tour": false,
+  "video": false
+ },
+ "now-campestre": {
+  "tabela": false,
+  "tour": false,
+  "video": false
+ },
+ "portugal-740": {
+  "tabela": false,
+  "tour": false,
+  "video": false
+ },
+ "sophistic-casa-branca": {
+  "tabela": false,
+  "tour": false,
+  "video": false
+ },
+ "start-joy-sbc": {
+  "tabela": false,
+  "tour": false,
+  "video": false
+ },
+ "urban-life-sbc": {
+  "tabela": false,
+  "tour": false,
+  "video": false
+ },
+ "vega-jardim": {
+  "tabela": false,
+  "tour": false,
+  "video": false
+ },
+ "zanetti-hoppe": {
+  "tabela": false,
+  "tour": false,
+  "video": false
+ }
+}

@@ -30,6 +30,7 @@ export const brl = (v: number) =>
 export const m2 = (v: number) => `${v.toLocaleString("pt-BR", { maximumFractionDigits: 2 })} m²`;
 
 export function faixaArea(e: Emp) {
+  if (!e.areaMax) return "Metragens em breve";
   return e.areaMin === e.areaMax ? m2(e.areaMax) : `${m2(e.areaMin)} a ${m2(e.areaMax)}`;
 }
 export function localizacao(e: Emp) {
@@ -54,9 +55,13 @@ export function entregaTexto(iso: string | null) {
   return `${meses[parseInt(m, 10) - 1]}/${a}`;
 }
 
-// Empreendimentos que já têm tela "Escolha sua unidade" com tabela de preços (arquivo em src/data/tabelas e registro em src/lib/tabelas.ts).
-// `node scripts/validar-tabelas.mjs` confere se esta lista e as tabelas estão de acordo.
-export const COM_TABELA = ["ilha-de-murano"];
+// Quais empreendimentos já têm tabela de preços, passeio 360° e vídeo. Gerado sozinho (scripts/status-tabelas.mjs)
+// a partir de src/data/tabelas/<id>.json: para liberar um recurso, basta preencher o arquivo do empreendimento.
+import status from "@/data/tabelas-status.json";
+const ids = (campo: "tabela" | "tour" | "video") => Object.entries(status as Record<string, Record<string, boolean>>).filter(([, v]) => v[campo]).map(([k]) => k);
+export const COM_TABELA = ids("tabela");
+export const COM_TOUR = ids("tour");
+export const COM_VIDEO = ids("video");
 
 // Páginas por cidade (SEO): /lancamentos/<slug>
 export const slugify = (s: string) => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");

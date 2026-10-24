@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "predev": "node scripts/capas.mjs",
-    "prebuild": "node scripts/capas.mjs"
+    "predev": "node scripts/capas.mjs && node scripts/status-tabelas.mjs",
+    "prebuild": "node scripts/capas.mjs && node scripts/status-tabelas.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.118.0",
