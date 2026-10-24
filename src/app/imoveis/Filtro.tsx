@@ -35,9 +35,9 @@ export function Filtro() {
         <div><label className="label" htmlFor="f-d">Dormitórios</label><select id="f-d" className="field" value={quartos} onChange={(e) => setQuartos(e.target.value)}><option value="">Todos</option>{["1", "2", "3", "4"].map((n) => <option key={n}>{n}</option>)}</select></div>
         <div><label className="label" htmlFor="f-a">Metragem</label><select id="f-a" className="field" value={area} onChange={(e) => setArea(e.target.value)}><option value="">Todas</option><option value="ate60">Até 60 m²</option><option value="60a100">60 a 100 m²</option><option value="100mais">Acima de 100 m²</option></select></div>
       </div>
-      <div className="mb-6 flex items-center justify-between gap-4">
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
         <p className="text-sm text-muted" aria-live="polite">{lista.length} empreendimento(s)</p>
-        <div className="flex items-center gap-2"><label className="label !mb-0" htmlFor="f-o">Ordenar</label><select id="f-o" className="field !w-auto" value={ordem} onChange={(e) => setOrdem(e.target.value)}><option value="nome">Nome</option><option value="preco">Menor preço</option><option value="area">Menor metragem</option></select></div>
+        <div className="flex items-center gap-2"><label className="label !mb-0" htmlFor="f-o">Ordenar</label><select id="f-o" className="field !w-auto max-w-[60vw]" value={ordem} onChange={(e) => setOrdem(e.target.value)}><option value="nome">Nome</option><option value="preco">Menor preço</option><option value="area">Menor metragem</option></select></div>
       </div>
       {lista.length ? <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{lista.map((e) => <EmpCard key={e.id} emp={e} />)}</div>
         : <p className="rounded border border-ink/10 p-8 text-center text-muted">Nenhum empreendimento com esses filtros. Fale comigo: posso ter opções que ainda não estão no site.</p>}
