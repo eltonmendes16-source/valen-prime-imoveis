@@ -4,6 +4,7 @@ import { Upload } from "lucide-react";
 import { getSupabase } from "@/lib/supabase";
 import { validarTelefone } from "@/lib/telefone";
 import { Backup } from "./Backup";
+import { Boletim } from "./Boletim";
 import { Aviso } from "./ui";
 
 // Campos que a planilha pode preencher, com apelidos aceitos nos cabeçalhos.
@@ -208,6 +209,7 @@ export function Importar({ onConcluido }: { onConcluido: () => void }) {
         </>
       )}
       <Backup />
+      <Boletim />
     </div>
   );
 }

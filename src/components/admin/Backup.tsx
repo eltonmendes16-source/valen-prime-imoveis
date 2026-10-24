@@ -6,7 +6,7 @@ import { Aviso } from "./ui";
 
 const TABELAS = [
   ["Clientes", "clientes"], ["Interações", "interacoes"], ["Contratos", "contratos"], ["Etapas e documentos", "contrato_itens"],
-  ["Parcelas", "contrato_parcelas"], ["Atualizações", "atualizacoes"], ["Depoimentos", "depoimentos"],
+  ["Parcelas", "contrato_parcelas"], ["Atualizações", "atualizacoes"], ["Depoimentos", "depoimentos"], ["Inscritos no boletim", "inscritos_boletim"],
 ] as const;
 
 async function tudo(tabela: string) {

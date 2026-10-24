@@ -45,6 +45,7 @@ export function Footer() {
             <li><Link href="/perguntas-frequentes" className="hover:text-gold">Compra na planta: perguntas</Link></li>
             <li><Link href="/atualizacoes" className="hover:text-gold">Últimas atualizações</Link></li>
             <li><Link href="/favoritos" className="hover:text-gold">Meus favoritos</Link></li>
+            <li><Link href="/boletim" className="hover:text-gold">Boletim por e-mail</Link></li>
             {CIDADES_PAGINA.map((c) => <li key={c.slug}><Link href={`/lancamentos/${c.slug}`} className="hover:text-gold">Lançamentos em {c.nome}</Link></li>)}
             <li><a href={SITE.siteInstitucional} className="hover:text-gold" target="_blank" rel="noopener noreferrer">Valen Prime Strategy</a></li>
           </ul>
