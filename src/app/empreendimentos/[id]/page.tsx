@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Calculator } from "lucide-react";
 import { Capa } from "@/components/Capa";
 import { LeadForm } from "@/components/LeadForm";
+import { AgendarVisita } from "@/components/AgendarVisita";
 import { COM_TABELA, EMPS, getEmp, brl, faixaArea, localizacao, entregaTexto, SEGMENTO_LABEL } from "@/lib/emp";
 import { SITE } from "@/lib/site";
 import books from "@/data/books.json";
@@ -71,7 +72,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
           <p className="max-w-3xl text-xs leading-relaxed text-muted">Imagens e informações ilustrativas, sujeitas a alteração. Metragens, valores e condições de pagamento dependem da tabela vigente e da disponibilidade das unidades. Consulte o memorial descritivo e o registro de incorporação.</p>
         </div>
       </section>
-      <section id="visita" className="bg-sand py-16"><div className="container-page max-w-2xl"><LeadForm titulo={`Tenho interesse no ${e.nome}`} empreendimento={e.nome} /></div></section>
+      <section id="visita" className="bg-sand py-16"><div className="container-page max-w-2xl space-y-8"><AgendarVisita empreendimento={e.nome} /><LeadForm titulo={`Tenho interesse no ${e.nome}`} empreendimento={e.nome} /></div></section>
     </>
   );
 }

@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import { Calculator, Download, Eye, MessageCircle, Sparkles, Video } from "lucide-react";
 import dados from "@/data/murano.json";
 import { LeadForm } from "./LeadForm";
+import { AgendarVisita } from "./AgendarVisita";
 import { whatsappLink } from "@/lib/site";
 import { fichaUnidadePdf } from "@/lib/pdf";
 
@@ -189,6 +190,8 @@ export function EscolhaUnidade({ nomeEmp }: { nomeEmp: string }) {
           <p className="mt-2 rounded bg-sand p-6 text-sm text-mutedink">Em breve: escolha um estilo e veja o ambiente decorado. As imagens serão ilustrativas.</p>
         </div>
       </section>
+
+      <section id="visita"><AgendarVisita empreendimento={nomeEmp} detalhe={sel ? `unidade ${sel.id.replace("U-", "")}` : undefined} /></section>
 
       <section id="interesse">
         <LeadForm titulo={`Tenho interesse no ${nomeEmp}`} empreendimento={nomeEmp} mensagemInicial={sel ? `Tenho interesse na unidade ${sel.id.replace("U-", "")} (${sel.andar}º andar, final ${sel.final}), ${brl(sel.total)} na tabela de ${dia(tabela.impressa)}.` : undefined} />

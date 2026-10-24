@@ -2,7 +2,7 @@
 import { MessageCircle, Phone, Tags } from "lucide-react";
 import { MODELOS, fmtData, numeroPrincipal, numeroWhats, type Cliente } from "@/lib/crm";
 import { formatarTelefone, linkWhatsApp } from "@/lib/telefone";
-import { ChipBase, ChipEtapa, ChipTemp } from "./ui";
+import { Chip, ChipBase, ChipEtapa, ChipTemp } from "./ui";
 
 export function LinhaCliente({ c, abrir, destaque = "", mostrarProximo = true }: {
   c: Cliente; abrir: (id: string, classificar?: boolean) => void; destaque?: string; mostrarProximo?: boolean;
@@ -20,6 +20,7 @@ export function LinhaCliente({ c, abrir, destaque = "", mostrarProximo = true }:
         </p>
         <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
           <ChipBase base={c.base} /><ChipEtapa e={c.etapa} /><ChipTemp t={c.temperatura} />
+          {(c as unknown as { mensagem_site?: string }).mensagem_site?.startsWith("PEDIDO DE VISITA") && <Chip className="bg-gold/25 text-ink">Pedido de visita{c.melhor_horario ? `: ${c.melhor_horario}` : ""}</Chip>}
           {c.tags?.length > 0 && <span className="inline-flex items-center gap-1 text-[11px] text-muted"><Tags size={11} />{c.tags.join(", ")}</span>}
         </div>
       </button>
