@@ -1,7 +1,7 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
 import { getSupabase } from "@/lib/supabase";
-import { ETAPAS, etapaNome, fmtData } from "@/lib/crm";
+import { DIAS_PROXIMO_ETAPA, ETAPAS, MOTIVOS_PERDA, etapaNome, fmtData } from "@/lib/crm";
 import { Aviso, Chip, ChipTemp } from "./ui";
 
 type C = { id: string; nome: string; etapa: string; temperatura: string; empreendimento_interesse: string | null; proximo_contato: string | null; base: string; melhor_horario: string | null; mensagem_site: string | null; pontuacao_site: number };
@@ -22,16 +22,39 @@ export function Funil({ versao, abrir, onChanged }: { versao: number; abrir: (id
   }, []);
   useEffect(() => { carregar(); }, [carregar, versao]);
 
-  async function mover(id: string, etapa: string) {
+  const [perda, setPerda] = useState<{ id: string; nome: string } | null>(null);
+  const [motivo, setMotivo] = useState(MOTIVOS_PERDA[0]);
+
+  function mover(id: string, etapa: string) {
+    const atual = cs?.find((c) => c.id === id);
+    if (!atual || atual.etapa === etapa) return;
+    if (etapa === "perdido") { setMotivo(MOTIVOS_PERDA[0]); setPerda({ id, nome: atual.nome }); return; }
+    aplicarMovimento(id, etapa);
+  }
+
+  async function aplicarMovimento(id: string, etapa: string, motivoPerda?: string) {
     const sb = getSupabase(); if (!sb || !cs) return;
     const atual = cs.find((c) => c.id === id);
-    if (!atual || atual.etapa === etapa) return;
+    if (!atual) return;
     setErro("");
     const antes = cs;
-    setCs(cs.map((c) => (c.id === id ? { ...c, etapa } : c)));
-    const { error } = await sb.from("clientes").update({ etapa }).eq("id", id);
+    const up: Record<string, unknown> = { etapa };
+    // sugere o próximo contato só se não houver um futuro já marcado
+    const dias = DIAS_PROXIMO_ETAPA[etapa];
+    const futuro = atual.proximo_contato && new Date(atual.proximo_contato) > new Date();
+    let sugerido = "";
+    if (dias === null) { up.proximo_contato = null; }
+    else if (dias !== undefined && !futuro) {
+      const d = new Date(); d.setDate(d.getDate() + dias); d.setHours(10, 0, 0, 0);
+      up.proximo_contato = d.toISOString(); sugerido = d.toISOString();
+    }
+    if (etapa === "perdido") { up.motivo_perda = motivoPerda; up.temperatura = "frio"; }
+    if (etapa === "fechado") up.temperatura = "quente";
+    setCs(cs.map((c) => (c.id === id ? { ...c, ...up } as C : c)));
+    const { error } = await sb.from("clientes").update(up).eq("id", id);
     if (error) { setCs(antes); setErro(`Não consegui mover: ${error.message}`); return; }
-    await sb.from("interacoes").insert({ cliente_id: id, tipo: "sistema", resultado: null, nota: `Etapa alterada para ${etapaNome(etapa)} (funil)` });
+    const nota = `Etapa alterada para ${etapaNome(etapa)} (funil)` + (motivoPerda ? `. Motivo: ${motivoPerda}` : "") + (sugerido ? `. Próximo contato sugerido: ${fmtData(sugerido)}` : "");
+    await sb.from("interacoes").insert({ cliente_id: id, tipo: "sistema", resultado: null, nota });
     onChanged();
   }
 
@@ -44,6 +67,21 @@ export function Funil({ versao, abrir, onChanged }: { versao: number; abrir: (id
         <p className="text-sm text-muted">Arraste o cartão para outra coluna ou use a lista “Mover para” no cartão (celular). A mudança fica registrada no histórico do cliente.</p>
       </div>
       {erro && <div className="mb-3"><Aviso tipo="erro">{erro}</Aviso></div>}
+      {perda && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-ink/50 p-4" role="dialog" aria-modal="true" aria-label="Motivo da perda">
+          <div className="w-full max-w-sm rounded-lg bg-white p-5 shadow-lg">
+            <p className="font-serif text-lg font-semibold text-ink">Mover {perda.nome} para Perdido</p>
+            <label className="mt-3 block"><span className="label">Qual o motivo?</span>
+              <select className="field" value={motivo} onChange={(e) => setMotivo(e.target.value)}>{MOTIVOS_PERDA.map((m) => <option key={m}>{m}</option>)}</select>
+            </label>
+            <p className="mt-2 text-xs text-muted">O motivo aparece no painel e ajuda a ver por que se perde cliente.</p>
+            <div className="mt-4 flex justify-end gap-2">
+              <button className="btn btn-line" onClick={() => setPerda(null)}>Cancelar</button>
+              <button className="btn btn-gold" onClick={() => { const p = perda; setPerda(null); aplicarMovimento(p.id, "perdido", motivo); }}>Confirmar</button>
+            </div>
+          </div>
+        </div>
+      )}
       <div className="flex gap-3 overflow-x-auto pb-4">
         {ETAPAS.map((e) => {
           const lista = cs.filter((c) => c.etapa === e.id);
@@ -68,7 +106,7 @@ export function Funil({ versao, abrir, onChanged }: { versao: number; abrir: (id
                     {c.mensagem_site?.startsWith("PEDIDO DE VISITA") && <Chip className="mt-1.5 bg-gold/25 text-ink">Visita: {c.melhor_horario || "a confirmar"}</Chip>}
                     <div className="mt-1.5 flex items-center justify-between gap-2">
                       <ChipTemp t={c.temperatura} />
-                      <span className="text-[11px] text-muted">{c.proximo_contato ? `Contato ${fmtData(c.proximo_contato)}` : "Sem retorno"}</span>
+                      <span className={`text-[11px] ${c.proximo_contato && new Date(c.proximo_contato) < new Date() && c.etapa !== "fechado" && c.etapa !== "perdido" ? "font-semibold text-red-700" : "text-muted"}`}>{c.proximo_contato ? `${new Date(c.proximo_contato) < new Date() && c.etapa !== "fechado" && c.etapa !== "perdido" ? "Atrasado: " : "Contato "}${fmtData(c.proximo_contato)}` : "Sem retorno"}</span>
                     </div>
                     <label className="mt-2 block text-[11px] text-muted">Mover para
                       <select className="field mt-0.5 !py-1 text-xs" value={c.etapa} onChange={(ev) => mover(c.id, ev.target.value)}>

@@ -92,6 +92,11 @@ export const RESULTADOS: Resultado[] = [
 export const MOTIVOS_PERDA = ["Preço", "Região", "Prazo de entrega", "Perfil do imóvel", "Sem condição financeira", "Desistiu de comprar", "Outro"];
 export const MAX_TENTATIVAS = 5;
 
+/** Dias até o próximo contato sugerido ao mover o cliente de etapa no funil (null = sem retorno). */
+export const DIAS_PROXIMO_ETAPA: Record<string, number | null> = {
+  novo: 1, contato_feito: 2, interessado: 2, visita_agendada: 1, proposta: 2, contrato: 3, fechado: null, perdido: null,
+};
+
 const dias = (n: number, hora = 10) => {
   const d = new Date(); d.setDate(d.getDate() + n); d.setHours(hora, 0, 0, 0); return d.toISOString();
 };
