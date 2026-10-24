@@ -19,9 +19,18 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
         <Link href="/blog" className="text-sm text-golddark">← Blog</Link>
         <p className="mt-6 font-mono text-[11px] uppercase tracking-wider text-golddark">{p.categoria} · {p.leitura} min · {new Date(p.data + "T12:00:00").toLocaleDateString("pt-BR")}</p>
         <h1 className="h-display mt-3 text-4xl !text-ink sm:text-5xl">{p.titulo}</h1>
-        <div className="mt-10 space-y-5 text-lg leading-relaxed">
-          {p.corpo.map((b, i) => <div key={i}>{b.h && <h2 className="mb-2 mt-6 font-serif text-2xl font-semibold">{b.h}</h2>}<p>{b.p}</p></div>)}
-        </div>
+        {p.subtitulo && <p className="mt-3 text-xl text-mutedink">{p.subtitulo}</p>}
+        {p.html ? (
+          <>
+            <p className="mt-4 text-sm text-mutedink">Elton Mendes · Valen Prime Strategy{p.serie ? ` · Série ${p.serie}` : ""}</p>
+            <aside className="mt-8 rounded-md border-l-4 border-gold bg-white p-5 text-base"><p className="font-mono text-[11px] uppercase tracking-wider text-golddark">Em uma frase</p><p className="mt-1">{p.resumo}</p></aside>
+            <div className="artigo mt-8" dangerouslySetInnerHTML={{ __html: p.html }} />
+          </>
+        ) : (
+          <div className="mt-10 space-y-5 text-lg leading-relaxed">
+            {p.corpo.map((b, i) => <div key={i}>{b.h && <h2 className="mb-2 mt-6 font-serif text-2xl font-semibold">{b.h}</h2>}<p>{b.p}</p></div>)}
+          </div>
+        )}
       </div></article>
       <section className="bg-snow py-16"><div className="container-page max-w-2xl"><LeadForm titulo="Quer conversar sobre isso?" /></div></section>
     </>

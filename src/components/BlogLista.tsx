@@ -1,13 +1,13 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
-import { CATEGORIAS, POSTS } from "@/lib/blog";
+import type { Post } from "@/lib/blog";
 
 // Lista do blog com abas por assunto (artigos, insights de mercado, mercado financeiro etc.).
-export function BlogLista() {
+export function BlogLista({ posts: POSTS, categorias: CATEGORIAS }: { posts: Post[]; categorias: string[] }) {
   const [aba, setAba] = useState("Todos");
   const abas = ["Todos", ...CATEGORIAS];
-  const lista = [...POSTS].sort((a, b) => b.data.localeCompare(a.data)).filter((p) => aba === "Todos" || p.categoria === aba);
+  const lista = POSTS.filter((p) => aba === "Todos" || p.categoria === aba);
   return (
     <>
       <div role="tablist" aria-label="Assuntos do blog" className="mb-8 flex flex-wrap gap-2">

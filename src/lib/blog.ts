@@ -1,8 +1,14 @@
-// Artigos do blog. Os textos abaixo são RASCUNHOS originais para revisão do consultor.
+// Artigos do blog.
+// Os artigos reais ficam em content/blog/*.md (um arquivo por artigo, com cabeçalho entre ---). Para publicar mais um, basta criar o arquivo.
+// Os itens do array abaixo são rascunhos de exemplo. Os textos abaixo são RASCUNHOS originais para revisão do consultor.
 // Para publicar os artigos do LinkedIn, adicione novos itens neste array (slug, título, data, corpo em parágrafos).
-export type Post = { slug: string; titulo: string; resumo: string; categoria: string; leitura: number; data: string; corpo: { h?: string; p: string }[] };
+import fs from "node:fs";
+import path from "node:path";
+import { marked } from "marked";
 
-export const POSTS: Post[] = [
+export type Post = { html?: string; subtitulo?: string; serie?: string; slug: string; titulo: string; resumo: string; categoria: string; leitura: number; data: string; corpo: { h?: string; p: string }[] };
+
+const RASCUNHOS: Post[] = [
   {
     slug: "como-ler-o-fluxo-de-pagamento-de-um-lancamento",
     titulo: "Como ler o fluxo de pagamento de um lançamento",
@@ -41,6 +47,26 @@ export const POSTS: Post[] = [
     ],
   },
 ];
+function lerMarkdown(): Post[] {
+  const dir = path.join(process.cwd(), "content", "blog");
+  if (!fs.existsSync(dir)) return [];
+  return fs.readdirSync(dir).filter((f) => f.endsWith(".md")).map((f) => {
+    const bruto = fs.readFileSync(path.join(dir, f), "utf8");
+    const m = bruto.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+    const meta: Record<string, string> = {};
+    (m ? m[1] : "").split("\n").forEach((l) => { const i = l.indexOf(":"); if (i > 0) meta[l.slice(0, i).trim()] = l.slice(i + 1).trim(); });
+    return {
+      slug: f.replace(/\.md$/, "").replace(/^\d+-/, ""),
+      titulo: meta.titulo, subtitulo: meta.subtitulo, resumo: meta.resumo,
+      categoria: meta.categoria || "Artigos", serie: meta.serie || "Gestão Imobiliária para o Varejo",
+      leitura: Number(meta.leitura) || 5, data: meta.data, corpo: [],
+      html: marked.parse(m ? m[2] : bruto, { async: false }) as string,
+    } as Post;
+  });
+}
+
+export const POSTS: Post[] = [...lerMarkdown(), ...RASCUNHOS].sort((a, b) => b.data.localeCompare(a.data));
+
 // Abas do blog, na ordem em que aparecem. Para criar uma aba nova, inclua o nome aqui e use o mesmo nome em "categoria" do artigo.
 export const CATEGORIAS = ["Artigos", "Insights de mercado", "Mercado financeiro", "Lançamentos", "Financiamento", "Educação financeira"];
 export const getPost = (slug: string) => POSTS.find((p) => p.slug === slug);

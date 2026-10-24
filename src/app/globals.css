@@ -31,3 +31,17 @@ body { background: #FCFBF8; color: #1F1C19; font-family: 'IBM Plex Sans', system
   .sobe-2 { animation-delay: .1s; } .sobe-3 { animation-delay: .2s; } .sobe-4 { animation-delay: .3s; }
   @keyframes sobe { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 }
+
+/* Texto dos artigos do blog (vindo de content/blog/*.md) */
+.artigo { font-size: 1.05rem; line-height: 1.75; }
+.artigo > * + * { margin-top: 1.1rem; }
+.artigo h2 { margin-top: 2.2rem; font-family: var(--font-serif, serif); font-size: 1.6rem; font-weight: 600; line-height: 1.25; }
+.artigo ul { list-style: disc; padding-left: 1.4rem; }
+.artigo ol { list-style: decimal; padding-left: 1.4rem; }
+.artigo li + li { margin-top: .35rem; }
+.artigo a { text-decoration: underline; color: #8A672A; overflow-wrap: anywhere; }
+.artigo blockquote { border-left: 4px solid #C19A5B; background: #fff; padding: 1rem 1.25rem; border-radius: 6px; }
+.artigo table { display: block; width: 100%; overflow-x: auto; border-collapse: collapse; font-size: .9rem; line-height: 1.45; }
+.artigo th, .artigo td { border: 1px solid rgba(0,0,0,.12); padding: .55rem .7rem; text-align: left; vertical-align: top; min-width: 7rem; }
+.artigo th { background: #f3efe6; font-weight: 600; }
+.artigo td { background: #fff; }
