@@ -103,6 +103,8 @@ export function Funil({ versao, abrir, onChanged }: { versao: number; abrir: (id
                       <p className="truncate text-xs text-muted">{c.empreendimento_interesse || "Sem empreendimento"}</p>
                     </button>
                     {c.pontuacao_site > 0 && <p className="mt-1 text-[11px] text-muted">Interesse no site: <b className="text-ink">{c.pontuacao_site}</b>/100</p>}
+                    {c.mensagem_site?.startsWith("LOCAÇÃO — PROPRIETÁRIO") && <Chip className="mt-1.5 bg-sky-100 text-sky-900">Proprietário (locação)</Chip>}
+                    {c.mensagem_site?.startsWith("LOCAÇÃO — INQUILINO") && <Chip className="mt-1.5 bg-sky-100 text-sky-900">Inquilino (locação)</Chip>}
                     {c.mensagem_site?.startsWith("PEDIDO DE VISITA") && <Chip className="mt-1.5 bg-gold/25 text-ink">Visita: {c.melhor_horario || "a confirmar"}</Chip>}
                     <div className="mt-1.5 flex items-center justify-between gap-2">
                       <ChipTemp t={c.temperatura} />
