@@ -5,6 +5,7 @@ import { brl, fmtDia, hojeISO } from "@/lib/contratos";
 import { diasDeAtraso, hojeFim, type Cliente } from "@/lib/crm";
 import { Aviso, Vazio, corAtraso } from "./ui";
 import { LinhaCliente } from "./LinhaCliente";
+import { Relacionamento } from "./Relacionamento";
 
 function Bloco({ titulo, cor, itens, abrir, vazio, atraso = false }: {
   titulo: string; cor: string; itens: Cliente[]; abrir: (id: string, c?: boolean) => void; vazio: string; atraso?: boolean;
@@ -108,6 +109,7 @@ export function Hoje({ versao, abrir, abrirContrato }: { versao: number; abrir: 
           </div>
         </section>
       )}
+      <Relacionamento versao={versao} abrir={abrir} />
       <Bloco titulo="Sem próximo passo" cor="bg-amber-500" itens={semPasso} abrir={abrir} vazio="Todos os clientes têm um próximo passo." />
     </div>
   );

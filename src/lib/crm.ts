@@ -42,7 +42,7 @@ export type Cliente = {
   id: string; nome: string; telefone: string | null; celular: string | null; hotfone: "telefone" | "celular";
   telefone_valido: boolean | null; whatsapp_confirmado: boolean; email: string | null;
   cep: string | null; endereco: string | null; bairro: string | null; cidade: string | null;
-  idade: number | null; genero: string | null; profissao: string | null; renda_faixa: string | null;
+  idade: number | null; data_nascimento: string | null; genero: string | null; profissao: string | null; renda_faixa: string | null;
   empreendimento_interesse: string | null; tipo_imovel: string | null; dormitorios: string | null;
   faixa_valor: string | null; forma_pagamento: string | null; prazo: string | null;
   origem: string; pagina_origem: string | null; base: BaseId; etapa: string; temperatura: string;
@@ -129,6 +129,13 @@ export const MODELOS: Modelo[] = [
   { id: "pos_visita", nome: "Pós-visita", texto: (c) => `Olá, ${primeiro(c.nome)}! Foi um prazer receber você${c.empreendimento_interesse ? ` no ${c.empreendimento_interesse}` : ""}. Ficou alguma dúvida? Posso preparar uma simulação com as condições para você avaliar.` },
   { id: "retorno", nome: "Retorno / ainda tem interesse?", texto: (c) => `Olá, ${primeiro(c.nome)}! Passando para saber se ainda tem interesse${c.empreendimento_interesse ? ` no ${c.empreendimento_interesse}` : " em um imóvel"}. Posso te atualizar sobre as condições?` },
 ];
+
+export const MARCOS_POSVENDA = [
+  { id: "30d", dias: 30, nome: "30 dias", texto: (nome: string, emp: string | null) => `Olá, ${nome}! Aqui é o ${SITE.consultor}, da ${SITE.nome}. Já faz cerca de um mês da sua compra${emp ? ` no ${emp}` : ""}. Passando para saber como está tudo e se precisa de ajuda com documentos, financiamento ou qualquer dúvida. Conte comigo!` },
+  { id: "6m", dias: 180, nome: "6 meses", texto: (nome: string, emp: string | null) => `Olá, ${nome}! Aqui é o ${SITE.consultor}. Passando para saber como estão as coisas com o seu imóvel${emp ? ` do ${emp}` : ""}, e se posso ajudar em algo nessa fase. Abraço!` },
+  { id: "12m", dias: 365, nome: "1 ano", texto: (nome: string, emp: string | null) => `Olá, ${nome}! Aqui é o ${SITE.consultor}, da ${SITE.nome}. Faz um ano da sua compra${emp ? ` no ${emp}` : ""}! Como está sendo a experiência? Se tiver alguém que também esteja pensando em comprar ou vender, será um prazer atender com o mesmo cuidado. Obrigado pela confiança!` },
+] as const;
+export const textoAniversario = (nome: string) => `Olá, ${nome}! Aqui é o ${SITE.consultor}, da ${SITE.nome}. Passando para desejar um feliz aniversário, com muita saúde e conquistas! Um abraço.`;
 
 export const hojeFim = () => { const d = new Date(); d.setHours(23, 59, 59, 999); return d; };
 export const diasDeAtraso = (iso: string) => Math.floor((Date.now() - new Date(iso).getTime()) / 86400000);

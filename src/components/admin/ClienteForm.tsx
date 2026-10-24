@@ -11,7 +11,7 @@ type Form = Record<string, string | boolean>;
 
 const vazio: Form = {
   nome: "", telefone: "", celular: "", hotfone: "celular", email: "", cep: "", endereco: "", bairro: "", cidade: "",
-  idade: "", genero: "", profissao: "", renda_faixa: "", empreendimento_interesse: "", tipo_imovel: "", dormitorios: "",
+  idade: "", data_nascimento: "", genero: "", profissao: "", renda_faixa: "", empreendimento_interesse: "", tipo_imovel: "", dormitorios: "",
   faixa_valor: "", forma_pagamento: "", prazo: "", origem: "manual", melhor_horario: "", temperatura: "morno", tags: "",
   observacoes: "", consentimento: false,
 };
@@ -85,7 +85,7 @@ export function ClienteForm({ inicial, onSalvo, onCancelar, onAbrirExistente }: 
     const dados: Record<string, unknown> = {
       nome, telefone: dTel, celular: dCel, hotfone: dCel ? hot : "telefone", telefone_valido: true, email: email || null,
       cep: s("cep").trim() || null, endereco: s("endereco").trim() || null, bairro: s("bairro").trim() || null, cidade: s("cidade").trim() || null,
-      idade: s("idade") ? Number(s("idade")) : null, genero: s("genero") || null, profissao: s("profissao").trim() || null, renda_faixa: s("renda_faixa") || null,
+      idade: s("idade") ? Number(s("idade")) : null, data_nascimento: s("data_nascimento") || null, genero: s("genero") || null, profissao: s("profissao").trim() || null, renda_faixa: s("renda_faixa") || null,
       empreendimento_interesse: s("empreendimento_interesse").trim() || null, tipo_imovel: s("tipo_imovel") || null, dormitorios: s("dormitorios").trim() || null,
       faixa_valor: s("faixa_valor").trim() || null, forma_pagamento: s("forma_pagamento") || null, prazo: s("prazo").trim() || null,
       origem: s("origem"), melhor_horario: s("melhor_horario").trim() || null, temperatura: s("temperatura"),
@@ -143,6 +143,7 @@ export function ClienteForm({ inicial, onSalvo, onCancelar, onAbrirExistente }: 
         <legend className="eyebrow mb-1">Perfil (opcional)</legend>
         <div className="grid gap-3 sm:grid-cols-2">
           <Campo rotulo="Idade"><input className="field" inputMode="numeric" value={s("idade")} onChange={(e) => set("idade", e.target.value)} /></Campo>
+          <Campo rotulo="Data de nascimento" dica="Usada para lembrar do aniversário."><input className="field" type="date" max={new Date().toISOString().slice(0, 10)} value={s("data_nascimento")} onChange={(e) => set("data_nascimento", e.target.value)} /></Campo>
           <Campo rotulo="Gênero"><select className="field" value={s("genero")} onChange={(e) => set("genero", e.target.value)}>{GENEROS.map((t) => <option key={t}>{t}</option>)}</select></Campo>
           <Campo rotulo="Profissão"><input className="field" value={s("profissao")} onChange={(e) => set("profissao", e.target.value)} /></Campo>
           <Campo rotulo="Renda mensal (faixa)"><select className="field" value={s("renda_faixa")} onChange={(e) => set("renda_faixa", e.target.value)}>{RENDAS.map((t) => <option key={t}>{t}</option>)}</select></Campo>
