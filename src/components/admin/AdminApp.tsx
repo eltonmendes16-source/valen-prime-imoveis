@@ -1,7 +1,7 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
 import type { Session } from "@supabase/supabase-js";
-import { BarChart3, CalendarCheck, FileSignature, LogOut, Plus, Upload, Users } from "lucide-react";
+import { BarChart3, CalendarCheck, ExternalLink, FileSignature, LogOut, Plus, Upload, Users } from "lucide-react";
 import { getSupabase } from "@/lib/supabase";
 import { SITE } from "@/lib/site";
 import { Aviso } from "./ui";
@@ -108,6 +108,7 @@ export function AdminApp() {
           </nav>
           <div className="ml-auto flex items-center gap-2">
             <button className="btn btn-gold !px-4 !py-2" onClick={() => { setFichaId(null); setFichaNovo(true); }}><Plus size={16} /> Novo cliente</button>
+            <a href="/" target="_blank" rel="noopener noreferrer" className="btn btn-line !px-3 !py-2" aria-label="Abrir o site em outra aba" title="Abrir o site"><ExternalLink size={16} /><span className="ml-1 hidden sm:inline">Ver site</span></a>
             <button className="btn btn-line !px-3 !py-2" onClick={() => sb.auth.signOut()} aria-label="Sair"><LogOut size={16} /></button>
           </div>
         </div>
