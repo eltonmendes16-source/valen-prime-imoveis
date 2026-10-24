@@ -1,7 +1,7 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
 import type { Session } from "@supabase/supabase-js";
-import { BarChart3, CalendarCheck, ExternalLink, FileSignature, LogOut, Plus, Upload, Users } from "lucide-react";
+import { BarChart3, CalendarCheck, Kanban, ExternalLink, FileSignature, LogOut, Plus, Upload, Users } from "lucide-react";
 import { getSupabase } from "@/lib/supabase";
 import { SITE } from "@/lib/site";
 import { Aviso } from "./ui";
@@ -10,10 +10,11 @@ import { Clientes } from "./Clientes";
 import { Ficha } from "./Ficha";
 import { Importar } from "./Importar";
 import { Painel } from "./Painel";
+import { Funil } from "./Funil";
 import { Contratos } from "./Contratos";
 import { ContratoDetalhe } from "./ContratoDetalhe";
 
-type Aba = "hoje" | "clientes" | "contratos" | "painel" | "importar";
+type Aba = "hoje" | "clientes" | "funil" | "contratos" | "painel" | "importar";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -88,6 +89,7 @@ export function AdminApp() {
   const abas: { id: Aba; nome: string; icone: React.ReactNode }[] = [
     { id: "hoje", nome: "Hoje", icone: <CalendarCheck size={16} /> },
     { id: "clientes", nome: "Clientes", icone: <Users size={16} /> },
+    { id: "funil", nome: "Funil", icone: <Kanban size={16} /> },
     { id: "contratos", nome: "Contratos", icone: <FileSignature size={16} /> },
     { id: "painel", nome: "Painel", icone: <BarChart3 size={16} /> },
     { id: "importar", nome: "Importar", icone: <Upload size={16} /> },
@@ -117,6 +119,7 @@ export function AdminApp() {
         {aba === "hoje" && <Hoje versao={versao} abrir={abrir} abrirContrato={setContratoId} />}
         {aba === "contratos" && <Contratos versao={versao} abrirContrato={setContratoId} />}
         {aba === "clientes" && <Clientes versao={versao} abrir={abrir} />}
+        {aba === "funil" && <Funil versao={versao} abrir={abrir} onChanged={mudou} />}
         {aba === "painel" && <Painel versao={versao} />}
         {aba === "importar" && <Importar onConcluido={() => { mudou(); setAba("clientes"); }} />}
       </div>
