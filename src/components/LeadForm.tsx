@@ -13,8 +13,8 @@ const INTERESSES = [
 
 // O formulário salva o contato no CRM (Supabase) e abre o WhatsApp do consultor com os dados preenchidos.
 // Se o CRM estiver fora do ar, o WhatsApp abre do mesmo jeito: o cliente nunca fica sem resposta.
-export function LeadForm({ titulo = "Agende uma conversa", subtitulo, interesseInicial, empreendimento, claro = false, id = "contato" }: {
-  titulo?: string; subtitulo?: string; interesseInicial?: string; empreendimento?: string; claro?: boolean; id?: string;
+export function LeadForm({ titulo = "Agende uma conversa", subtitulo, interesseInicial, empreendimento, mensagemInicial, claro = false, id = "contato" }: {
+  mensagemInicial?: string; titulo?: string; subtitulo?: string; interesseInicial?: string; empreendimento?: string; claro?: boolean; id?: string;
 }) {
   const [enviado, setEnviado] = useState(false);
   const [erro, setErro] = useState("");
@@ -70,7 +70,7 @@ export function LeadForm({ titulo = "Agende uma conversa", subtitulo, interesseI
           <select id={`${id}-int`} name="interesse" className={campo} defaultValue={interesseInicial || INTERESSES[0]}>{INTERESSES.map((i) => <option key={i}>{i}</option>)}</select></div>
         <div><label className={rotulo} htmlFor={`${id}-cid`}>Cidade de interesse</label>
           <select id={`${id}-cid`} name="cidade" className={campo} defaultValue=""><option value="">Qualquer</option>{CIDADES.map((c) => <option key={c}>{c}</option>)}</select></div>
-        <div className="sm:col-span-2"><label className={rotulo} htmlFor={`${id}-msg`}>Mensagem (opcional)</label><textarea id={`${id}-msg`} name="mensagem" rows={3} className={campo} placeholder="Conte o que você procura: metragem, faixa de valor, prazo…" /></div>
+        <div className="sm:col-span-2"><label className={rotulo} htmlFor={`${id}-msg`}>Mensagem (opcional)</label><textarea key={mensagemInicial} defaultValue={mensagemInicial} id={`${id}-msg`} name="mensagem" rows={3} className={campo} placeholder="Conte o que você procura: metragem, faixa de valor, prazo…" /></div>
       </div>
       <label className={`mt-4 flex items-start gap-2 text-xs ${claro ? "text-mutedink" : "text-muted"}`}>
         <input type="checkbox" required className="mt-0.5 accent-[#C19A5B]" />

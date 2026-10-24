@@ -1,0 +1,350 @@
+{
+ "empreendimento": "ilha-de-murano",
+ "tabela": {
+  "nome": "Ilha de Murano",
+  "impressa": "2026-10-05",
+  "validade": "2026-10-31",
+  "condicoes": {
+   "ato": {
+    "qtd": 1,
+    "pct": 7.5,
+    "inicio": "10/2026"
+   },
+   "mensais": {
+    "qtd": 21,
+    "pct": 13,
+    "inicio": "11/2026"
+   },
+   "anuais": {
+    "qtd": 2,
+    "pct": 10,
+    "inicio": "08/2027"
+   },
+   "unica": {
+    "qtd": 1,
+    "pct": 4.5,
+    "inicio": "08/2028"
+   },
+   "financiamento": {
+    "qtd": 1,
+    "pct": 65,
+    "inicio": "08/2028"
+   }
+  },
+  "obs": [
+   "Até a conclusão da obra, as parcelas são corrigidas pelo INCC-FGV (quando positivo), com base no índice do mês anterior à assinatura do contrato.",
+   "Após a obra incidem juros de 12% ao ano (Tabela Price) e correção pelo IGP-M-FGV (quando positivo) até a quitação da parcela de chaves.",
+   "ITBI, registro, análise e aprovação de financiamento ficam por conta do adquirente.",
+   "A tabela pode ser alterada sem aviso prévio. As condições completas constam no contrato de compromisso de compra e venda."
+  ]
+ },
+ "andares": 19,
+ "finais": [
+  1,
+  2,
+  3
+ ],
+ "tour360": "https://passeiovirtual360.github.io/MURANO/",
+ "videoDecorado": null,
+ "unidades": [
+  {
+   "id": "U-013",
+   "andar": 1,
+   "final": 3,
+   "area": 86,
+   "vaga": "dupla",
+   "ato": 66977.54,
+   "mensal": 5528.3,
+   "anual": 44651.69,
+   "unica": 40186.52,
+   "financiamento": 580472.02,
+   "total": 893033.87
+  },
+  {
+   "id": "U-021",
+   "andar": 2,
+   "final": 1,
+   "area": 86,
+   "vaga": "dupla",
+   "ato": 67654.1,
+   "mensal": 5584.15,
+   "anual": 45102.73,
+   "unica": 40592.46,
+   "financiamento": 586335.54,
+   "total": 902054.68
+  },
+  {
+   "id": "U-023",
+   "andar": 2,
+   "final": 3,
+   "area": 86,
+   "vaga": "dupla",
+   "ato": 67654.1,
+   "mensal": 5584.15,
+   "anual": 45102.73,
+   "unica": 40592.46,
+   "financiamento": 586335.54,
+   "total": 902054.68
+  },
+  {
+   "id": "U-031",
+   "andar": 3,
+   "final": 1,
+   "area": 86,
+   "vaga": "dupla",
+   "ato": 68337.47,
+   "mensal": 5640.55,
+   "anual": 45558.32,
+   "unica": 41002.48,
+   "financiamento": 592258.1,
+   "total": 911166.3
+  },
+  {
+   "id": "U-041",
+   "andar": 4,
+   "final": 1,
+   "area": 86,
+   "vaga": "dupla",
+   "ato": 69027.72,
+   "mensal": 5697.53,
+   "anual": 46018.48,
+   "unica": 41416.63,
+   "financiamento": 598240.26,
+   "total": 920369.63
+  },
+  {
+   "id": "U-053",
+   "andar": 5,
+   "final": 3,
+   "area": 86,
+   "vaga": "dupla",
+   "ato": 69724.92,
+   "mensal": 5755.07,
+   "anual": 46483.28,
+   "unica": 41834.95,
+   "financiamento": 604282.63,
+   "total": 929665.59
+  },
+  {
+   "id": "U-081",
+   "andar": 8,
+   "final": 1,
+   "area": 86,
+   "vaga": "dupla",
+   "ato": 72699.02,
+   "mensal": 6000.55,
+   "anual": 48466.01,
+   "unica": 43619.41,
+   "financiamento": 630058.19,
+   "total": 969320.29
+  },
+  {
+   "id": "U-091",
+   "andar": 9,
+   "final": 1,
+   "area": 86,
+   "vaga": "dupla",
+   "ato": 73417.6,
+   "mensal": 6059.87,
+   "anual": 48945.07,
+   "unica": 44050.56,
+   "financiamento": 636285.9,
+   "total": 978901.38
+  },
+  {
+   "id": "U-093",
+   "andar": 9,
+   "final": 3,
+   "area": 86,
+   "vaga": "dupla",
+   "ato": 72577.86,
+   "mensal": 5990.55,
+   "anual": 48385.24,
+   "unica": 43546.72,
+   "financiamento": 629008.13,
+   "total": 967704.82
+  },
+  {
+   "id": "U-101",
+   "andar": 10,
+   "final": 1,
+   "area": 86,
+   "vaga": "dupla",
+   "ato": 74143.4,
+   "mensal": 6119.77,
+   "anual": 49428.94,
+   "unica": 44486.04,
+   "financiamento": 642576.17,
+   "total": 988578.73
+  },
+  {
+   "id": "U-102",
+   "andar": 10,
+   "final": 2,
+   "area": 72,
+   "vaga": "dupla",
+   "ato": 61118.54,
+   "mensal": 5044.71,
+   "anual": 40745.7,
+   "unica": 36671.13,
+   "financiamento": 529694.04,
+   "total": 814913.91
+  },
+  {
+   "id": "U-112",
+   "andar": 11,
+   "final": 2,
+   "area": 72,
+   "vaga": "dupla",
+   "ato": 61732.23,
+   "mensal": 5095.36,
+   "anual": 41154.82,
+   "unica": 37039.34,
+   "financiamento": 535012.7,
+   "total": 823096.46
+  },
+  {
+   "id": "U-113",
+   "andar": 11,
+   "final": 3,
+   "area": 86,
+   "vaga": "dupla",
+   "ato": 74036.68,
+   "mensal": 6110.96,
+   "anual": 49357.79,
+   "unica": 44422.01,
+   "financiamento": 641651.25,
+   "total": 987155.77
+  },
+  {
+   "id": "U-122",
+   "andar": 12,
+   "final": 2,
+   "area": 72,
+   "vaga": "dupla",
+   "ato": 62604.05,
+   "mensal": 5167.32,
+   "anual": 41736.03,
+   "unica": 37562.43,
+   "financiamento": 542568.42,
+   "total": 834720.65
+  },
+  {
+   "id": "U-123",
+   "andar": 12,
+   "final": 3,
+   "area": 86,
+   "vaga": "dupla",
+   "ato": 74777.06,
+   "mensal": 6172.07,
+   "anual": 49851.37,
+   "unica": 44866.24,
+   "financiamento": 648067.84,
+   "total": 997027.45
+  },
+  {
+   "id": "U-131",
+   "andar": 13,
+   "final": 1,
+   "area": 86,
+   "vaga": "dupla",
+   "ato": 76364.6,
+   "mensal": 6303.11,
+   "anual": 50909.73,
+   "unica": 45818.76,
+   "financiamento": 661826.53,
+   "total": 1018194.66
+  },
+  {
+   "id": "U-132",
+   "andar": 13,
+   "final": 2,
+   "area": 72,
+   "vaga": "dupla",
+   "ato": 63230.06,
+   "mensal": 5218.99,
+   "anual": 42153.37,
+   "unica": 37938.03,
+   "financiamento": 547993.82,
+   "total": 843067.42
+  },
+  {
+   "id": "U-133",
+   "andar": 13,
+   "final": 3,
+   "area": 86,
+   "vaga": "dupla",
+   "ato": 75524.79,
+   "mensal": 6233.79,
+   "anual": 50349.86,
+   "unica": 45314.87,
+   "financiamento": 654548.18,
+   "total": 1006997.2
+  },
+  {
+   "id": "U-141",
+   "andar": 14,
+   "final": 1,
+   "area": 86,
+   "vaga": "dupla",
+   "ato": 77119.82,
+   "mensal": 6365.45,
+   "anual": 51413.22,
+   "unica": 46271.89,
+   "financiamento": 668371.8,
+   "total": 1028264.3
+  },
+  {
+   "id": "U-142",
+   "andar": 14,
+   "final": 2,
+   "area": 72,
+   "vaga": "dupla",
+   "ato": 63610.49,
+   "mensal": 5250.39,
+   "anual": 42406.99,
+   "unica": 38166.29,
+   "financiamento": 551290.87,
+   "total": 848139.8
+  },
+  {
+   "id": "U-152",
+   "andar": 15,
+   "final": 2,
+   "area": 72,
+   "vaga": "dupla",
+   "ato": 64249.09,
+   "mensal": 5303.1,
+   "anual": 42832.73,
+   "unica": 38549.46,
+   "financiamento": 556825.48,
+   "total": 856654.58
+  },
+  {
+   "id": "U-161",
+   "andar": 16,
+   "final": 1,
+   "area": 86,
+   "vaga": "simples",
+   "ato": 79324.88,
+   "mensal": 6547.45,
+   "anual": 52883.25,
+   "unica": 47594.93,
+   "financiamento": 687482.26,
+   "total": 1057665.02
+  },
+  {
+   "id": "U-162",
+   "andar": 16,
+   "final": 2,
+   "area": 72,
+   "vaga": "dupla",
+   "ato": 64894.09,
+   "mensal": 5356.34,
+   "anual": 43262.73,
+   "unica": 38936.45,
+   "financiamento": 562415.43,
+   "total": 865254.51
+  }
+ ]
+}
