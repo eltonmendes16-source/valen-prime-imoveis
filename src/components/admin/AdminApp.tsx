@@ -13,6 +13,7 @@ import { Painel } from "./Painel";
 import { Funil } from "./Funil";
 import { Atualizacoes } from "./Atualizacoes";
 import { Depoimentos } from "./Depoimentos";
+import { Mfa } from "./Mfa";
 import { Contratos } from "./Contratos";
 import { ContratoDetalhe } from "./ContratoDetalhe";
 
@@ -100,6 +101,7 @@ export function AdminApp() {
   ];
 
   return (
+    <Mfa sb={sb}>
     <div>
       <header className="sticky top-0 z-30 border-b border-ink/10 bg-snow/95 backdrop-blur">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-3 px-4 py-3">
@@ -132,5 +134,6 @@ export function AdminApp() {
       {(fichaId || fichaNovo) && <Ficha id={fichaId} novo={fichaNovo} classificarAberto={fichaClassificar} onClose={fechar} onChanged={mudou} onAbrir={(id) => abrir(id)} onAbrirContrato={(id) => { setFichaId(null); setContratoId(id); }} />}
       {contratoId && <ContratoDetalhe id={contratoId} onClose={() => setContratoId(null)} onChanged={mudou} onAbrirCliente={(cid) => { setContratoId(null); abrir(cid); }} />}
     </div>
+    </Mfa>
   );
 }
