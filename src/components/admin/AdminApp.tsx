@@ -48,10 +48,8 @@ function Login() {
   );
 }
 
-export function AdminApp() {
+function AdminInterno({ sessao }: { sessao: Session }) {
   const sb = getSupabase();
-  const [sessao, setSessao] = useState<Session | null>(null);
-  const [pronto, setPronto] = useState(false);
   const [admin, setAdmin] = useState<boolean | null>(null);
   const [aba, setAba] = useState<Aba>("hoje");
   const [fichaId, setFichaId] = useState<string | null>(null);
@@ -61,13 +59,6 @@ export function AdminApp() {
   const [versao, setVersao] = useState(0);
 
   useEffect(() => {
-    if (!sb) { setPronto(true); return; }
-    sb.auth.getSession().then(({ data }) => { setSessao(data.session); setPronto(true); });
-    const { data } = sb.auth.onAuthStateChange((_e, s) => setSessao(s));
-    return () => data.subscription.unsubscribe();
-  }, [sb]);
-
-  useEffect(() => {
     if (!sb || !sessao) { setAdmin(null); return; }
     sb.rpc("is_admin").then(({ data }) => setAdmin(Boolean(data)));
   }, [sb, sessao]);
@@ -75,9 +66,7 @@ export function AdminApp() {
   const abrir = useCallback((id: string, classificar = false) => { setFichaNovo(false); setFichaClassificar(classificar); setFichaId(id); }, []);
   const fechar = useCallback(() => { setFichaId(null); setFichaNovo(false); setFichaClassificar(false); }, []);
   const mudou = useCallback(() => setVersao((v) => v + 1), []);
-
-  if (!sb) return <div className="mx-auto max-w-lg p-8"><Aviso tipo="erro">O CRM ainda não está conectado ao banco. Faltam as variáveis NEXT_PUBLIC_SUPABASE_URL e NEXT_PUBLIC_SUPABASE_ANON_KEY na Vercel.</Aviso></div>;
-  if (!pronto) return <div className="p-8 text-sm text-muted">Carregando…</div>;
+  if (!sb) return null;
   if (!sessao) return <Login />;
   if (admin === null) return <div className="p-8 text-sm text-muted">Verificando acesso…</div>;
   if (!admin) {
@@ -101,7 +90,6 @@ export function AdminApp() {
   ];
 
   return (
-    <Mfa sb={sb}>
     <div>
       <header className="sticky top-0 z-30 border-b border-ink/10 bg-snow/95 backdrop-blur">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-3 px-4 py-3">
@@ -134,6 +122,21 @@ export function AdminApp() {
       {(fichaId || fichaNovo) && <Ficha id={fichaId} novo={fichaNovo} classificarAberto={fichaClassificar} onClose={fechar} onChanged={mudou} onAbrir={(id) => abrir(id)} onAbrirContrato={(id) => { setFichaId(null); setContratoId(id); }} />}
       {contratoId && <ContratoDetalhe id={contratoId} onClose={() => setContratoId(null)} onChanged={mudou} onAbrirCliente={(cid) => { setContratoId(null); abrir(cid); }} />}
     </div>
-    </Mfa>
   );
+}
+
+export function AdminApp() {
+  const sb = getSupabase();
+  const [sessao, setSessao] = useState<Session | null>(null);
+  const [pronto, setPronto] = useState(false);
+  useEffect(() => {
+    if (!sb) { setPronto(true); return; }
+    sb.auth.getSession().then(({ data }) => { setSessao(data.session); setPronto(true); });
+    const { data } = sb.auth.onAuthStateChange((_e, s) => setSessao(s));
+    return () => data.subscription.unsubscribe();
+  }, [sb]);
+  if (!sb) return <div className="mx-auto max-w-lg p-8"><Aviso tipo="erro">O CRM ainda não está conectado ao banco. Faltam as variáveis NEXT_PUBLIC_SUPABASE_URL e NEXT_PUBLIC_SUPABASE_ANON_KEY na Vercel.</Aviso></div>;
+  if (!pronto) return <div className="p-8 text-sm text-muted">Carregando…</div>;
+  if (!sessao) return <Login />;
+  return <Mfa sb={sb}><AdminInterno sessao={sessao} /></Mfa>;
 }
