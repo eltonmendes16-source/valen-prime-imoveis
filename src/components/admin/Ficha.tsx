@@ -1,6 +1,6 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
-import { MessageCircle, Phone, Trash2, X } from "lucide-react";
+import { FileText, MessageCircle, Phone, Trash2, X } from "lucide-react";
 import { getSupabase } from "@/lib/supabase";
 import {
   BASES, ETAPAS, MODELOS, MOTIVOS_PERDA, RESULTADOS, TEMPERATURAS, aplicarResultado, dadosIncompletos, fmtData,
@@ -10,6 +10,7 @@ import { formatarTelefone, linkWhatsApp } from "@/lib/telefone";
 import { melhorFaixa, taxaPorFaixa, temperaturaSugerida } from "@/lib/analytics";
 import { Aviso, ChipBase, ChipEtapa, ChipTemp } from "./ui";
 import { ClienteForm } from "./ClienteForm";
+import { fichaCadastralPdf } from "@/lib/pdf";
 import { DOCS_PADRAO, ETAPAS_PADRAO, brl, type Contrato } from "@/lib/contratos";
 
 export function Ficha({ id, novo, classificarAberto, onClose, onChanged, onAbrir, onAbrirContrato }: {
@@ -273,6 +274,7 @@ export function Ficha({ id, novo, classificarAberto, onClose, onChanged, onAbrir
               </section>
 
               <section className="border-t border-ink/10 pt-4">
+                <button className="btn btn-line mb-4 !py-2" onClick={() => fichaCadastralPdf(c)}><FileText size={15} /> Gerar ficha cadastral (PDF)</button>
                 {!confirmaExcluir ? (
                   <button className="inline-flex items-center gap-1.5 text-xs text-red-700 underline" onClick={() => setConfirmaExcluir(true)}><Trash2 size={13} /> Excluir cliente e todos os dados (LGPD)</button>
                 ) : (
