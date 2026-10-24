@@ -5,6 +5,7 @@ import { SITE, whatsappLink } from "@/lib/site";
 import { CIDADES } from "@/lib/emp";
 import { getSupabase } from "@/lib/supabase";
 import { validarTelefone } from "@/lib/telefone";
+import { resumoInteresse } from "@/lib/comportamento";
 
 // Chatbot de triagem com perguntas fixas (sem IA e sem custo): entende o perfil, salva o lead no CRM e libera o WhatsApp.
 type Passo = { id: string; pergunta: string; opcoes?: string[]; texto?: "nome" | "telefone" };
@@ -71,9 +72,9 @@ export function ChatTriagem() {
           dormitorios: resp.dormitorios === "Ainda não sei" ? null : resp.dormitorios,
           faixa_valor: resp.faixa === "Prefiro conversar" ? null : resp.faixa,
           forma_pagamento: resp.pagamento === "Ainda não sei" ? null : resp.pagamento,
-          prazo: resp.prazo, mensagem_site: resumo.slice(0, 1500),
+          prazo: resp.prazo, mensagem_site: resumo.slice(0, 1500), comportamento: resumoInteresse(),
           consentimento: true, consentimento_em: new Date().toISOString(),
-          consentimento_texto: "Autorizo o uso dos meus dados para este atendimento (Política de privacidade) — consentimento dado no chatbot do site.",
+          consentimento_texto: "Autorizo o uso dos meus dados, incluindo o resumo das páginas que visitei, para este atendimento (Política de privacidade) — consentimento dado no chatbot do site.",
         }).then(() => undefined, () => undefined);
       } catch { /* o WhatsApp continua disponível */ }
     }
@@ -108,7 +109,7 @@ export function ChatTriagem() {
             )}
             {fim === "consentimento" && (
               <div className="space-y-2 pt-1">
-                <p className="text-xs text-muted">Seus dados (nome, WhatsApp e respostas) ficam no sistema da {SITE.nome} e só são usados para este atendimento. Veja a <a href="/privacidade" className="underline">Política de privacidade</a>.</p>
+                <p className="text-xs text-muted">Seus dados (nome, WhatsApp, respostas e o resumo das páginas que você visitou neste site) ficam no sistema da {SITE.nome} e só são usados para este atendimento. Veja a <a href="/privacidade" className="underline">Política de privacidade</a>.</p>
                 <button onClick={confirmar} className="btn btn-gold w-full !py-2.5">Autorizo e quero ser contatado</button>
               </div>
             )}

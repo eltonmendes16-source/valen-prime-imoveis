@@ -150,6 +150,12 @@ export function Ficha({ id, novo, classificarAberto, onClose, onChanged, onAbrir
                 <div><p className="label">Melhor horário</p><p className="font-medium">{c.melhor_horario || "—"}</p></div>
                 <div><p className="label">Tentativas sem resposta</p><p className="font-medium">{c.tentativas_sem_resposta}</p></div>
                 {(c as unknown as { mensagem_site?: string }).mensagem_site && <div className="sm:col-span-2"><p className="label">Mensagem enviada pelo site</p><p>{(c as unknown as { mensagem_site: string }).mensagem_site}</p></div>}
+                {(() => {
+                  const x = c as unknown as { pontuacao_site?: number; comportamento?: { emps?: string[]; unidades?: string[]; dias?: string[]; tabela?: boolean; renda?: boolean; pdf?: boolean; simulador?: boolean } | null };
+                  const b = x.comportamento; if (!b && !x.pontuacao_site) return null;
+                  const itens = [b?.emps?.length ? `Viu ${b.emps.length} empreendimento(s): ${b.emps.join(", ")}` : "", b?.tabela ? "Abriu a tabela de preços" : "", b?.unidades?.length ? `Escolheu unidade(s): ${b.unidades.map((u) => u.replace("U-", "")).join(", ")}` : "", b?.renda ? "Simulou o que cabe no bolso" : "", b?.simulador ? "Usou o simulador" : "", b?.pdf ? "Baixou a ficha da unidade em PDF" : "", b?.dias?.length ? `Visitou o site em ${b.dias.length} dia(s)` : ""].filter(Boolean);
+                  return <div className="sm:col-span-2"><p className="label">Interesse no site: {x.pontuacao_site ?? 0}/100</p>{itens.length ? <ul className="list-disc pl-5 text-sm">{itens.map((i) => <li key={i}>{i}</li>)}</ul> : <p className="text-sm text-muted">Sem detalhes.</p>}<p className="mt-1 text-[11px] text-muted">Registrado no navegador do visitante e enviado com o consentimento dele. Quanto maior, mais ele explorou.</p></div>;
+                })()}
                 {c.observacoes && <div className="sm:col-span-2"><p className="label">Observações</p><p className="whitespace-pre-wrap">{c.observacoes}</p></div>}
               </section>
 

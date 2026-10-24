@@ -4,6 +4,7 @@ import { CalendarCheck } from "lucide-react";
 import { SITE, whatsappLink } from "@/lib/site";
 import { getSupabase } from "@/lib/supabase";
 import { validarTelefone } from "@/lib/telefone";
+import { resumoInteresse } from "@/lib/comportamento";
 
 const PERIODOS = ["Manhã (9h às 12h)", "Tarde (13h às 18h)", "Noite, após as 18h"];
 const iso = (d: Date) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
@@ -37,9 +38,10 @@ export function AgendarVisita({ empreendimento, detalhe, id = "agendar-visita" }
           telefone_valido: true, origem: "site", pagina_origem: window.location.pathname,
           empreendimento_interesse: empreendimento,
           melhor_horario: quando.slice(0, 120),
+          comportamento: resumoInteresse(),
           mensagem_site: `PEDIDO DE VISITA: ${empreendimento}${detalhe ? ` (${detalhe})` : ""} em ${quando}`.slice(0, 1500),
           consentimento: true, consentimento_em: new Date().toISOString(),
-          consentimento_texto: "Concordo em ser contatado e com o uso dos meus dados para este atendimento (Política de privacidade).",
+          consentimento_texto: "Concordo em ser contatado e com o uso dos meus dados para este atendimento, incluindo o resumo das páginas que visitei neste site (Política de privacidade).",
         }).then(() => undefined, () => undefined);
       } catch { /* segue para o WhatsApp */ }
     }
@@ -66,7 +68,7 @@ export function AgendarVisita({ empreendimento, detalhe, id = "agendar-visita" }
       </div>
       <label className="mt-4 flex items-start gap-2 text-xs text-mutedink">
         <input type="checkbox" required className="mt-0.5 accent-[#C19A5B]" />
-        <span>Concordo em ser contatado e com o uso dos meus dados para este atendimento, conforme a <a href="/privacidade" className="underline hover:text-golddark">Política de privacidade</a>.</span>
+        <span>Concordo em ser contatado e com o uso dos meus dados para este atendimento, incluindo o resumo das páginas que visitei neste site, conforme a <a href="/privacidade" className="underline hover:text-golddark">Política de privacidade</a>.</span>
       </label>
       {erro && <p role="alert" className="mt-3 text-sm text-red-700">{erro}</p>}
       <button type="submit" disabled={salvando} className="btn btn-gold mt-5 w-full sm:w-auto disabled:opacity-60"><CalendarCheck size={16} /> {salvando ? "Enviando…" : "Pedir visita pelo WhatsApp"}</button>

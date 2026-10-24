@@ -4,6 +4,7 @@ import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { WhatsAppFloat } from "./WhatsAppFloat";
 import { ChatTriagem } from "./ChatTriagem";
+import { RastroSite } from "./RastroSite";
 
 // Em /admin o painel do CRM usa a tela inteira, sem cabeçalho, rodapé nem botão flutuante do site.
 export function SiteChrome({ children }: { children: React.ReactNode }) {
@@ -11,6 +12,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
   if (caminho.startsWith("/admin")) return <main id="conteudo">{children}</main>;
   return (
     <>
+      <RastroSite />
       <Header />
       <main id="conteudo">{children}</main>
       <Footer />

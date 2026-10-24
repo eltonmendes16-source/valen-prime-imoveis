@@ -4,7 +4,7 @@ import { getSupabase } from "@/lib/supabase";
 import { ETAPAS, etapaNome, fmtData } from "@/lib/crm";
 import { Aviso, Chip, ChipTemp } from "./ui";
 
-type C = { id: string; nome: string; etapa: string; temperatura: string; empreendimento_interesse: string | null; proximo_contato: string | null; base: string; melhor_horario: string | null; mensagem_site: string | null };
+type C = { id: string; nome: string; etapa: string; temperatura: string; empreendimento_interesse: string | null; proximo_contato: string | null; base: string; melhor_horario: string | null; mensagem_site: string | null; pontuacao_site: number };
 const LIMITE = 40;
 
 export function Funil({ versao, abrir, onChanged }: { versao: number; abrir: (id: string) => void; onChanged: () => void }) {
@@ -16,7 +16,7 @@ export function Funil({ versao, abrir, onChanged }: { versao: number; abrir: (id
 
   const carregar = useCallback(async () => {
     const sb = getSupabase(); if (!sb) return;
-    const { data, error } = await sb.from("clientes").select("id,nome,etapa,temperatura,empreendimento_interesse,proximo_contato,base,melhor_horario,mensagem_site").neq("base", "bloqueados").order("atualizado_em", { ascending: false }).limit(5000);
+    const { data, error } = await sb.from("clientes").select("id,nome,etapa,temperatura,empreendimento_interesse,proximo_contato,base,melhor_horario,mensagem_site,pontuacao_site").neq("base", "bloqueados").order("atualizado_em", { ascending: false }).limit(5000);
     if (error) { setErro(error.message); return; }
     setCs(data as C[]);
   }, []);
@@ -64,6 +64,7 @@ export function Funil({ versao, abrir, onChanged }: { versao: number; abrir: (id
                       <p className="truncate text-sm font-semibold text-ink">{c.nome}</p>
                       <p className="truncate text-xs text-muted">{c.empreendimento_interesse || "Sem empreendimento"}</p>
                     </button>
+                    {c.pontuacao_site > 0 && <p className="mt-1 text-[11px] text-muted">Interesse no site: <b className="text-ink">{c.pontuacao_site}</b>/100</p>}
                     {c.mensagem_site?.startsWith("PEDIDO DE VISITA") && <Chip className="mt-1.5 bg-gold/25 text-ink">Visita: {c.melhor_horario || "a confirmar"}</Chip>}
                     <div className="mt-1.5 flex items-center justify-between gap-2">
                       <ChipTemp t={c.temperatura} />

@@ -5,6 +5,7 @@ import { SITE, whatsappLink } from "@/lib/site";
 import { CIDADES } from "@/lib/emp";
 import { getSupabase } from "@/lib/supabase";
 import { validarTelefone } from "@/lib/telefone";
+import { resumoInteresse } from "@/lib/comportamento";
 
 const INTERESSES = [
   "Comprar um lançamento", "Alto padrão", "Médio padrão", "Compactos / Minha Casa Minha Vida", "Locação",
@@ -41,9 +42,10 @@ export function LeadForm({ titulo = "Agende uma conversa", subtitulo, interesseI
           telefone_valido: true,
           origem: "site", pagina_origem: window.location.pathname,
           empreendimento_interesse: empreendimento || null,
+          comportamento: resumoInteresse(),
           mensagem_site: detalhes.slice(0, 1500),
           consentimento: true, consentimento_em: new Date().toISOString(),
-          consentimento_texto: "Concordo em ser contatado e com o uso dos meus dados para este atendimento (Política de privacidade).",
+          consentimento_texto: "Concordo em ser contatado e com o uso dos meus dados para este atendimento, incluindo o resumo das páginas que visitei neste site (Política de privacidade).",
         }).then(() => undefined, () => undefined);
       } catch { /* segue para o WhatsApp mesmo assim */ }
     }
@@ -74,7 +76,7 @@ export function LeadForm({ titulo = "Agende uma conversa", subtitulo, interesseI
       </div>
       <label className={`mt-4 flex items-start gap-2 text-xs ${claro ? "text-mutedink" : "text-muted"}`}>
         <input type="checkbox" required className="mt-0.5 accent-[#C19A5B]" />
-        <span>Concordo em ser contatado e com o uso dos meus dados para este atendimento, conforme a <a href="/privacidade" className="underline hover:text-golddark">Política de privacidade</a>.</span>
+        <span>Concordo em ser contatado e com o uso dos meus dados para este atendimento, incluindo o resumo das páginas que visitei neste site, conforme a <a href="/privacidade" className="underline hover:text-golddark">Política de privacidade</a>.</span>
       </label>
       {erro && <p role="alert" className="mt-3 text-sm text-red-700">{erro}</p>}
       <button type="submit" disabled={salvando} className="btn btn-gold mt-5 w-full sm:w-auto disabled:opacity-60"><Send size={16} /> {salvando ? "Enviando…" : "Enviar pelo WhatsApp"}</button>
