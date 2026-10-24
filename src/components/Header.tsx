@@ -1,7 +1,8 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Heart } from "lucide-react";
+import { useFavoritos } from "@/lib/favoritos";
 import { Logo } from "./Logo";
 import { SITE, whatsappLink } from "@/lib/site";
 
@@ -21,6 +22,7 @@ const LINKS = [
 
 export function Header() {
   const [aberto, setAberto] = useState(false);
+  const fav = useFavoritos();
   return (
     <header className="sticky top-0 z-50 border-b border-ink/10 bg-snow/90 backdrop-blur">
       <div className="container-page flex h-[72px] items-center justify-between gap-6">
@@ -44,6 +46,7 @@ export function Header() {
           ))}
         </nav>
         <div className="flex items-center gap-3">
+          <Link href="/favoritos" aria-label={`Meus favoritos (${fav.ids.length})`} className="relative grid h-10 w-10 place-items-center rounded border border-ink/15 hover:border-gold"><Heart size={18} className={fav.ids.length ? "fill-red-600 text-red-600" : "text-ink"} />{fav.ids.length > 0 && <span className="absolute -right-1.5 -top-1.5 grid h-5 min-w-5 place-items-center rounded-full bg-ink px-1 text-[10px] font-semibold text-white">{fav.ids.length}</span>}</Link>
           <a href={whatsappLink("Olá, Mendes! Vim pelo site da Valen Prime Imóveis e gostaria de falar com um consultor.")} target="_blank" rel="noopener noreferrer" className="btn btn-gold hidden sm:inline-flex">Falar com consultor</a>
           <button className="grid h-10 w-10 place-items-center rounded border border-ink/15 lg:hidden" onClick={() => setAberto((v) => !v)} aria-expanded={aberto} aria-label={aberto ? "Fechar menu" : "Abrir menu"}>
             {aberto ? <X size={20} /> : <Menu size={20} />}

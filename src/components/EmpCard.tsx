@@ -1,16 +1,18 @@
 import Link from "next/link";
 import { BedDouble, Car, Ruler } from "lucide-react";
 import { Capa } from "./Capa";
+import { BotaoFavorito } from "./BotaoFavorito";
 import { COM_TABELA, brl, entregaTexto, faixaArea, localizacao, SEGMENTO_LABEL, type Emp } from "@/lib/emp";
 
 export function EmpCard({ emp, claro = false }: { emp: Emp; claro?: boolean }) {
   const ent = entregaTexto(emp.entrega);
   return (
-    <article className={`group flex flex-col overflow-hidden rounded-md border transition duration-300 hover:-translate-y-1 ${claro ? "border-ink/10 bg-white text-ink hover:shadow-xl" : "border-ink/10 bg-sand text-charcoal hover:border-gold/50"}`}>
+    <article className={`group relative flex flex-col overflow-hidden rounded-md border transition duration-300 hover:-translate-y-1 ${claro ? "border-ink/10 bg-white text-ink hover:shadow-xl" : "border-ink/10 bg-sand text-charcoal hover:border-gold/50"}`}>
       <Link href={`/empreendimentos/${emp.id}`} className="relative block aspect-[16/10] overflow-hidden bg-coal2" aria-label={`Ver ${emp.nome}`}>
         <div className="h-full w-full transition duration-500 group-hover:scale-[1.04]"><Capa emp={emp} /></div>
         <span className="absolute left-3 top-3 rounded-sm bg-snow/85 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-golddark">{SEGMENTO_LABEL[emp.segmento]}</span>
       </Link>
+      <BotaoFavorito id={emp.id} nome={emp.nome} className="absolute right-3 top-3" />
       <div className="flex flex-1 flex-col gap-3 p-5">
         <div>
           <h3 className="font-serif text-xl font-semibold leading-tight">

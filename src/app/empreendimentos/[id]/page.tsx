@@ -6,6 +6,8 @@ import { Capa } from "@/components/Capa";
 import { LeadForm } from "@/components/LeadForm";
 import { AvisoValores } from "@/components/AvisoValores";
 import { AgendarVisita } from "@/components/AgendarVisita";
+import { BotaoFavorito } from "@/components/BotaoFavorito";
+import { BotaoCompartilhar } from "@/components/BotaoCompartilhar";
 import { COM_TABELA, EMPS, getEmp, brl, faixaArea, localizacao, entregaTexto, SEGMENTO_LABEL } from "@/lib/emp";
 import { SITE } from "@/lib/site";
 import books from "@/data/books.json";
@@ -54,6 +56,8 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
               <Link href={`/simulador?emp=${e.id}`} className="btn btn-line"><Calculator size={16} /> Simular fluxo</Link>
               {(books as Record<string, string[]>)[e.id] && <Link href={`/empreendimentos/${e.id}/book`} className="btn btn-line">Ver book</Link>}
               <a href="#visita" className="btn btn-line">Agendar visita</a>
+              <BotaoFavorito id={e.id} nome={e.nome} comTexto />
+              <BotaoCompartilhar titulo={e.nome} texto={`Olha esse lançamento: ${e.nome} (${localizacao(e)})`} caminho={`/empreendimentos/${e.id}`} />
             </div>
             {(e.precoAPartir || COM_TABELA.includes(e.id)) && <AvisoValores className="mt-4" />}
           </div>
