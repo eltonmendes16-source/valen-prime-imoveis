@@ -150,3 +150,15 @@ export const paraInputData = (iso?: string | null) => {
   const p = (n: number) => String(n).padStart(2, "0");
   return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}T${p(d.getHours())}:${p(d.getMinutes())}`;
 };
+
+/** Pedido de visita do site ("dd/mm/aaaa · Manhã (9h às 12h)") vira um link de evento no Google Agenda. */
+export function linkAgendaVisita(c: { nome: string; melhor_horario: string | null; empreendimento_interesse: string | null; mensagem_site?: string | null; celular?: string | null; telefone?: string | null }): string | null {
+  const m = /^(\d{2})\/(\d{2})\/(\d{4})\s*·\s*(Manhã|Tarde|Noite)/.exec(c.melhor_horario || "");
+  if (!m) return null;
+  const [, dd, mm, aa, per] = m;
+  const faixa = per === "Manhã" ? ["090000", "120000"] : per === "Tarde" ? ["130000", "180000"] : ["180000", "200000"];
+  const dia = `${aa}${mm}${dd}`;
+  const fone = c.celular || c.telefone;
+  const detalhes = [fone ? `Telefone: ${fone}` : "", c.empreendimento_interesse ? `Empreendimento: ${c.empreendimento_interesse}` : "", `Período pedido pelo cliente: ${per}. Confirmar o horário exato por WhatsApp.`].filter(Boolean).join("\n");
+  return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(`Visita (confirmar horário): ${c.nome}`)}&dates=${dia}T${faixa[0]}/${dia}T${faixa[1]}&ctz=America/Sao_Paulo&details=${encodeURIComponent(detalhes)}`;
+}

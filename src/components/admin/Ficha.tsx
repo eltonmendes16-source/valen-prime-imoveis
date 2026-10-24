@@ -4,7 +4,7 @@ import { FileText, MessageCircle, Phone, Trash2, X } from "lucide-react";
 import { getSupabase } from "@/lib/supabase";
 import {
   BASES, ETAPAS, MODELOS, MOTIVOS_PERDA, RESULTADOS, TEMPERATURAS, aplicarResultado, dadosIncompletos, fmtData,
-  numeroPrincipal, numeroWhats, paraInputData, type Cliente, type Interacao, type Resultado,
+  linkAgendaVisita, numeroPrincipal, numeroWhats, paraInputData, type Cliente, type Interacao, type Resultado,
 } from "@/lib/crm";
 import { formatarTelefone, linkWhatsApp } from "@/lib/telefone";
 import { melhorFaixa, taxaPorFaixa, temperaturaSugerida } from "@/lib/analytics";
@@ -192,6 +192,9 @@ export function Ficha({ id, novo, classificarAberto, onClose, onChanged, onAbrir
                         {c.melhor_horario && <p className="font-medium">Informado pelo cliente: {c.melhor_horario}</p>}
                         <p className="text-xs text-muted">{mf ? `Pelo histórico, ${mf.faixa} (${mf.taxa}% de atendimento em ${mf.tentativas} ligações).` : `Poucos dados deste cliente (${ligou} ligação${ligou === 1 ? "" : "ões"} registrada${ligou === 1 ? "" : "s"}). Veja o melhor horário geral na aba Painel.`}</p>
                       </div>
+                      {linkAgendaVisita(c) && (
+                        <a className="block text-xs font-medium text-golddark underline" target="_blank" rel="noopener noreferrer" href={linkAgendaVisita(c)!}>Adicionar a visita pedida ({c.melhor_horario}) ao Google Agenda</a>
+                      )}
                       {c.proximo_contato && (
                         <a className="inline-block text-xs font-medium text-golddark underline" target="_blank" rel="noopener noreferrer"
                           href={(() => {
