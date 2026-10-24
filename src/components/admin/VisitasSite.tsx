@@ -2,9 +2,9 @@
 import { useEffect, useState } from "react";
 import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { getSupabase } from "@/lib/supabase";
+import { nomeRede } from "@/lib/origem";
 
 type R = { total: number; por_dia: { dia: string; v: number }[]; paginas: { caminho: string; v: number }[]; origens: { origem: string; v: number }[]; aparelhos: { aparelho: string; v: number }[] };
-const NOME_ORIGEM: Record<string, string> = { direto: "Direto / sem origem", google: "Buscadores (Google etc.)", instagram: "Instagram", facebook: "Facebook", whatsapp: "WhatsApp", linkedin: "LinkedIn", youtube: "YouTube", outros: "Outros sites" };
 
 export function VisitasSite() {
   const [dias, setDias] = useState(30);
@@ -48,7 +48,7 @@ export function VisitasSite() {
             <div><h3 className="mb-1 text-sm font-semibold text-ink">Páginas mais vistas</h3>
               <ul className="space-y-1 text-sm">{r.paginas.map((p) => <li key={p.caminho} className="flex justify-between gap-3"><span className="truncate text-charcoal">{p.caminho}</span><b>{p.v}</b></li>)}</ul></div>
             <div><h3 className="mb-1 text-sm font-semibold text-ink">De onde vêm</h3>
-              <ul className="space-y-1 text-sm">{r.origens.map((o) => <li key={o.origem} className="flex justify-between gap-3"><span className="text-charcoal">{NOME_ORIGEM[o.origem] || o.origem}</span><span><b>{o.v}</b> <span className="text-muted">({pct(o.v)})</span></span></li>)}</ul>
+              <ul className="space-y-1 text-sm">{r.origens.map((o) => <li key={o.origem} className="flex justify-between gap-3"><span className="text-charcoal">{nomeRede(o.origem)}</span><span><b>{o.v}</b> <span className="text-muted">({pct(o.v)})</span></span></li>)}</ul>
               <h3 className="mb-1 mt-4 text-sm font-semibold text-ink">Aparelho</h3>
               <ul className="space-y-1 text-sm">{r.aparelhos.map((a) => <li key={a.aparelho} className="flex justify-between gap-3"><span className="text-charcoal">{a.aparelho === "celular" ? "Celular" : "Computador"}</span><span><b>{a.v}</b> <span className="text-muted">({pct(a.v)})</span></span></li>)}</ul></div>
           </div>

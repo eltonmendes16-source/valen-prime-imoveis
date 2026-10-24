@@ -6,6 +6,7 @@ import { CIDADES } from "@/lib/emp";
 import { getSupabase } from "@/lib/supabase";
 import { validarTelefone } from "@/lib/telefone";
 import { resumoInteresse } from "@/lib/comportamento";
+import { origemParaLead } from "@/lib/origem";
 
 type Modo = "proprietario" | "inquilino";
 const TIPOS = ["Apartamento", "Casa", "Studio / kitnet", "Sala comercial", "Terreno", "Outro"];
@@ -41,7 +42,7 @@ export function LocacaoForm({ id = "locacao" }: { id?: string }) {
           hotfone: tel.tipo === "fixo" ? "telefone" : "celular",
           telefone_valido: true, origem: "site", pagina_origem: window.location.pathname,
           empreendimento_interesse: dono ? "Locação (proprietário)" : "Locação (inquilino)",
-          comportamento: resumoInteresse(), mensagem_site: detalhes,
+          comportamento: resumoInteresse(), ...origemParaLead(), mensagem_site: detalhes,
           consentimento: true, consentimento_em: new Date().toISOString(),
           consentimento_texto: "Concordo em ser contatado e com o uso dos meus dados para este atendimento, incluindo o resumo das páginas que visitei neste site (Política de privacidade).",
         }).then(() => undefined, () => undefined);

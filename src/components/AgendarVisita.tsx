@@ -5,6 +5,7 @@ import { SITE, whatsappLink } from "@/lib/site";
 import { getSupabase } from "@/lib/supabase";
 import { validarTelefone } from "@/lib/telefone";
 import { resumoInteresse } from "@/lib/comportamento";
+import { origemParaLead } from "@/lib/origem";
 
 const PERIODOS = ["Manhã (9h às 12h)", "Tarde (13h às 18h)", "Noite, após as 18h"];
 const iso = (d: Date) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
@@ -38,7 +39,7 @@ export function AgendarVisita({ empreendimento, detalhe, id = "agendar-visita" }
           telefone_valido: true, origem: "site", pagina_origem: window.location.pathname,
           empreendimento_interesse: empreendimento,
           melhor_horario: quando.slice(0, 120),
-          comportamento: resumoInteresse(),
+          comportamento: resumoInteresse(), ...origemParaLead(),
           mensagem_site: `PEDIDO DE VISITA: ${empreendimento}${detalhe ? ` (${detalhe})` : ""} em ${quando}`.slice(0, 1500),
           consentimento: true, consentimento_em: new Date().toISOString(),
           consentimento_texto: "Concordo em ser contatado e com o uso dos meus dados para este atendimento, incluindo o resumo das páginas que visitei neste site (Política de privacidade).",

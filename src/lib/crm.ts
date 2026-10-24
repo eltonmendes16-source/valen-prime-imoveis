@@ -45,7 +45,7 @@ export type Cliente = {
   idade: number | null; data_nascimento: string | null; genero: string | null; profissao: string | null; renda_faixa: string | null;
   empreendimento_interesse: string | null; tipo_imovel: string | null; dormitorios: string | null;
   faixa_valor: string | null; forma_pagamento: string | null; prazo: string | null;
-  origem: string; pagina_origem: string | null; base: BaseId; etapa: string; temperatura: string;
+  origem: string; rede_origem?: string | null; campanha?: string | null; pagina_origem: string | null; base: BaseId; etapa: string; temperatura: string;
   proximo_contato: string | null; tentativas_sem_resposta: number; melhor_horario: string | null;
   motivo_perda: string | null; tags: string[]; observacoes: string | null;
   consentimento: boolean; consentimento_em: string | null; criado_em: string; atualizado_em: string;

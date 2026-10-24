@@ -6,6 +6,7 @@ import { CIDADES } from "@/lib/emp";
 import { getSupabase } from "@/lib/supabase";
 import { validarTelefone } from "@/lib/telefone";
 import { resumoInteresse } from "@/lib/comportamento";
+import { origemParaLead } from "@/lib/origem";
 
 const INTERESSES = [
   "Comprar um lançamento", "Alto padrão", "Médio padrão", "Compactos / Minha Casa Minha Vida", "Locação",
@@ -42,7 +43,7 @@ export function LeadForm({ titulo = "Agende uma conversa", subtitulo, interesseI
           telefone_valido: true,
           origem: "site", pagina_origem: window.location.pathname,
           empreendimento_interesse: empreendimento || null,
-          comportamento: resumoInteresse(),
+          comportamento: resumoInteresse(), ...origemParaLead(),
           mensagem_site: detalhes.slice(0, 1500),
           consentimento: true, consentimento_em: new Date().toISOString(),
           consentimento_texto: "Concordo em ser contatado e com o uso dos meus dados para este atendimento, incluindo o resumo das páginas que visitei neste site (Política de privacidade).",

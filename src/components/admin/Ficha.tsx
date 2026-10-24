@@ -7,6 +7,7 @@ import {
   linkAgendaVisita, numeroPrincipal, numeroWhats, paraInputData, type Cliente, type Interacao, type Resultado,
 } from "@/lib/crm";
 import { formatarTelefone, linkWhatsApp } from "@/lib/telefone";
+import { nomeRede } from "@/lib/origem";
 import { melhorFaixa, taxaPorFaixa, temperaturaSugerida } from "@/lib/analytics";
 import { Aviso, ChipBase, ChipEtapa, ChipTemp } from "./ui";
 import { ClienteForm } from "./ClienteForm";
@@ -146,7 +147,7 @@ export function Ficha({ id, novo, classificarAberto, onClose, onChanged, onAbrir
                 <div><p className="label">Telefone principal</p><p className="font-medium">{tel ? formatarTelefone(tel) : "—"}</p></div>
                 <div><p className="label">E-mail</p><p className="break-all font-medium">{c.email || "—"}</p></div>
                 <div><p className="label">Interesse</p><p className="font-medium">{[c.empreendimento_interesse, c.tipo_imovel, c.dormitorios && `${c.dormitorios} dorm.`].filter(Boolean).join(" · ") || "—"}</p></div>
-                <div><p className="label">Origem</p><p className="font-medium">{c.origem}{c.pagina_origem ? ` (${c.pagina_origem})` : ""}</p></div>
+                <div><p className="label">Origem</p><p className="font-medium">{c.origem}{c.pagina_origem ? ` (${c.pagina_origem})` : ""}</p>{c.rede_origem && <p className="text-xs text-muted">Veio de: {nomeRede(c.rede_origem)}{c.campanha ? ` · campanha ${c.campanha}` : ""}</p>}</div>
                 <div><p className="label">Melhor horário</p><p className="font-medium">{c.melhor_horario || "—"}</p></div>
                 <div><p className="label">Tentativas sem resposta</p><p className="font-medium">{c.tentativas_sem_resposta}</p></div>
                 {(c as unknown as { mensagem_site?: string }).mensagem_site && <div className="sm:col-span-2"><p className="label">Mensagem enviada pelo site</p><p>{(c as unknown as { mensagem_site: string }).mensagem_site}</p></div>}

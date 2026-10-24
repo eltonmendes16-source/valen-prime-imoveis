@@ -6,8 +6,10 @@ import { ETAPAS, baseNome } from "@/lib/crm";
 import { FAIXAS, chaveDia, contar, ligacoesValidas, melhorFaixa, taxaPorFaixa, ultimosDias } from "@/lib/analytics";
 import { Aviso } from "./ui";
 import { VisitasSite } from "./VisitasSite";
+import { GeradorLinks } from "./GeradorLinks";
+import { nomeRede } from "@/lib/origem";
 
-type C = { id: string; criado_em: string; origem: string; base: string; etapa: string; temperatura: string; empreendimento_interesse: string | null; motivo_perda: string | null; pontuacao_site: number };
+type C = { id: string; criado_em: string; origem: string; rede_origem: string | null; campanha: string | null; base: string; etapa: string; temperatura: string; empreendimento_interesse: string | null; motivo_perda: string | null; pontuacao_site: number };
 type I = { cliente_id: string; tipo: string; resultado: string | null; criado_em: string };
 
 const OURO = "#C19A5B", ESCURO = "#1F1C19", CLARO = "#E6D3AD";
@@ -46,7 +48,7 @@ export function Painel({ versao }: { versao: number }) {
     const sb = getSupabase(); if (!sb) return;
     let vivo = true;
     Promise.all([
-      sb.from("clientes").select("id,criado_em,origem,base,etapa,temperatura,empreendimento_interesse,motivo_perda,pontuacao_site").limit(10000),
+      sb.from("clientes").select("id,criado_em,origem,rede_origem,campanha,base,etapa,temperatura,empreendimento_interesse,motivo_perda,pontuacao_site").limit(10000),
       sb.from("interacoes").select("cliente_id,tipo,resultado,criado_em").order("criado_em", { ascending: true }).limit(10000),
     ]).then(([a, b]) => {
       if (!vivo) return;
@@ -79,8 +81,9 @@ export function Painel({ versao }: { versao: number }) {
     const etapas = ETAPAS.filter((e) => e.id !== "perdido").map((e) => ({ nome: e.nome, valor: cs.filter((c) => c.etapa === e.id).length }));
     const ordem = ETAPAS.map((e) => e.id as string);
     const prog = (c: C, a: string) => c.etapa !== "perdido" && ordem.indexOf(c.etapa) >= ordem.indexOf(a);
-    const origens = Array.from(new Set(cs.map((c) => c.origem))).map((o) => {
-      const l = cs.filter((c) => c.origem === o);
+    const chaveOrigem = (c: C) => (c.rede_origem ? nomeRede(c.rede_origem) : c.origem);
+    const origens = Array.from(new Set(cs.map(chaveOrigem))).map((o) => {
+      const l = cs.filter((c) => chaveOrigem(c) === o);
       const comPont = l.filter((c) => c.pontuacao_site > 0);
       return {
         origem: o, leads: l.length, quentes: l.filter((c) => c.temperatura === "quente").length,
@@ -91,7 +94,8 @@ export function Painel({ versao }: { versao: number }) {
     }).sort((a, b) => b.fechados - a.fechados || b.propostas - a.propostas || b.leads - a.leads);
     return {
       total: cs.length, novos7, serieDias, origens,
-      origem: contar(cs, (c) => c.origem),
+      origem: contar(cs, chaveOrigem),
+      campanhas: Array.from(new Set(cs.filter((c) => c.campanha).map((c) => c.campanha as string))).map((k) => { const l = cs.filter((c) => c.campanha === k); return { campanha: k, leads: l.length, quentes: l.filter((c) => c.temperatura === "quente").length, fechados: l.filter((c) => c.etapa === "fechado").length }; }).sort((a, b) => b.leads - a.leads).slice(0, 10),
       bases: contar(cs, (c) => baseNome(c.base)),
       etapas,
       perdas: contar(cs.filter((c) => c.motivo_perda), (c) => c.motivo_perda),
@@ -176,6 +180,13 @@ export function Painel({ versao }: { versao: number }) {
         </Cartao>
 
         <VisitasSite />
+
+        <Cartao titulo="Campanhas" pergunta="Leads que vieram de links com campanha (veja o gerador de links abaixo)." vazio={d.campanhas.length === 0 ? "Ainda nenhum lead veio de um link com campanha." : undefined}>
+          <table className="w-full text-sm"><thead><tr className="text-left text-xs text-muted"><th className="py-1.5">Campanha</th><th className="text-right">Leads</th><th className="text-right">Quentes</th><th className="text-right">Fechados</th></tr></thead>
+            <tbody>{d.campanhas.map((k) => <tr key={k.campanha} className="border-t border-ink/10"><td className="py-1.5 font-medium text-ink">{k.campanha}</td><td className="text-right">{k.leads}</td><td className="text-right">{k.quentes}</td><td className="text-right">{k.fechados}</td></tr>)}</tbody></table>
+        </Cartao>
+
+        <GeradorLinks />
 
         <Cartao titulo="Por que perdemos clientes?" pergunta="Motivos informados em “Não tenho interesse”." vazio={d.perdas.length === 0 ? "Nenhum motivo registrado ainda." : undefined}>
           <Barras dados={d.perdas} horizontal cor="#8A672A" />
