@@ -4,6 +4,7 @@ import { Calculator, Download, Eye, MessageCircle, Sparkles, Video } from "lucid
 import dados from "@/data/murano.json";
 import { LeadForm } from "./LeadForm";
 import { AgendarVisita } from "./AgendarVisita";
+import { AvisoValores } from "./AvisoValores";
 import { whatsappLink } from "@/lib/site";
 import { fichaUnidadePdf } from "@/lib/pdf";
 
@@ -196,6 +197,8 @@ export function EscolhaUnidade({ nomeEmp }: { nomeEmp: string }) {
       <section id="interesse">
         <LeadForm titulo={`Tenho interesse no ${nomeEmp}`} empreendimento={nomeEmp} mensagemInicial={sel ? `Tenho interesse na unidade ${sel.id.replace("U-", "")} (${sel.andar}º andar, final ${sel.final}), ${brl(sel.total)} na tabela de ${dia(tabela.impressa)}.` : undefined} />
       </section>
+
+      <AvisoValores />
 
       <div className="space-y-1 text-xs text-mutedink">
         <p><b>Tabela de venda de {dia(tabela.impressa)}, válida até {dia(tabela.validade)}.</b> Valores sujeitos a alteração sem aviso prévio; a disponibilidade deve ser confirmada com o consultor. Imagens, vídeos e passeio virtual são ilustrativos e podem diferir da unidade entregue.</p>

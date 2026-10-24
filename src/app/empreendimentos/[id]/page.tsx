@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Calculator } from "lucide-react";
 import { Capa } from "@/components/Capa";
 import { LeadForm } from "@/components/LeadForm";
+import { AvisoValores } from "@/components/AvisoValores";
 import { AgendarVisita } from "@/components/AgendarVisita";
 import { COM_TABELA, EMPS, getEmp, brl, faixaArea, localizacao, entregaTexto, SEGMENTO_LABEL } from "@/lib/emp";
 import { SITE } from "@/lib/site";
@@ -49,6 +50,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
               ? <Link href={`/escolha-sua-unidade/${e.id}`} className="btn btn-gold mt-2">Ver tabela de preços</Link>
               : <p className="font-serif text-4xl font-semibold text-golddark">{e.precoAPartir ? brl(e.precoAPartir) : "Sob consulta"}</p>}
             {e.tabelaData && <p className="mt-1 text-xs text-muted">Tabela de {new Date(e.tabelaData + "T12:00:00").toLocaleDateString("pt-BR")} · sujeita a alteração sem aviso prévio.</p>}
+            {(e.precoAPartir || COM_TABELA.includes(e.id)) && <AvisoValores className="mt-4" />}
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href={`/simulador?emp=${e.id}`} className="btn btn-line"><Calculator size={16} /> Simular fluxo</Link>
               {(books as Record<string, string[]>)[e.id] && <Link href={`/empreendimentos/${e.id}/book`} className="btn btn-line">Ver book</Link>}
