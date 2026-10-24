@@ -12,6 +12,8 @@ export function Mfa({ sb, children }: { sb: SupabaseClient; children: React.Reac
   const [fator, setFator] = useState("");
   const [qr, setQr] = useState("");
   const [segredo, setSegredo] = useState("");
+  const [uri, setUri] = useState("");
+  const [copiado, setCopiado] = useState(false);
   const [codigo, setCodigo] = useState("");
   const [erro, setErro] = useState("");
   const [busy, setBusy] = useState(false);
@@ -28,7 +30,7 @@ export function Mfa({ sb, children }: { sb: SupabaseClient; children: React.Reac
     for (const f of lista?.all || []) if (f.status === "unverified") await sb.auth.mfa.unenroll({ factorId: f.id });
     const { data: novo, error: e2 } = await sb.auth.mfa.enroll({ factorType: "totp", friendlyName: `Celular ${new Date().toISOString().slice(0, 16)}` });
     if (e2 || !novo) { setErro(e2?.message || "Não consegui iniciar o cadastro do código."); return; }
-    setFator(novo.id); setQr(novo.totp.qr_code); setSegredo(novo.totp.secret); setFase("cadastrar");
+    setFator(novo.id); setQr(novo.totp.qr_code); setSegredo(novo.totp.secret); setUri(novo.totp.uri); setFase("cadastrar");
   }, [sb]);
   useEffect(() => { checar(); }, [checar]);
 
@@ -56,7 +58,12 @@ export function Mfa({ sb, children }: { sb: SupabaseClient; children: React.Reac
               <li>Digite aqui o código de 6 números que o app mostrar.</li>
             </ol>
             {qr && /* eslint-disable-next-line @next/next/no-img-element */ <img src={qr} alt="QR code para o aplicativo autenticador" className="mx-auto h-44 w-44" />}
-            <p className="break-all text-xs text-muted">Sem câmera? Digite esta chave no app: <b className="select-all text-ink">{segredo}</b></p>
+            <p className="text-xs text-muted">Se o QR não funcionar, copie a chave e cole no app (Inserir chave de configuração, tipo baseada no tempo):</p>
+            <p className="break-all rounded bg-snow p-2 font-mono text-sm font-semibold text-ink select-all">{segredo}</p>
+            <div className="flex flex-wrap gap-2">
+              <button type="button" className="btn btn-line" onClick={async () => { try { await navigator.clipboard.writeText(segredo); setCopiado(true); } catch { /* ignora */ } }}>{copiado ? "Chave copiada!" : "Copiar chave"}</button>
+              {uri && <a className="btn btn-line" href={uri}>Abrir no app autenticador (celular)</a>}
+            </div>
           </div>
         )}
         {fase === "verificar" && <p className="mt-3 text-sm text-charcoal/80">Digite o código de 6 números do seu aplicativo autenticador.</p>}
