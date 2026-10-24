@@ -6,7 +6,7 @@ import { ETAPAS, baseNome } from "@/lib/crm";
 import { FAIXAS, chaveDia, contar, ligacoesValidas, melhorFaixa, taxaPorFaixa, ultimosDias } from "@/lib/analytics";
 import { Aviso } from "./ui";
 
-type C = { id: string; criado_em: string; origem: string; base: string; etapa: string; temperatura: string; empreendimento_interesse: string | null; motivo_perda: string | null };
+type C = { id: string; criado_em: string; origem: string; base: string; etapa: string; temperatura: string; empreendimento_interesse: string | null; motivo_perda: string | null; pontuacao_site: number };
 type I = { cliente_id: string; tipo: string; resultado: string | null; criado_em: string };
 
 const OURO = "#C19A5B", ESCURO = "#1F1C19", CLARO = "#E6D3AD";
@@ -45,7 +45,7 @@ export function Painel({ versao }: { versao: number }) {
     const sb = getSupabase(); if (!sb) return;
     let vivo = true;
     Promise.all([
-      sb.from("clientes").select("id,criado_em,origem,base,etapa,temperatura,empreendimento_interesse,motivo_perda").limit(10000),
+      sb.from("clientes").select("id,criado_em,origem,base,etapa,temperatura,empreendimento_interesse,motivo_perda,pontuacao_site").limit(10000),
       sb.from("interacoes").select("cliente_id,tipo,resultado,criado_em").order("criado_em", { ascending: true }).limit(10000),
     ]).then(([a, b]) => {
       if (!vivo) return;
@@ -76,8 +76,20 @@ export function Painel({ versao }: { versao: number }) {
     const mediana = horas.length ? horas[Math.floor(horas.length / 2)] : null;
 
     const etapas = ETAPAS.filter((e) => e.id !== "perdido").map((e) => ({ nome: e.nome, valor: cs.filter((c) => c.etapa === e.id).length }));
+    const ordem = ETAPAS.map((e) => e.id as string);
+    const prog = (c: C, a: string) => c.etapa !== "perdido" && ordem.indexOf(c.etapa) >= ordem.indexOf(a);
+    const origens = Array.from(new Set(cs.map((c) => c.origem))).map((o) => {
+      const l = cs.filter((c) => c.origem === o);
+      const comPont = l.filter((c) => c.pontuacao_site > 0);
+      return {
+        origem: o, leads: l.length, quentes: l.filter((c) => c.temperatura === "quente").length,
+        interessados: l.filter((c) => prog(c, "interessado")).length, visitas: l.filter((c) => prog(c, "visita_agendada")).length,
+        propostas: l.filter((c) => prog(c, "proposta")).length, fechados: l.filter((c) => c.etapa === "fechado").length, perdidos: l.filter((c) => c.etapa === "perdido").length,
+        pontMedia: comPont.length ? Math.round(comPont.reduce((a, c) => a + c.pontuacao_site, 0) / comPont.length) : null,
+      };
+    }).sort((a, b) => b.fechados - a.fechados || b.propostas - a.propostas || b.leads - a.leads);
     return {
-      total: cs.length, novos7, serieDias,
+      total: cs.length, novos7, serieDias, origens,
       origem: contar(cs, (c) => c.origem),
       bases: contar(cs, (c) => baseNome(c.base)),
       etapas,
@@ -117,8 +129,23 @@ export function Painel({ versao }: { versao: number }) {
           <Barras dados={d.serieDias} />
         </Cartao>
 
-        <Cartao titulo="De onde vem o melhor lead?" pergunta="Quantidade de clientes por origem." vazio={d.origem.length === 0 ? "Sem dados ainda." : undefined}>
-          <Barras dados={d.origem} horizontal />
+        <Cartao largo titulo="De onde vem o melhor lead?" pergunta="Para cada origem: quantos chegaram e até onde foram no funil (a etapa atual do cliente)." vazio={d.origens.length === 0 ? "Sem dados ainda." : undefined}>
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[34rem] text-sm">
+              <thead><tr className="text-left text-xs text-muted"><th className="py-1.5 pr-3">Origem</th><th className="px-2 text-right">Clientes</th><th className="px-2 text-right">Quentes</th><th className="px-2 text-right">Interessados</th><th className="px-2 text-right">Visitas</th><th className="px-2 text-right">Propostas</th><th className="px-2 text-right">Fechados</th><th className="px-2 text-right">Perdidos</th><th className="pl-2 text-right">Interesse no site</th></tr></thead>
+              <tbody>
+                {d.origens.map((o) => (
+                  <tr key={o.origem} className="border-t border-ink/10">
+                    <td className="py-1.5 pr-3 font-medium text-ink">{o.origem}</td>
+                    <td className="px-2 text-right">{o.leads}</td><td className="px-2 text-right">{o.quentes}</td><td className="px-2 text-right">{o.interessados}</td>
+                    <td className="px-2 text-right">{o.visitas}</td><td className="px-2 text-right">{o.propostas}</td><td className="px-2 text-right font-semibold">{o.fechados}{o.leads >= 10 ? <span className="ml-1 font-normal text-muted">({Math.round((o.fechados / o.leads) * 100)}%)</span> : null}</td>
+                    <td className="px-2 text-right">{o.perdidos}</td><td className="pl-2 text-right">{o.pontMedia ?? "—"}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-2 text-xs text-muted">A porcentagem de fechamento só aparece quando a origem tem 10 clientes ou mais: com poucos casos, ela engana. “Interesse no site” é a média da pontuação de quem navegou antes de enviar o contato.</p>
         </Cartao>
 
         <Cartao titulo="Onde estão os clientes no funil?" pergunta="Clientes por etapa hoje (fora os perdidos)." vazio={d.total === 0 ? "Sem dados ainda." : undefined}>
