@@ -1,8 +1,9 @@
 "use client";
 import { useMemo, useState } from "react";
-import { Calculator, Eye, Sparkles, Video } from "lucide-react";
+import { Calculator, Eye, MessageCircle, Sparkles, Video } from "lucide-react";
 import dados from "@/data/murano.json";
 import { LeadForm } from "./LeadForm";
+import { whatsappLink } from "@/lib/site";
 
 type Unidade = (typeof dados.unidades)[number];
 const brl = (v: number) => new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 }).format(v);
@@ -127,6 +128,7 @@ export function EscolhaUnidade({ nomeEmp }: { nomeEmp: string }) {
             <a href={`/simulador?emp=ilha-de-murano`} className="btn btn-line"><Calculator size={16} /> Simulador completo</a>
             <button onClick={() => alternar(sel.id)} className="btn btn-line">{comp.includes(sel.id) ? "Remover da comparação" : comp.length >= 3 ? "Comparação cheia (3)" : "Adicionar à comparação"}</button>
             <a href="#interesse" className="btn btn-gold">Quero esta unidade</a>
+            <a href={whatsappLink(`Olá, Mendes! Vim pelo site e tenho interesse na unidade ${sel.id.replace("U-", "")} (${sel.andar}º andar, final ${sel.final}, ${sel.area} m²) do ${nomeEmp}, valor de tabela ${brl(sel.total)}. Pode me enviar mais informações?`)} target="_blank" rel="noopener noreferrer" className="btn !bg-[#25D366] text-ink"><MessageCircle size={16} /> Falar no WhatsApp sobre esta unidade</a>
           </div>
         </section>
       )}
