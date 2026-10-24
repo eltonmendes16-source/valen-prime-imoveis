@@ -1,7 +1,7 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
 import type { Session } from "@supabase/supabase-js";
-import { BarChart3, CalendarCheck, LogOut, Plus, Upload, Users } from "lucide-react";
+import { BarChart3, CalendarCheck, FileSignature, LogOut, Plus, Upload, Users } from "lucide-react";
 import { getSupabase } from "@/lib/supabase";
 import { SITE } from "@/lib/site";
 import { Aviso } from "./ui";
@@ -10,8 +10,10 @@ import { Clientes } from "./Clientes";
 import { Ficha } from "./Ficha";
 import { Importar } from "./Importar";
 import { Painel } from "./Painel";
+import { Contratos } from "./Contratos";
+import { ContratoDetalhe } from "./ContratoDetalhe";
 
-type Aba = "hoje" | "clientes" | "painel" | "importar";
+type Aba = "hoje" | "clientes" | "contratos" | "painel" | "importar";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -51,6 +53,7 @@ export function AdminApp() {
   const [fichaId, setFichaId] = useState<string | null>(null);
   const [fichaNovo, setFichaNovo] = useState(false);
   const [fichaClassificar, setFichaClassificar] = useState(false);
+  const [contratoId, setContratoId] = useState<string | null>(null);
   const [versao, setVersao] = useState(0);
 
   useEffect(() => {
@@ -85,6 +88,7 @@ export function AdminApp() {
   const abas: { id: Aba; nome: string; icone: React.ReactNode }[] = [
     { id: "hoje", nome: "Hoje", icone: <CalendarCheck size={16} /> },
     { id: "clientes", nome: "Clientes", icone: <Users size={16} /> },
+    { id: "contratos", nome: "Contratos", icone: <FileSignature size={16} /> },
     { id: "painel", nome: "Painel", icone: <BarChart3 size={16} /> },
     { id: "importar", nome: "Importar", icone: <Upload size={16} /> },
   ];
@@ -109,12 +113,14 @@ export function AdminApp() {
         </div>
       </header>
       <div className="mx-auto max-w-6xl px-4 py-6">
-        {aba === "hoje" && <Hoje versao={versao} abrir={abrir} />}
+        {aba === "hoje" && <Hoje versao={versao} abrir={abrir} abrirContrato={setContratoId} />}
+        {aba === "contratos" && <Contratos versao={versao} abrirContrato={setContratoId} />}
         {aba === "clientes" && <Clientes versao={versao} abrir={abrir} />}
         {aba === "painel" && <Painel versao={versao} />}
         {aba === "importar" && <Importar onConcluido={() => { mudou(); setAba("clientes"); }} />}
       </div>
-      {(fichaId || fichaNovo) && <Ficha id={fichaId} novo={fichaNovo} classificarAberto={fichaClassificar} onClose={fechar} onChanged={mudou} onAbrir={(id) => abrir(id)} />}
+      {(fichaId || fichaNovo) && <Ficha id={fichaId} novo={fichaNovo} classificarAberto={fichaClassificar} onClose={fechar} onChanged={mudou} onAbrir={(id) => abrir(id)} onAbrirContrato={(id) => { setFichaId(null); setContratoId(id); }} />}
+      {contratoId && <ContratoDetalhe id={contratoId} onClose={() => setContratoId(null)} onChanged={mudou} onAbrirCliente={(cid) => { setContratoId(null); abrir(cid); }} />}
     </div>
   );
 }

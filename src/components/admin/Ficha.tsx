@@ -10,13 +10,15 @@ import { formatarTelefone, linkWhatsApp } from "@/lib/telefone";
 import { melhorFaixa, taxaPorFaixa, temperaturaSugerida } from "@/lib/analytics";
 import { Aviso, ChipBase, ChipEtapa, ChipTemp } from "./ui";
 import { ClienteForm } from "./ClienteForm";
+import { DOCS_PADRAO, ETAPAS_PADRAO, brl, type Contrato } from "@/lib/contratos";
 
-export function Ficha({ id, novo, classificarAberto, onClose, onChanged, onAbrir }: {
-  id: string | null; novo: boolean; classificarAberto: boolean; onClose: () => void; onChanged: () => void; onAbrir: (id: string) => void;
+export function Ficha({ id, novo, classificarAberto, onClose, onChanged, onAbrir, onAbrirContrato }: {
+  id: string | null; novo: boolean; classificarAberto: boolean; onClose: () => void; onChanged: () => void; onAbrir: (id: string) => void; onAbrirContrato: (id: string) => void;
 }) {
   const sb = getSupabase();
   const [c, setC] = useState<Cliente | null>(null);
   const [hist, setHist] = useState<Interacao[]>([]);
+  const [contratos, setContratos] = useState<Contrato[]>([]);
   const [editando, setEditando] = useState(false);
   const [nota, setNota] = useState("");
   const [canal, setCanal] = useState<"ligacao" | "whatsapp">("ligacao");
@@ -30,12 +32,13 @@ export function Ficha({ id, novo, classificarAberto, onClose, onChanged, onAbrir
 
   const carregar = useCallback(async () => {
     if (!sb || !id) return;
-    const [a, b] = await Promise.all([
+    const [a, b, k] = await Promise.all([
       sb.from("clientes").select("*").eq("id", id).single(),
       sb.from("interacoes").select("*").eq("cliente_id", id).order("criado_em", { ascending: false }).limit(100),
+      sb.from("contratos").select("*").eq("cliente_id", id).order("criado_em", { ascending: false }),
     ]);
     if (a.error) { setErro(a.error.message); return; }
-    setC(a.data as Cliente); setHist((b.data as Interacao[]) || []);
+    setC(a.data as Cliente); setHist((b.data as Interacao[]) || []); setContratos((k.data as Contrato[]) || []);
   }, [sb, id]);
 
   useEffect(() => { setC(null); setEditando(false); setPendente(null); setErro(""); setOk(""); setNota(""); setConfirmaExcluir(false); carregar(); }, [carregar]);
@@ -89,6 +92,21 @@ export function Ficha({ id, novo, classificarAberto, onClose, onChanged, onAbrir
     const m = MODELOS.find((x) => x.id === modelo) || MODELOS[0];
     window.open(linkWhatsApp(n, m.texto(c)), "_blank", "noopener,noreferrer");
     await registrar("whatsapp", "Mensagem aberta", m.nome); carregar();
+  }
+
+  async function criarContrato() {
+    if (!sb || !c) return;
+    setErro("");
+    const { data, error } = await sb.from("contratos").insert({ cliente_id: c.id, empreendimento: c.empreendimento_interesse, forma_pagamento: c.forma_pagamento }).select("id").single();
+    if (error || !data) { setErro(error?.message || "Não foi possível criar o contrato."); return; }
+    const itens = [
+      ...ETAPAS_PADRAO.map((nome, i) => ({ contrato_id: data.id, tipo: "etapa", nome, ordem: i + 1 })),
+      ...DOCS_PADRAO.map((nome, i) => ({ contrato_id: data.id, tipo: "documento", nome, ordem: i + 1 })),
+    ];
+    const r = await sb.from("contrato_itens").insert(itens);
+    if (r.error) { setErro(`Contrato criado, mas as etapas padrão falharam: ${r.error.message}`); }
+    if (c.etapa !== "contrato" && c.etapa !== "fechado") { await sb.from("clientes").update({ etapa: "contrato" }).eq("id", c.id); await registrar("sistema", null, "Contrato criado; etapa alterada para Contrato"); }
+    onChanged(); onAbrirContrato(data.id);
   }
 
   async function excluir() {
@@ -215,6 +233,22 @@ export function Ficha({ id, novo, classificarAberto, onClose, onChanged, onAbrir
                 <label><span className="label">Temperatura</span><select className="field" value={c.temperatura} onChange={(e) => mudar("temperatura", e.target.value)}>{TEMPERATURAS.map((b) => <option key={b.id} value={b.id}>{b.nome}</option>)}</select></label>
                 <label><span className="label">Próximo contato</span>
                   <input type="datetime-local" className="field" value={c.proximo_contato ? paraInputData(c.proximo_contato) : ""} onChange={(e) => agendar(e.target.value)} /></label>
+              </section>
+
+              <section className="rounded-lg border border-ink/10 bg-white p-4" aria-label="Contratos do cliente">
+                <h3 className="mb-2 font-serif text-lg font-semibold text-ink">Contratos</h3>
+                {contratos.length === 0 ? <p className="mb-3 text-sm text-muted">Nenhum contrato para este cliente.</p> : (
+                  <ul className="mb-3 space-y-1.5">
+                    {contratos.map((k) => (
+                      <li key={k.id}><button onClick={() => onAbrirContrato(k.id)} className="w-full rounded-md border border-ink/10 bg-sand px-3 py-2 text-left text-sm hover:bg-goldsoft/40">
+                        <span className="font-medium text-ink">{[k.empreendimento, k.unidade].filter(Boolean).join(" · ") || "Contrato sem nome"}</span>
+                        <span className="ml-2 text-xs text-muted">{brl(k.valor)} · {k.status.replace("_", " ")}</span>
+                      </button></li>
+                    ))}
+                  </ul>
+                )}
+                <button className="btn btn-line !py-2" onClick={criarContrato}>Criar contrato</button>
+                <p className="mt-1.5 text-[11px] text-muted">Cria com as 6 etapas e 4 documentos padrão, que você pode editar.</p>
               </section>
 
               <section>

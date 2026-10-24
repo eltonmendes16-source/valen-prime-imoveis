@@ -3,6 +3,7 @@ import { usePathname } from "next/navigation";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { WhatsAppFloat } from "./WhatsAppFloat";
+import { ChatTriagem } from "./ChatTriagem";
 
 // Em /admin o painel do CRM usa a tela inteira, sem cabeçalho, rodapé nem botão flutuante do site.
 export function SiteChrome({ children }: { children: React.ReactNode }) {
@@ -13,6 +14,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
       <Header />
       <main id="conteudo">{children}</main>
       <Footer />
+      <ChatTriagem />
       <WhatsAppFloat />
     </>
   );

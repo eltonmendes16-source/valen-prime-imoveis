@@ -55,9 +55,24 @@ export function Importar({ onConcluido }: { onConcluido: () => void }) {
 
   async function carregarArquivo(arq: File) {
     setErro(""); setResultado("");
-    const texto = await arq.text();
-    const l = lerCsv(texto);
-    if (l.length < 2) { setErro("Não encontrei linhas de dados. Salve a planilha como CSV (separado por vírgulas ou ponto e vírgula)."); return; }
+    let l: string[][] = [];
+    const nome = arq.name.toLowerCase();
+    try {
+      if (nome.endsWith(".xlsx")) {
+        const { readSheet } = await import("read-excel-file/browser");
+        const linhasXlsx = await readSheet(arq); // primeira aba da planilha
+        l = linhasXlsx
+          .map((r) => r.map((c) => (c === null || c === undefined ? "" : c instanceof Date ? c.toISOString().slice(0, 10) : String(c))))
+          .filter((r) => r.some((x) => x.trim()));
+      } else if (nome.endsWith(".xls")) {
+        setErro("Arquivos .xls (Excel antigo) não são aceitos. Abra no Excel e use Arquivo → Salvar como → Pasta de Trabalho do Excel (.xlsx) ou CSV."); return;
+      } else {
+        l = lerCsv(await arq.text());
+      }
+    } catch {
+      setErro("Não consegui ler o arquivo. Confirme que é um .xlsx ou .csv válido e que não está protegido por senha."); return;
+    }
+    if (l.length < 2) { setErro("Não encontrei linhas de dados. A primeira linha deve ter os nomes das colunas e as seguintes, os clientes."); return; }
     setLinhas(l);
     const m: Record<string, number> = {};
     CAMPOS.forEach((c) => {
@@ -104,6 +119,14 @@ export function Importar({ onConcluido }: { onConcluido: () => void }) {
     return { ok, invalidos, dupArquivo, dupBanco, semNome };
   }, [dados, mapa, existentes]);
 
+  function baixarModelo() {
+    const cab = "nome;celular;telefone;email;endereco;bairro;cidade;cep;empreendimento;observacoes";
+    const blob = new Blob(["\uFEFF" + cab + "\n"], { type: "text/csv;charset=utf-8" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob); a.download = "modelo-importacao-clientes.csv"; a.click();
+    URL.revokeObjectURL(a.href);
+  }
+
   async function importar() {
     const sb = getSupabase(); if (!sb || !analise.ok.length) return;
     setEnviando(true); setErro(""); setResultado("");
@@ -123,13 +146,14 @@ export function Importar({ onConcluido }: { onConcluido: () => void }) {
     <div className="max-w-3xl space-y-5">
       <div>
         <h1 className="font-serif text-2xl font-semibold text-ink">Importar clientes</h1>
-        <p className="mt-1 text-sm text-muted">Envie uma planilha salva como <strong>CSV</strong> (no Excel: Arquivo → Salvar como → CSV). A primeira linha deve ter os nomes das colunas. O sistema valida os telefones e pula duplicados.</p>
+        <p className="mt-1 text-sm text-muted">Envie a sua base em <strong>Excel (.xlsx)</strong> ou <strong>CSV</strong>. A primeira linha deve ter os nomes das colunas. O sistema reconhece as colunas, valida os telefones, pula duplicados e importa em lotes, então aguenta milhares de linhas.</p>
+        <button type="button" onClick={baixarModelo} className="mt-2 text-sm font-medium text-golddark underline">Baixar planilha modelo (CSV, abre no Excel)</button>
       </div>
 
       <label className="flex cursor-pointer flex-col items-center gap-2 rounded-lg border-2 border-dashed border-gold/60 bg-white p-8 text-center hover:bg-gold/5">
         <Upload size={22} className="text-golddark" />
-        <span className="text-sm font-medium text-ink">Escolher arquivo CSV</span>
-        <input type="file" accept=".csv,text/csv,.txt" className="sr-only" onChange={(e) => e.target.files?.[0] && carregarArquivo(e.target.files[0])} />
+        <span className="text-sm font-medium text-ink">Escolher arquivo Excel (.xlsx) ou CSV</span>
+        <input type="file" accept=".xlsx,.csv,.txt,text/csv" className="sr-only" onChange={(e) => e.target.files?.[0] && carregarArquivo(e.target.files[0])} />
       </label>
 
       {erro && <Aviso tipo="erro">{erro}</Aviso>}
