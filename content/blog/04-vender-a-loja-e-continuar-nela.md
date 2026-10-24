@@ -2,6 +2,7 @@
 titulo: Vender a loja e continuar nela
 subtitulo: Sale-leaseback: quanto custa, de verdade, o caixa que entra
 resumo: O sale-leaseback libera capital preso em imóvel, mas não é caixa grátis. No exemplo deste artigo, receber R$ 15 milhões custa 15,0% ao ano, e 17,1% se a venda gerar imposto sobre o ganho. Só compensa se o dinheiro render mais do que isso na operação.
+categoria: Imobiliário corporativo
 data: 2026-10-13
 leitura: 6
 ordem: 4

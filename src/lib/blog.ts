@@ -68,5 +68,5 @@ function lerMarkdown(): Post[] {
 export const POSTS: Post[] = [...lerMarkdown(), ...RASCUNHOS].sort((a, b) => b.data.localeCompare(a.data));
 
 // Abas do blog, na ordem em que aparecem. Para criar uma aba nova, inclua o nome aqui e use o mesmo nome em "categoria" do artigo.
-export const CATEGORIAS = ["Artigos", "Insights de mercado", "Mercado financeiro", "Lançamentos", "Financiamento", "Educação financeira"];
+export const CATEGORIAS = ["Imobiliário corporativo", "Artigos", "Insights de mercado", "Mercado financeiro", "Lançamentos", "Financiamento", "Educação financeira"];
 export const getPost = (slug: string) => POSTS.find((p) => p.slug === slug);

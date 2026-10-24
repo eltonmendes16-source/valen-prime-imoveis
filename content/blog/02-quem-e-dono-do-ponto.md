@@ -2,6 +2,7 @@
 titulo: Quem é dono do ponto?
 subtitulo: Renovatória, luvas e os prazos que protegem o lojista na locação comercial
 resumo: O ponto tem proteção legal, mas ela só vale para quem cumpre três requisitos e protocola a ação dentro de uma janela de seis meses. Quem controla as datas negocia de igual para igual. Quem não controla corre o risco de perder o direito de ficar.
+categoria: Imobiliário corporativo
 data: 2026-10-11
 leitura: 8
 ordem: 2

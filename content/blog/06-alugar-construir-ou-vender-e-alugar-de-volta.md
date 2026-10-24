@@ -2,6 +2,7 @@
 titulo: Alugar, construir ou vender e alugar de volta?
 subtitulo: A decisão com a conta lado a lado
 resumo: Nas premissas deste exemplo, ser dono do imóvel custa menos que qualquer modelo de aluguel enquanto o capital da empresa custar menos de 15,0% ao ano. Acima disso, o aluguel passa a ganhar, primeiro o sale-leaseback, depois o built-to-suit e, por último, a locação típica, a partir de 17,7%.
+categoria: Imobiliário corporativo
 data: 2026-10-15
 leitura: 5
 ordem: 6

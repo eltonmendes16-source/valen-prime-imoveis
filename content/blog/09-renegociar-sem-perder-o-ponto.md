@@ -2,6 +2,7 @@
 titulo: Renegociar sem perder o ponto
 subtitulo: Aluguel e prazo durante o contrato: o que trocar e o que proteger
 resumo: Renegociar durante o contrato é trocar valor por prazo. O ganho só é real se superar o que a revisional ou o mercado já dariam, e se o acordo não enfraquecer a renovatória nem a garantia.
+categoria: Imobiliário corporativo
 data: 2026-10-18
 leitura: 6
 ordem: 9

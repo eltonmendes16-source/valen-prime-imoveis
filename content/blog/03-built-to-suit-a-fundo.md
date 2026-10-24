@@ -2,6 +2,7 @@
 titulo: Built-to-suit a fundo
 subtitulo: Art. 54-A, renúncia à revisional e multa: o que o lojista assina
 resumo: No built-to-suit, o lojista troca flexibilidade por um imóvel sob medida e um aluguel previsível. O preço dessa troca está em duas cláusulas: a renúncia à revisional e a multa de saída, cujo teto legal é a soma dos aluguéis que faltam até o fim do contrato.
+categoria: Imobiliário corporativo
 data: 2026-10-12
 leitura: 6
 ordem: 3

@@ -2,6 +2,7 @@
 titulo: A média esconde a loja
 subtitulo: Como administrar a carteira de lojas alugadas
 resumo: Administrar a carteira é olhar cada loja, e não a média. No exemplo deste artigo, um custo de ocupação médio de 8,7% das vendas esconde uma loja a 14,0% e uma janela renovatória que fecha em 13 dias.
+categoria: Imobiliário corporativo
 data: 2026-10-17
 leitura: 6
 ordem: 8

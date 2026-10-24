@@ -2,6 +2,7 @@
 titulo: O aluguel não é o custo
 subtitulo: Reajuste e encargos: o que pesa mais que o aluguel inicial
 resumo: Duas lojas com aluguéis diferentes podem ter o custo de ocupação invertido por causa dos encargos e do índice de reajuste. Compare o custo total por metro quadrado, e não só o aluguel de tabela.
+categoria: Imobiliário corporativo
 data: 2026-10-14
 leitura: 6
 ordem: 5

@@ -2,6 +2,7 @@
 titulo: Onde a loja vai ficar?
 subtitulo: Locação típica, built-to-suit e sale-leaseback: três decisões de capital escondidas num contrato de aluguel
 resumo: Escolher o modelo de ocupação da loja é decidir quem põe o capital, quem carrega o risco e por quanto tempo. O aluguel por metro quadrado é só o resultado dessa decisão.
+categoria: Imobiliário corporativo
 data: 2026-10-10
 leitura: 8
 ordem: 1

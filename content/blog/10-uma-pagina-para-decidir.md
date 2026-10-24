@@ -2,6 +2,7 @@
 titulo: Uma página para decidir
 subtitulo: Roteiro de decisão de ocupação, da série em oito perguntas
 resumo: A decisão de ocupação cabe em oito perguntas, feitas na ordem: quanto a loja pode pagar, qual o custo de capital, qual o custo total, que prazo e proteção, o que foi verificado, quanto custa sair, quem acompanha e o que fazer na renegociação.
+categoria: Imobiliário corporativo
 data: 2026-10-19
 leitura: 4
 ordem: 10

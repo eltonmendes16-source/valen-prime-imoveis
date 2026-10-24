@@ -2,6 +2,7 @@
 titulo: Da proposta ao contrato
 subtitulo: Como negociar uma loja nova sem pagar por surpresas
 resumo: O preço de uma loja nova se decide na ordem das etapas: primeiro a verificação do imóvel e do locador, depois as condições que protegem a abertura, e só então o aluguel. Quem assina antes de conferir paga por atrasos e riscos que poderia ter repassado ao locador.
+categoria: Imobiliário corporativo
 data: 2026-10-16
 leitura: 6
 ordem: 7
