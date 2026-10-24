@@ -20,6 +20,17 @@ export function EscolhaUnidade({ nomeEmp }: { nomeEmp: string }) {
   const [sel, setSel] = useState<Unidade | null>(null);
   const [taxa, setTaxa] = useState(11.5);
   const [prazo, setPrazo] = useState(360);
+  const [comp, setComp] = useState<string[]>([]);
+  const [renda, setRenda] = useState("");
+  const [entrada, setEntrada] = useState("");
+  const rendaN = Number(renda.replace(/\D/g, "")) || 0;
+  const entradaN = Number(entrada.replace(/\D/g, "")) || 0;
+  const parcelaFin = (u: Unidade) => price(u.financiamento, taxa, prazo);
+  // Regra prática usada como referência: parcela até 30% da renda familiar. Não é aprovação de crédito.
+  const cabem = useMemo(() => rendaN <= 0 ? [] : unidades.filter((u) => u.mensal <= rendaN * 0.3 && price(u.financiamento, taxa, prazo) <= rendaN * 0.3 && (entradaN <= 0 || u.ato <= entradaN)).sort((a, b) => a.total - b.total), [rendaN, entradaN, taxa, prazo, unidades]);
+  const comparadas = comp.map((id) => unidades.find((u) => u.id === id)).filter(Boolean) as Unidade[];
+  const alternar = (id: string) => setComp((c) => c.includes(id) ? c.filter((x) => x !== id) : c.length >= 3 ? c : [...c, id]);
+  const rotulo = (u: Unidade) => `${u.id.replace("U-", "")} · ${u.andar}º andar, final ${u.final}`;
   const mapa = useMemo(() => new Map(unidades.map((u) => [`${u.andar}-${u.final}`, u])), [unidades]);
   const vencida = new Date(tabela.validade + "T23:59:59-03:00") < new Date();
   const c = tabela.condicoes;
@@ -27,6 +38,34 @@ export function EscolhaUnidade({ nomeEmp }: { nomeEmp: string }) {
   return (
     <div className="space-y-10">
       {vencida && <p role="alert" className="rounded-md bg-red-50 p-4 text-sm text-red-800">A tabela de preços desta página venceu em {dia(tabela.validade)}. Consulte os valores atualizados com o consultor.</p>}
+
+      <section aria-label="Quanto cabe no seu bolso" className="rounded-md border border-ink/10 bg-white p-6">
+        <h2 className="font-serif text-2xl font-semibold">Quanto cabe no seu bolso?</h2>
+        <p className="mt-1 text-sm text-mutedink">Informe a renda familiar e a entrada que você tem. Mostramos as unidades cujas parcelas ficam em até 30% da renda. Os valores não são salvos.</p>
+        <div className="mt-4 grid gap-3 sm:grid-cols-2">
+          <label className="text-sm">Renda familiar mensal (R$)<input inputMode="numeric" value={renda} onChange={(e) => setRenda(e.target.value.replace(/\D/g, ""))} placeholder="Ex.: 20000" className="field mt-1" /></label>
+          <label className="text-sm">Entrada disponível para o ato (R$, opcional)<input inputMode="numeric" value={entrada} onChange={(e) => setEntrada(e.target.value.replace(/\D/g, ""))} placeholder="Ex.: 70000" className="field mt-1" /></label>
+        </div>
+        {rendaN > 0 && (
+          <div className="mt-4">
+            {cabem.length === 0 ? (
+              <p className="rounded-md bg-sand p-4 text-sm">Nenhuma unidade da tabela cabe nesses valores. A parcela da obra e a do financiamento precisam ficar em até 30% da renda; o ato, dentro da entrada informada. Fale com o consultor para avaliar outras possibilidades.</p>
+            ) : (
+              <>
+                <p className="text-sm"><b>{cabem.length}</b> unidade(s) cabem no seu perfil:</p>
+                <ul className="mt-2 grid gap-2 sm:grid-cols-2">
+                  {cabem.map((u) => (
+                    <li key={u.id}><button onClick={() => { setSel(u); document.getElementById("unidade")?.scrollIntoView({ behavior: "smooth" }); }} className="w-full rounded border border-gold/50 bg-snow p-3 text-left text-sm hover:bg-gold/15">
+                      <b>{rotulo(u)}</b> · {u.area} m²<br />{brl(u.total)} · obra {brl(u.mensal)}/mês · financ. ≈ {brl(parcelaFin(u))}/mês
+                    </button></li>
+                  ))}
+                </ul>
+              </>
+            )}
+            <p className="mt-3 text-xs text-mutedink">Estimativa com {taxa.toLocaleString("pt-BR")}% ao ano em {prazo} meses (ajuste abaixo, na unidade escolhida). Não é aprovação de crédito.</p>
+          </div>
+        )}
+      </section>
 
       <section aria-label="Escolha da unidade">
         <h2 className="font-serif text-2xl font-semibold">1. Escolha o andar e o final</h2>
@@ -57,7 +96,7 @@ export function EscolhaUnidade({ nomeEmp }: { nomeEmp: string }) {
       </section>
 
       {sel && (
-        <section aria-label="Unidade escolhida" className="rounded-md border border-gold/60 bg-white p-6 shadow-sm">
+        <section id="unidade" aria-label="Unidade escolhida" className="rounded-md border border-gold/60 bg-white p-6 shadow-sm">
           <p className="font-mono text-[11px] uppercase tracking-wider text-golddark">Unidade {sel.id.replace("U-", "")} · {sel.andar}º andar · final {sel.final}</p>
           <h2 className="mt-1 font-serif text-3xl font-semibold">{brl2(sel.total)}</h2>
           <p className="text-sm text-mutedink">{sel.area} m² · {sel.vaga === "dupla" ? "2 vagas" : "1 vaga"} · {sel.final === 2 ? "2 dormitórios (1 suíte)" : "3 dormitórios (1 suíte)"}</p>
@@ -86,7 +125,40 @@ export function EscolhaUnidade({ nomeEmp }: { nomeEmp: string }) {
 
           <div className="mt-6 flex flex-wrap gap-3">
             <a href={`/simulador?emp=ilha-de-murano`} className="btn btn-line"><Calculator size={16} /> Simulador completo</a>
+            <button onClick={() => alternar(sel.id)} className="btn btn-line">{comp.includes(sel.id) ? "Remover da comparação" : comp.length >= 3 ? "Comparação cheia (3)" : "Adicionar à comparação"}</button>
             <a href="#interesse" className="btn btn-gold">Quero esta unidade</a>
+          </div>
+        </section>
+      )}
+
+      {comparadas.length > 0 && (
+        <section aria-label="Comparação de unidades" className="rounded-md border border-ink/10 bg-white p-6">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <h2 className="font-serif text-2xl font-semibold">Comparar unidades ({comparadas.length}/3)</h2>
+            <button onClick={() => setComp([])} className="text-sm text-golddark underline">Limpar</button>
+          </div>
+          {comparadas.length < 2 && <p className="mt-2 text-sm text-mutedink">Escolha mais uma unidade e clique em "Adicionar à comparação".</p>}
+          <div className="mt-3 overflow-x-auto">
+            <table className="w-full min-w-[32rem] text-sm">
+              <thead><tr className="text-left text-xs text-mutedink"><th className="py-1.5" />{comparadas.map((u) => <th key={u.id} className="pr-3">{rotulo(u)}<br /><button onClick={() => alternar(u.id)} className="font-normal text-golddark underline">remover</button></th>)}</tr></thead>
+              <tbody className="divide-y divide-ink/10">
+                {([
+                  ["Metragem", (u: Unidade) => `${u.area} m²`],
+                  ["Vagas", (u: Unidade) => (u.vaga === "dupla" ? "2" : "1")],
+                  ["Dormitórios", (u: Unidade) => (u.final === 2 ? "2 (1 suíte)" : "3 (1 suíte)")],
+                  ["Preço da tabela", (u: Unidade) => brl2(u.total)],
+                  ["Preço por m²", (u: Unidade) => brl(u.total / u.area)],
+                  ["Ato", (u: Unidade) => brl2(u.ato)],
+                  [`${c.mensais.qtd} mensais de`, (u: Unidade) => brl2(u.mensal)],
+                  [`${c.anuais.qtd} anuais de`, (u: Unidade) => brl2(u.anual)],
+                  ["Parcela única", (u: Unidade) => brl2(u.unica)],
+                  ["Financiamento", (u: Unidade) => brl2(u.financiamento)],
+                  [`Parcela estimada (${prazo} meses, ${taxa.toLocaleString("pt-BR")}% a.a.)`, (u: Unidade) => brl2(parcelaFin(u))],
+                ] as [string, (u: Unidade) => string][]).map(([nome, f]) => (
+                  <tr key={nome}><td className="py-1.5 pr-3 text-mutedink">{nome}</td>{comparadas.map((u) => <td key={u.id} className="pr-3 font-medium">{f(u)}</td>)}</tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </section>
       )}
