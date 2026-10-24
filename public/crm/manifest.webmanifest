@@ -1,0 +1,17 @@
+{
+  "name": "Valen Prime CRM",
+  "short_name": "Valen CRM",
+  "description": "CRM da Valen Prime Imóveis",
+  "start_url": "/admin",
+  "scope": "/admin",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FCFBF8",
+  "theme_color": "#171513",
+  "lang": "pt-BR",
+  "icons": [
+    { "src": "/crm/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/crm/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/crm/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
