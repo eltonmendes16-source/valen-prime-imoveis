@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { BedDouble, Car, Ruler } from "lucide-react";
 import { Capa } from "./Capa";
-import { brl, entregaTexto, faixaArea, localizacao, SEGMENTO_LABEL, type Emp } from "@/lib/emp";
+import { COM_TABELA, brl, entregaTexto, faixaArea, localizacao, SEGMENTO_LABEL, type Emp } from "@/lib/emp";
 
 export function EmpCard({ emp, claro = false }: { emp: Emp; claro?: boolean }) {
   const ent = entregaTexto(emp.entrega);
@@ -26,7 +26,7 @@ export function EmpCard({ emp, claro = false }: { emp: Emp; claro?: boolean }) {
         <div className={`mt-auto flex items-end justify-between border-t pt-4 ${claro ? "border-ink/10" : "border-ink/10"}`}>
           <div>
             <p className={`text-[11px] uppercase tracking-wider ${claro ? "text-mutedink" : "text-muted"}`}>{emp.precoAPartir ? "A partir de" : "Valores"}</p>
-            <p className="font-serif text-lg font-semibold text-golddark">{emp.precoAPartir ? brl(emp.precoAPartir) : "Sob consulta"}</p>
+            <p className="font-serif text-lg font-semibold text-golddark">{emp.precoAPartir ? brl(emp.precoAPartir) : COM_TABELA.includes(emp.id) ? "Ver tabela de preços →" : "Sob consulta"}</p>
           </div>
           {ent && <p className={`text-right text-xs ${claro ? "text-mutedink" : "text-muted"}`}>Entrega prevista<br /><b className="font-semibold">{ent}</b></p>}
         </div>

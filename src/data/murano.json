@@ -45,7 +45,7 @@
   3
  ],
  "tour360": "https://passeiovirtual360.github.io/MURANO/",
- "videoDecorado": null,
+ "videoDecorado": "/videos/murano-decorado.mp4",
  "unidades": [
   {
    "id": "U-013",
@@ -346,5 +346,6 @@
    "financiamento": 562415.43,
    "total": 865254.51
   }
- ]
+ ],
+ "videoPoster": "/videos/murano-decorado.jpg"
 }

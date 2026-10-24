@@ -53,3 +53,6 @@ export function entregaTexto(iso: string | null) {
   const meses = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
   return `${meses[parseInt(m, 10) - 1]}/${a}`;
 }
+
+// Empreendimentos que já têm tela "Escolha sua unidade" com tabela de preços.
+export const COM_TABELA = ["ilha-de-murano"];

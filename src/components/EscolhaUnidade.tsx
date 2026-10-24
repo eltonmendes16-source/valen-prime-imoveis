@@ -103,7 +103,11 @@ export function EscolhaUnidade({ nomeEmp }: { nomeEmp: string }) {
         <div className="rounded-md border border-ink/10 bg-white p-6">
           <h2 className="flex items-center gap-2 font-serif text-2xl font-semibold"><Video size={20} /> Apartamento decorado</h2>
           {dados.videoDecorado ? (
-            <div className="mt-4 aspect-video overflow-hidden rounded"><iframe src={dados.videoDecorado} title={`Decorado do ${nomeEmp}`} className="h-full w-full" allow="fullscreen" loading="lazy" /></div>
+            <div className="mt-4 aspect-video overflow-hidden rounded bg-black">
+              {dados.videoDecorado.endsWith(".mp4")
+                ? <video src={dados.videoDecorado} poster={dados.videoPoster} controls preload="metadata" playsInline className="h-full w-full" />
+                : <iframe src={dados.videoDecorado} title={`Decorado do ${nomeEmp}`} className="h-full w-full" allow="fullscreen" loading="lazy" />}
+            </div>
           ) : <p className="mt-3 rounded bg-sand p-6 text-sm text-mutedink">Vídeo do decorado em breve.</p>}
           <h2 className="mt-6 flex items-center gap-2 font-serif text-2xl font-semibold"><Sparkles size={20} /> Decore com IA</h2>
           <p className="mt-2 rounded bg-sand p-6 text-sm text-mutedink">Em breve: escolha um estilo e veja o ambiente decorado. As imagens serão ilustrativas.</p>
