@@ -54,7 +54,8 @@ export function entregaTexto(iso: string | null) {
   return `${meses[parseInt(m, 10) - 1]}/${a}`;
 }
 
-// Empreendimentos que já têm tela "Escolha sua unidade" com tabela de preços.
+// Empreendimentos que já têm tela "Escolha sua unidade" com tabela de preços (arquivo em src/data/tabelas e registro em src/lib/tabelas.ts).
+// `node scripts/validar-tabelas.mjs` confere se esta lista e as tabelas estão de acordo.
 export const COM_TABELA = ["ilha-de-murano"];
 
 // Páginas por cidade (SEO): /lancamentos/<slug>

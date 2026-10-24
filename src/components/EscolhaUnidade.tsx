@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
 import { Calculator, Download, Eye, MessageCircle, Sparkles, Video } from "lucide-react";
-import dados from "@/data/murano.json";
+import type { TabelaEmp } from "@/lib/tabelas";
 import { LeadForm } from "./LeadForm";
 import { AgendarVisita } from "./AgendarVisita";
 import { AvisoValores } from "./AvisoValores";
@@ -9,7 +9,7 @@ import { whatsappLink } from "@/lib/site";
 import { fichaUnidadePdf } from "@/lib/pdf";
 import { registrar } from "@/lib/comportamento";
 
-type Unidade = (typeof dados.unidades)[number];
+type Unidade = TabelaEmp["unidades"][number];
 const brl = (v: number) => new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 }).format(v);
 const brl2 = (v: number) => new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(v);
 const dia = (iso: string) => iso.split("-").reverse().join("/");
@@ -20,7 +20,7 @@ function price(valor: number, taxaAnual: number, meses: number) {
   return i === 0 ? valor / meses : (valor * i) / (1 - Math.pow(1 + i, -meses));
 }
 
-export function EscolhaUnidade({ nomeEmp }: { nomeEmp: string }) {
+export function EscolhaUnidade({ nomeEmp, empId, dados }: { nomeEmp: string; empId: string; dados: TabelaEmp }) {
   const { tabela, unidades, andares, finais } = dados;
   const [sel, setSel] = useState<Unidade | null>(null);
   const [taxa, setTaxa] = useState(11.5);
@@ -131,7 +131,7 @@ export function EscolhaUnidade({ nomeEmp }: { nomeEmp: string }) {
           <p className="mt-2 text-xs text-mutedink">Estimativa sem seguros, tarifas, INCC e IGP-M. A taxa, o prazo e a aprovação dependem do banco e da análise de crédito.</p>
 
           <div className="mt-6 flex flex-wrap gap-3">
-            <a href={`/simulador?emp=ilha-de-murano`} className="btn btn-line"><Calculator size={16} /> Simulador completo</a>
+            <a href={`/simulador?emp=${empId}`} className="btn btn-line"><Calculator size={16} /> Simulador completo</a>
             <button onClick={() => alternar(sel.id)} className="btn btn-line">{comp.includes(sel.id) ? "Remover da comparação" : comp.length >= 3 ? "Comparação cheia (3)" : "Adicionar à comparação"}</button>
             <a href={`/aluguel-ou-comprar?valor=${Math.round(sel.total)}&entrada=${Math.round(sel.total - sel.financiamento)}`} className="btn btn-line">Comparar com aluguel</a>
             <button onClick={() => { registrar({ tipo: "pdf" }); fichaUnidadePdf(nomeEmp, sel, dados.tabela, { taxa, meses: prazo, parcelaFin: parcelaFin(sel) }); }} className="btn btn-line"><Download size={16} /> Baixar ficha em PDF</button>
@@ -174,14 +174,14 @@ export function EscolhaUnidade({ nomeEmp }: { nomeEmp: string }) {
       )}
 
       <section id="tour" aria-label="Vista e decorado" className="grid scroll-mt-24 gap-6 md:grid-cols-2">
-        <div className="rounded-md border border-ink/10 bg-white p-6">
+        {dados.tour360 ? <div className="rounded-md border border-ink/10 bg-white p-6">
           <h2 className="flex items-center gap-2 font-serif text-2xl font-semibold"><Eye size={20} /> Passeio virtual 360°</h2>
           <p className="mt-1 text-sm text-mutedink">Veja a vista e circule pelo ambiente.</p>
           <div className="mt-4 aspect-video overflow-hidden rounded bg-sand">
             <iframe src={dados.tour360} title={`Passeio virtual 360° do ${nomeEmp}`} className="h-full w-full" allow="fullscreen; gyroscope; accelerometer" loading="lazy" />
           </div>
           <a href={dados.tour360} target="_blank" rel="noopener noreferrer" className="mt-3 inline-block text-sm text-golddark underline">Abrir em tela cheia</a>
-        </div>
+        </div> : <div className="rounded-md border border-ink/10 bg-white p-6"><h2 className="flex items-center gap-2 font-serif text-2xl font-semibold"><Eye size={20} /> Passeio virtual 360°</h2><p className="mt-3 rounded bg-sand p-6 text-sm text-mutedink">Passeio virtual em breve.</p></div>}
         <div className="rounded-md border border-ink/10 bg-white p-6">
           <h2 className="flex items-center gap-2 font-serif text-2xl font-semibold"><Video size={20} /> Apartamento decorado</h2>
           {dados.videoDecorado ? (

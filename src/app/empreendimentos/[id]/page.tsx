@@ -10,6 +10,7 @@ import { BotaoFavorito } from "@/components/BotaoFavorito";
 import { BotaoCompartilhar } from "@/components/BotaoCompartilhar";
 import { COM_TABELA, EMPS, getEmp, brl, faixaArea, localizacao, entregaTexto, SEGMENTO_LABEL } from "@/lib/emp";
 import { SITE } from "@/lib/site";
+import { TABELAS } from "@/lib/tabelas";
 import books from "@/data/books.json";
 
 export function generateStaticParams() { return EMPS.map((e) => ({ id: e.id })); }
@@ -49,7 +50,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
             <p className="mt-2 text-charcoal/70">{localizacao(e)}</p>
             <p className="mt-8 text-xs uppercase tracking-wider text-muted">{e.precoAPartir ? "A partir de" : "Valores"}</p>
             {!e.precoAPartir && COM_TABELA.includes(e.id)
-              ? <div className="mt-2 flex flex-wrap gap-3"><Link href={`/escolha-sua-unidade/${e.id}`} className="btn btn-gold">Ver tabela de preços</Link><Link href={`/escolha-sua-unidade/${e.id}#tour`} className="btn btn-line"><Eye size={16} /> Tour 360° e vídeo do decorado</Link></div>
+              ? <div className="mt-2 flex flex-wrap gap-3"><Link href={`/escolha-sua-unidade/${e.id}`} className="btn btn-gold">Ver tabela de preços</Link>{(TABELAS[e.id]?.tour360 || TABELAS[e.id]?.videoDecorado) && <Link href={`/escolha-sua-unidade/${e.id}#tour`} className="btn btn-line"><Eye size={16} /> Tour 360° e vídeo do decorado</Link>}</div>
               : <p className="font-serif text-4xl font-semibold text-golddark">{e.precoAPartir ? brl(e.precoAPartir) : "Sob consulta"}</p>}
             {e.tabelaData && <p className="mt-1 text-xs text-muted">Tabela de {new Date(e.tabelaData + "T12:00:00").toLocaleDateString("pt-BR")} · sujeita a alteração sem aviso prévio.</p>}
             <div className="mt-8 flex flex-wrap gap-3">
