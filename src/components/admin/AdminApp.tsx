@@ -1,7 +1,7 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
 import type { Session } from "@supabase/supabase-js";
-import { CalendarCheck, LogOut, Plus, Upload, Users } from "lucide-react";
+import { BarChart3, CalendarCheck, LogOut, Plus, Upload, Users } from "lucide-react";
 import { getSupabase } from "@/lib/supabase";
 import { SITE } from "@/lib/site";
 import { Aviso } from "./ui";
@@ -9,8 +9,9 @@ import { Hoje } from "./Hoje";
 import { Clientes } from "./Clientes";
 import { Ficha } from "./Ficha";
 import { Importar } from "./Importar";
+import { Painel } from "./Painel";
 
-type Aba = "hoje" | "clientes" | "importar";
+type Aba = "hoje" | "clientes" | "painel" | "importar";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -84,6 +85,7 @@ export function AdminApp() {
   const abas: { id: Aba; nome: string; icone: React.ReactNode }[] = [
     { id: "hoje", nome: "Hoje", icone: <CalendarCheck size={16} /> },
     { id: "clientes", nome: "Clientes", icone: <Users size={16} /> },
+    { id: "painel", nome: "Painel", icone: <BarChart3 size={16} /> },
     { id: "importar", nome: "Importar", icone: <Upload size={16} /> },
   ];
 
@@ -109,6 +111,7 @@ export function AdminApp() {
       <div className="mx-auto max-w-6xl px-4 py-6">
         {aba === "hoje" && <Hoje versao={versao} abrir={abrir} />}
         {aba === "clientes" && <Clientes versao={versao} abrir={abrir} />}
+        {aba === "painel" && <Painel versao={versao} />}
         {aba === "importar" && <Importar onConcluido={() => { mudou(); setAba("clientes"); }} />}
       </div>
       {(fichaId || fichaNovo) && <Ficha id={fichaId} novo={fichaNovo} classificarAberto={fichaClassificar} onClose={fechar} onChanged={mudou} onAbrir={(id) => abrir(id)} />}

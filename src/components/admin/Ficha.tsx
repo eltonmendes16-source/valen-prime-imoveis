@@ -7,6 +7,7 @@ import {
   numeroPrincipal, numeroWhats, paraInputData, type Cliente, type Interacao, type Resultado,
 } from "@/lib/crm";
 import { formatarTelefone, linkWhatsApp } from "@/lib/telefone";
+import { melhorFaixa, taxaPorFaixa, temperaturaSugerida } from "@/lib/analytics";
 import { Aviso, ChipBase, ChipEtapa, ChipTemp } from "./ui";
 import { ClienteForm } from "./ClienteForm";
 
@@ -142,6 +143,42 @@ export function Ficha({ id, novo, classificarAberto, onClose, onChanged, onAbrir
                     <button onClick={abrirWhats} className="btn !bg-[#25D366] text-ink"><MessageCircle size={16} /> WhatsApp</button>
                   </div>
                 )}
+              </section>
+
+              <section aria-label="Inteligência" className="rounded-lg border border-ink/10 bg-white p-4 text-sm">
+                <h3 className="mb-2 font-serif text-lg font-semibold text-ink">Inteligência</h3>
+                {(() => {
+                  const t = temperaturaSugerida(c, hist);
+                  const mf = melhorFaixa(taxaPorFaixa(hist), 2);
+                  const ligou = hist.filter((h) => h.tipo === "ligacao").length;
+                  return (
+                    <div className="space-y-3">
+                      <div>
+                        <p className="label">Temperatura sugerida</p>
+                        <div className="flex flex-wrap items-center gap-2">
+                          <ChipTemp t={t.sugerida} />
+                          {t.sugerida !== c.temperatura && <button className="text-xs font-medium text-golddark underline" onClick={() => mudar("temperatura", t.sugerida)}>Aplicar</button>}
+                          {t.sugerida === c.temperatura && <span className="text-xs text-muted">já aplicada</span>}
+                        </div>
+                        <p className="mt-1 text-xs text-muted">{t.motivos.length ? `Porque: ${t.motivos.join("; ")}.` : "Ainda sem sinais suficientes."}</p>
+                      </div>
+                      <div>
+                        <p className="label">Melhor horário para ligar</p>
+                        {c.melhor_horario && <p className="font-medium">Informado pelo cliente: {c.melhor_horario}</p>}
+                        <p className="text-xs text-muted">{mf ? `Pelo histórico, ${mf.faixa} (${mf.taxa}% de atendimento em ${mf.tentativas} ligações).` : `Poucos dados deste cliente (${ligou} ligação${ligou === 1 ? "" : "ões"} registrada${ligou === 1 ? "" : "s"}). Veja o melhor horário geral na aba Painel.`}</p>
+                      </div>
+                      {c.proximo_contato && (
+                        <a className="inline-block text-xs font-medium text-golddark underline" target="_blank" rel="noopener noreferrer"
+                          href={(() => {
+                            const ini = new Date(c.proximo_contato); const fim = new Date(ini.getTime() + 30 * 60000);
+                            const f = (d: Date) => d.toISOString().replace(/[-:]|\.\d{3}/g, "");
+                            const detalhes = [numeroPrincipal(c) ? `Telefone: ${formatarTelefone(numeroPrincipal(c))}` : "", c.empreendimento_interesse ? `Interesse: ${c.empreendimento_interesse}` : ""].filter(Boolean).join("\n");
+                            return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(`Contato: ${c.nome}`)}&dates=${f(ini)}/${f(fim)}&details=${encodeURIComponent(detalhes)}`;
+                          })()}>Adicionar o próximo contato ao Google Agenda</a>
+                      )}
+                    </div>
+                  );
+                })()}
               </section>
 
               <section aria-label="Classificar contato" className={`rounded-lg border bg-white p-4 ${classificarAberto ? "border-gold ring-2 ring-gold/30" : "border-ink/10"}`}>

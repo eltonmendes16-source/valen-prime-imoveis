@@ -6,6 +6,17 @@ import { BASES, ETAPAS, ORIGENS, TEMPERATURAS, type Cliente } from "@/lib/crm";
 import { Aviso, Vazio } from "./ui";
 import { LinhaCliente } from "./LinhaCliente";
 
+const INTELIGENTES = [
+  { id: "quentes_parados", nome: "Quentes sem contato há +3 dias" },
+  { id: "material_sem_retorno", nome: "Pediram material, retorno vencido" },
+  { id: "nao_atendem", nome: "Não atendem (2+ tentativas)" },
+  { id: "visita_sem_proposta", nome: "Visita agendada, sem proposta" },
+  { id: "novos_parados", nome: "Novos há +1 dia sem contato" },
+  { id: "incompletos", nome: "Dados incompletos" },
+];
+const ATIVAS = "(nao_interessados,bloqueados,arquivados)";
+const atras = (dias: number) => new Date(Date.now() - dias * 86400000).toISOString();
+
 export function Clientes({ versao, abrir }: { versao: number; abrir: (id: string, classificar?: boolean) => void }) {
   const [busca, setBusca] = useState("");
   const [q, setQ] = useState("");
@@ -14,6 +25,7 @@ export function Clientes({ versao, abrir }: { versao: number; abrir: (id: string
   const [temp, setTemp] = useState("");
   const [origem, setOrigem] = useState("");
   const [etapa, setEtapa] = useState("");
+  const [smart, setSmart] = useState("");
   const [lista, setLista] = useState<Cliente[] | null>(null);
   const [contagem, setContagem] = useState<Record<string, number>>({});
   const [erro, setErro] = useState("");
@@ -37,6 +49,12 @@ export function Clientes({ versao, abrir }: { versao: number; abrir: (id: string
     if (temp) consulta = consulta.eq("temperatura", temp);
     if (origem) consulta = consulta.eq("origem", origem);
     if (etapa) consulta = consulta.eq("etapa", etapa);
+    if (smart === "quentes_parados") consulta = consulta.eq("temperatura", "quente").lt("atualizado_em", atras(3)).not("base", "in", ATIVAS);
+    if (smart === "material_sem_retorno") consulta = consulta.eq("base", "interessados").eq("etapa", "interessado").lt("proximo_contato", new Date().toISOString());
+    if (smart === "nao_atendem") consulta = consulta.gte("tentativas_sem_resposta", 2).not("base", "in", ATIVAS);
+    if (smart === "visita_sem_proposta") consulta = consulta.eq("etapa", "visita_agendada");
+    if (smart === "novos_parados") consulta = consulta.eq("base", "novos").lt("criado_em", atras(1));
+    if (smart === "incompletos") consulta = consulta.or("email.is.null,endereco.is.null,telefone.is.null,celular.is.null");
     const termo = q.trim().replace(/[,()%*]/g, " ");
     if (termo) {
       const digitos = termo.replace(/\D/g, "");
@@ -46,7 +64,7 @@ export function Clientes({ versao, abrir }: { versao: number; abrir: (id: string
     }
     consulta.then(({ data, error }) => { if (!vivo) return; if (error) setErro(error.message); else { setErro(""); setLista((data as Cliente[]) || []); } });
     return () => { vivo = false; };
-  }, [q, base, temp, origem, etapa, versao]);
+  }, [q, base, temp, origem, etapa, smart, versao]);
 
   const total = Object.values(contagem).reduce((a, b) => a + b, 0);
 
@@ -66,6 +84,14 @@ export function Clientes({ versao, abrir }: { versao: number; abrir: (id: string
           <button key={b.id} onClick={() => setBase(b.id)} className={`rounded-full px-3 py-1.5 text-xs font-medium ${base === b.id ? "bg-ink text-paper" : "bg-white text-ink ring-1 ring-ink/15 hover:bg-gold/10"}`}>
             {b.nome} ({contagem[b.id] || 0})
           </button>
+        ))}
+      </div>
+
+      <div className="flex flex-wrap items-center gap-1.5" role="group" aria-label="Filtros inteligentes">
+        <span className="mr-1 text-xs font-medium text-muted">Filtros inteligentes:</span>
+        {INTELIGENTES.map((f) => (
+          <button key={f.id} onClick={() => setSmart(smart === f.id ? "" : f.id)} aria-pressed={smart === f.id}
+            className={`rounded-full px-3 py-1.5 text-xs font-medium ${smart === f.id ? "bg-gold text-ink" : "bg-goldsoft/40 text-ink hover:bg-goldsoft/70"}`}>{f.nome}</button>
         ))}
       </div>
 
