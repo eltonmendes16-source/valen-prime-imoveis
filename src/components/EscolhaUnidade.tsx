@@ -172,7 +172,7 @@ export function EscolhaUnidade({ nomeEmp }: { nomeEmp: string }) {
         </section>
       )}
 
-      <section aria-label="Vista e decorado" className="grid gap-6 md:grid-cols-2">
+      <section id="tour" aria-label="Vista e decorado" className="grid scroll-mt-24 gap-6 md:grid-cols-2">
         <div className="rounded-md border border-ink/10 bg-white p-6">
           <h2 className="flex items-center gap-2 font-serif text-2xl font-semibold"><Eye size={20} /> Passeio virtual 360°</h2>
           <p className="mt-1 text-sm text-mutedink">Veja a vista e circule pelo ambiente.</p>
