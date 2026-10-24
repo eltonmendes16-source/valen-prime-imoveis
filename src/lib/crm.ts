@@ -133,7 +133,7 @@ export const MODELOS: Modelo[] = [
 export const MARCOS_POSVENDA = [
   { id: "30d", dias: 30, nome: "30 dias", texto: (nome: string, emp: string | null) => `Olá, ${nome}! Aqui é o ${SITE.consultor}, da ${SITE.nome}. Já faz cerca de um mês da sua compra${emp ? ` no ${emp}` : ""}. Passando para saber como está tudo e se precisa de ajuda com documentos, financiamento ou qualquer dúvida. Conte comigo!` },
   { id: "6m", dias: 180, nome: "6 meses", texto: (nome: string, emp: string | null) => `Olá, ${nome}! Aqui é o ${SITE.consultor}. Passando para saber como estão as coisas com o seu imóvel${emp ? ` do ${emp}` : ""}, e se posso ajudar em algo nessa fase. Abraço!` },
-  { id: "12m", dias: 365, nome: "1 ano", texto: (nome: string, emp: string | null) => `Olá, ${nome}! Aqui é o ${SITE.consultor}, da ${SITE.nome}. Faz um ano da sua compra${emp ? ` no ${emp}` : ""}! Como está sendo a experiência? Se tiver alguém que também esteja pensando em comprar ou vender, será um prazer atender com o mesmo cuidado. Obrigado pela confiança!` },
+  { id: "12m", dias: 365, nome: "1 ano", texto: (nome: string, emp: string | null) => `Olá, ${nome}! Aqui é o ${SITE.consultor}, da ${SITE.nome}. Faz um ano da sua compra${emp ? ` no ${emp}` : ""}! Como está sendo a experiência? Se tiver alguém que também esteja pensando em comprar ou vender, será um prazer atender com o mesmo cuidado. Obrigado pela confiança! Se quiser, conte como foi a sua experiência (só publico com a sua autorização): ${SITE.url.replace(/\/$/, "")}/depoimento` },
 ] as const;
 export const textoAniversario = (nome: string) => `Olá, ${nome}! Aqui é o ${SITE.consultor}, da ${SITE.nome}. Passando para desejar um feliz aniversário, com muita saúde e conquistas! Um abraço.`;
 

@@ -39,6 +39,7 @@ export function Footer() {
             <li><Link href="/blog" className="hover:text-gold">Blog</Link></li>
             <li><Link href="/parceiros" className="hover:text-gold">Parceiros</Link></li>
             <li><Link href="/sobre" className="hover:text-gold">Sobre</Link></li>
+            <li><Link href="/depoimentos" className="hover:text-gold">Depoimentos</Link></li>
             <li><Link href="/aluguel-ou-comprar" className="hover:text-gold">Aluguel ou compra?</Link></li>
             <li><Link href="/perguntas-frequentes" className="hover:text-gold">Compra na planta: perguntas</Link></li>
             <li><Link href="/atualizacoes" className="hover:text-gold">Últimas atualizações</Link></li>

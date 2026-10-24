@@ -3,6 +3,7 @@ import { ArrowRight, FileCheck2, Landmark, Scale, ClipboardCheck, Compass, Build
 import { Secao } from "@/components/Secao";
 import { EmpCard } from "@/components/EmpCard";
 import { LeadForm } from "@/components/LeadForm";
+import { DepoimentosHome } from "@/components/DepoimentosLista";
 import { EMPS, AMBIENTES, CIDADES, brl, porSegmento } from "@/lib/emp";
 import { POSTS } from "@/lib/blog";
 import { SITE, whatsappLink } from "@/lib/site";
@@ -185,6 +186,8 @@ export default function Home() {
           ))}
         </div>
       </Secao>
+
+      <DepoimentosHome />
 
       {/* FAQ */}
       <Secao claro eyebrow="Perguntas frequentes" titulo={<>Dúvidas <em>comuns</em></>}>

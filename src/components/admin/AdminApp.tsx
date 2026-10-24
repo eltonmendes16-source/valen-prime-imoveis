@@ -1,7 +1,7 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
 import type { Session } from "@supabase/supabase-js";
-import { BarChart3, CalendarCheck, Kanban, Megaphone, ExternalLink, FileSignature, LogOut, Plus, Upload, Users } from "lucide-react";
+import { BarChart3, CalendarCheck, Kanban, Megaphone, Quote, ExternalLink, FileSignature, LogOut, Plus, Upload, Users } from "lucide-react";
 import { getSupabase } from "@/lib/supabase";
 import { SITE } from "@/lib/site";
 import { Aviso } from "./ui";
@@ -12,10 +12,11 @@ import { Importar } from "./Importar";
 import { Painel } from "./Painel";
 import { Funil } from "./Funil";
 import { Atualizacoes } from "./Atualizacoes";
+import { Depoimentos } from "./Depoimentos";
 import { Contratos } from "./Contratos";
 import { ContratoDetalhe } from "./ContratoDetalhe";
 
-type Aba = "hoje" | "clientes" | "funil" | "contratos" | "atualizacoes" | "painel" | "importar";
+type Aba = "hoje" | "clientes" | "funil" | "contratos" | "atualizacoes" | "depoimentos" | "painel" | "importar";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -93,6 +94,7 @@ export function AdminApp() {
     { id: "funil", nome: "Funil", icone: <Kanban size={16} /> },
     { id: "contratos", nome: "Contratos", icone: <FileSignature size={16} /> },
     { id: "atualizacoes", nome: "Atualizações", icone: <Megaphone size={16} /> },
+    { id: "depoimentos", nome: "Depoimentos", icone: <Quote size={16} /> },
     { id: "painel", nome: "Painel", icone: <BarChart3 size={16} /> },
     { id: "importar", nome: "Importar", icone: <Upload size={16} /> },
   ];
@@ -102,7 +104,7 @@ export function AdminApp() {
       <header className="sticky top-0 z-30 border-b border-ink/10 bg-snow/95 backdrop-blur">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-3 px-4 py-3">
           <div className="mr-2"><p className="font-serif text-lg font-semibold leading-none text-ink">{SITE.marca}</p><p className="eyebrow mt-1">CRM</p></div>
-          <nav className="flex gap-1" aria-label="Seções do CRM">
+          <nav className="flex flex-wrap gap-1" aria-label="Seções do CRM">
             {abas.map((a) => (
               <button key={a.id} onClick={() => setAba(a.id)} aria-current={aba === a.id ? "page" : undefined}
                 className={`inline-flex items-center gap-1.5 rounded px-3 py-2 text-sm font-medium transition ${aba === a.id ? "bg-ink text-paper" : "text-ink hover:bg-gold/15"}`}>
@@ -123,6 +125,7 @@ export function AdminApp() {
         {aba === "clientes" && <Clientes versao={versao} abrir={abrir} />}
         {aba === "funil" && <Funil versao={versao} abrir={abrir} onChanged={mudou} />}
         {aba === "atualizacoes" && <Atualizacoes />}
+        {aba === "depoimentos" && <Depoimentos />}
         {aba === "painel" && <Painel versao={versao} />}
         {aba === "importar" && <Importar onConcluido={() => { mudou(); setAba("clientes"); }} />}
       </div>
