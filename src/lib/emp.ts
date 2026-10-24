@@ -56,3 +56,8 @@ export function entregaTexto(iso: string | null) {
 
 // Empreendimentos que já têm tela "Escolha sua unidade" com tabela de preços.
 export const COM_TABELA = ["ilha-de-murano"];
+
+// Páginas por cidade (SEO): /lancamentos/<slug>
+export const slugify = (s: string) => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+export const CIDADES_PAGINA = CIDADES.map((nome) => ({ nome, slug: slugify(nome), emps: EMPS.filter((e) => e.cidade === nome) }));
+export function getCidade(slug: string) { return CIDADES_PAGINA.find((c) => c.slug === slug); }
