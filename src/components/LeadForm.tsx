@@ -9,7 +9,7 @@ import { resumoInteresse } from "@/lib/comportamento";
 
 const INTERESSES = [
   "Comprar um lançamento", "Alto padrão", "Médio padrão", "Compactos / Minha Casa Minha Vida", "Locação",
-  "Documentação e regularização", "Financiamento", "Avaliação de imóvel", "Parceria (construtora, incorporadora ou corretor)",
+  "Documentação e regularização", "Financiamento", "Avaliação de imóvel", "Consultoria para investidor ou incorporador", "Parceria (construtora, incorporadora ou corretor)",
 ];
 
 // O formulário salva o contato no CRM (Supabase) e abre o WhatsApp do consultor com os dados preenchidos.

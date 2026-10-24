@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { FileCheck2, Landmark, Scale, ClipboardCheck, Compass } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
 import { LeadForm } from "@/components/LeadForm";
+import Link from "next/link";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = { title: "Serviços", description: "Documentação, financiamento, regularização, avaliação e consultoria imobiliária." };
@@ -25,6 +26,7 @@ export default function Page() {
             <h2 className="mt-4 font-serif text-2xl font-semibold">{s.t}</h2>
             <p className="mt-2 text-mutedink">{s.d}</p>
             <ul className="mt-4 space-y-1.5 text-sm">{s.it.map((x) => <li key={x} className="border-t border-ink/10 pt-1.5">{x}</li>)}</ul>
+            {(s.t === "Avaliação de imóveis" || s.t.startsWith("Consultoria")) && <Link href="/avaliacao-e-consultoria" className="mt-4 inline-block text-sm font-medium text-golddark underline">Saiba mais →</Link>}
           </article>
         ))}
       </div>

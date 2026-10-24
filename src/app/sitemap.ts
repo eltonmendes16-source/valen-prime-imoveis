@@ -5,7 +5,7 @@ import { POSTS } from "@/lib/blog";
 export default function sitemap(): MetadataRoute.Sitemap {
   const hoje = new Date();
   const base = SITE.url.replace(/\/$/, "");
-  const fixas = ["", "/imoveis", "/servicos", "/simulador", "/blog", "/atualizacoes", "/perguntas-frequentes", "/aluguel-ou-comprar", "/depoimentos", "/parceiros", "/sobre", "/privacidade", "/termos"];
+  const fixas = ["", "/imoveis", "/servicos", "/avaliacao-e-consultoria", "/simulador", "/blog", "/atualizacoes", "/perguntas-frequentes", "/aluguel-ou-comprar", "/depoimentos", "/parceiros", "/sobre", "/privacidade", "/termos"];
   return [
     ...fixas.map((p) => ({ url: base + p, lastModified: hoje })),
     ...AMBIENTES.map((a) => ({ url: `${base}/ambientes/${a.slug}`, lastModified: hoje })),
